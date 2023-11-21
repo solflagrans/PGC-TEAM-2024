@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18110748, g: 0.22668773, b: 0.3073053, a: 1}
+  m_IndirectSpecularColor: {r: 0.18110804, g: 0.22668849, b: 0.30730617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -169,9 +169,9 @@ GameObject:
   - component: {fileID: 78974019}
   - component: {fileID: 78974018}
   - component: {fileID: 78974017}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -185,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 78974015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 0.4, z: 15}
+  m_LocalScale: {x: 15, y: 1, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1095640018}
@@ -210,7 +210,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &78974018
@@ -599,7 +599,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &145222480425085128
+--- !u!1001 &1798539288
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -620,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 1338360048123877733, guid: 1ff7a2d363960314bafbf5b9909b31d8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.39
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1338360048123877733, guid: 1ff7a2d363960314bafbf5b9909b31d8,
         type: 3}
@@ -662,10 +662,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6656699315683474122, guid: 1ff7a2d363960314bafbf5b9909b31d8,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 8949784375337922348, guid: 1ff7a2d363960314bafbf5b9909b31d8,
         type: 3}
       propertyPath: m_Name
-      value: MainCharacter
+      value: m_character
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
