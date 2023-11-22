@@ -7,10 +7,10 @@ public class MovingController : MonoBehaviour
 {
     public float movingSpeed;
     public float jumpForce;
+    public float doubleJumpForce;
     private Vector3 movingVector;
 
     private Rigidbody mc_rb;
-    private int jumps = 0;
     private bool canDoubleJump = false;
     private bool canJump = true;
     // Start is called before the first frame update
@@ -29,11 +29,16 @@ public class MovingController : MonoBehaviour
         mc_rb.MovePosition(mc_rb.position + movingVector * (movingSpeed * Time.deltaTime));
        if (Input.GetKeyDown(KeyCode.Space))
        {
-           if (canJump || canDoubleJump)
+           if (canJump)
            {
                mc_rb.velocity = new Vector3(mc_rb.velocity.x, jumpForce, mc_rb.velocity.z);
                canJump = false;
-               canDoubleJump = !canDoubleJump;
+               canDoubleJump = true;
+           }
+           else if (canDoubleJump)
+           {
+               mc_rb.velocity = new Vector3(mc_rb.velocity.x, doubleJumpForce, mc_rb.velocity.z);
+               canDoubleJump = false;
            }
        }
     }
