@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18110804, g: 0.22668849, b: 0.30730617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -727,10 +727,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -755,7 +755,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -860,6 +860,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 6656699315683474122, guid: 1ff7a2d363960314bafbf5b9909b31d8,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8949784375337922348, guid: 1ff7a2d363960314bafbf5b9909b31d8,
         type: 3}
       propertyPath: m_Name
@@ -868,8 +873,49 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8949784375337922348, guid: 1ff7a2d363960314bafbf5b9909b31d8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1798539290}
   m_SourcePrefab: {fileID: 100100000, guid: 1ff7a2d363960314bafbf5b9909b31d8, type: 3}
+--- !u!1 &1798539289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8949784375337922348, guid: 1ff7a2d363960314bafbf5b9909b31d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1798539288}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1798539290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798539289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b457248bb8a90584c98c0f2cd130a925,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &8415114288402147448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -878,6 +924,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1429116486}
     m_Modifications:
+    - target: {fileID: 1138694170791818250, guid: 018c9e3cee2ea1d458c6a064691e6d8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1013
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138694170791818250, guid: 018c9e3cee2ea1d458c6a064691e6d8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 640
+      objectReference: {fileID: 0}
     - target: {fileID: 1933587764969045879, guid: 018c9e3cee2ea1d458c6a064691e6d8b,
         type: 3}
       propertyPath: m_RootOrder
@@ -891,7 +947,7 @@ PrefabInstance:
     - target: {fileID: 1933587764969045879, guid: 018c9e3cee2ea1d458c6a064691e6d8b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -539.38
+      value: -540
       objectReference: {fileID: 0}
     - target: {fileID: 1933587764969045879, guid: 018c9e3cee2ea1d458c6a064691e6d8b,
         type: 3}
@@ -937,6 +993,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GamePause
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224824552988676799, guid: 018c9e3cee2ea1d458c6a064691e6d8b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 540
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

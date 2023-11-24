@@ -1,34 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class UI_Controller : MonoBehaviour
 {
-   public GameObject PauseUI;
+    [Header("UI Elements")]
+    public GameObject PauseUI;
 
-   void Update()
-   {
-      if (Input.GetKey(KeyCode.Escape))
-      {
-         Time.timeScale = 0;
-         PauseUI.SetActive(!PauseUI.active);
-      }
-   }
+    [Header("Technical Variables")]
+    private bool menuOpened;
 
-   public void Continuie (){
-      PauseUI.SetActive(false);
-      Time.timeScale = 1;
-   }
+    private void Update() {
 
-   public void Restart()
-   {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(Input.GetKeyDown(KeyCode.Escape)) ChangeMenuState();
+
+    }
+
+    public void ChangeMenuState() {
+
+        if(!menuOpened) {
+            Time.timeScale = 0.3f;
+            PauseUI.SetActive(true);
+            menuOpened = true;
+        } else {
+            Time.timeScale = 1f;
+            PauseUI.SetActive(false);
+            menuOpened = false;
+        }
+
+    }
+
+   public void Restart() {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+
    }
    
-   public void ToMenu (){
-      SceneManager.LoadScene(0);
+   public void ToMenu () {
+
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+
    }
 }

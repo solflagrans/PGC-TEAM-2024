@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovingController : MonoBehaviour
 {
+    public InputActionSystem actions;
+
     [Header("Preferences")]
     public float movingSpeed;
     public float jumpForce;
@@ -15,9 +18,11 @@ public class MovingController : MonoBehaviour
     private Vector3 movingVector;
     private bool canDoubleJump = false;
     private bool canJump ;
-    void Start()
-    {
+
+    void Start() {
+
         mc_rb = gameObject.GetComponent<Rigidbody>();
+
     }
 
     void Update()
@@ -43,7 +48,7 @@ public class MovingController : MonoBehaviour
         movingVector.x = Input.GetAxis("Horizontal");
         movingVector.z = Input.GetAxis("Vertical");
 
-        mc_rb.MovePosition(mc_rb.position + movingVector * (movingSpeed * Time.deltaTime));
+        mc_rb.MovePosition(mc_rb.position + movingVector * movingSpeed * Time.deltaTime);
 
     }
 
