@@ -110,8 +110,309 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: EngineerRig_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: EngineerRig_Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Engineer(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Engineer_Mesh
+      parentName: Engineer(Clone)
+      position: {x: -0, y: 0.7338514, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 50.14949, y: 53.21418, z: 50.14949}
+    - name: EngineerRig_Reference
+      parentName: Engineer(Clone)
+      position: {x: -0, y: 0.0018008422, z: -0.0046032807}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_Hips
+      parentName: EngineerRig_Reference
+      position: {x: 0.000000013255055, y: 0.384072, z: -0.0588364}
+      rotation: {x: 0.5730192, y: -0.4143055, z: -0.5730192, w: 0.4143055}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_LeftUpLeg
+      parentName: EngineerRig_Hips
+      position: {x: 0.014227792, y: 0.069312505, z: 0.15418059}
+      rotation: {x: -0, y: 0, z: 0.9873244, w: -0.15871535}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_LeftLeg
+      parentName: EngineerRig_LeftUpLeg
+      position: {x: -0.14291467, y: 0.0000014779403, z: 0.000000009536743}
+      rotation: {x: 0, y: 0, z: -0.000003308058, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_LeftFoot
+      parentName: EngineerRig_LeftLeg
+      position: {x: -0.15435895, y: 0.00000060515146, z: -0.000000038146972}
+      rotation: {x: -0.00000016722433, y: 0.00000024987736, z: 0.5561744, w: 0.8310656}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_LeftToeBase
+      parentName: EngineerRig_LeftFoot
+      position: {x: -0.11315932, y: -0.0000000049209588, z: -0.0000000012901082}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_RightUpLeg
+      parentName: EngineerRig_Hips
+      position: {x: 0.014227792, y: 0.069312505, z: -0.15418059}
+      rotation: {x: -0.0000000048026707, y: 0.000000029875817, z: 0.15872028, w: 0.9873236}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_RightLeg
+      parentName: EngineerRig_RightUpLeg
+      position: {x: 0.14291467, y: -0.0000014655523, z: 0.000000008649019}
+      rotation: {x: 2.288419e-13, y: -0.00000004154904, z: -0.000008165836, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_RightFoot
+      parentName: EngineerRig_RightLeg
+      position: {x: 0.15435895, y: -0.0000005924434, z: 0.00000005373514}
+      rotation: {x: -0.000021531841, y: 0.00003219302, z: 0.5561743, w: 0.8310657}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_RightToeBase
+      parentName: EngineerRig_RightFoot
+      position: {x: 0.11315932, y: 0.000000011636042, z: -0.000000009463078}
+      rotation: {x: 0.000025401905, y: -0.000000088813565, z: 2.2560337e-12, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_Spine
+      parentName: EngineerRig_Hips
+      position: {x: -0.2027479, y: 0.0000000868422, z: 0.000000005737913}
+      rotation: {x: 0, y: 0, z: 0.26514968, w: 0.9642073}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_Spine1
+      parentName: EngineerRig_Spine
+      position: {x: -0.14777951, y: -0.000000020151253, z: -9.094947e-15}
+      rotation: {x: 0, y: 0, z: 0.08331705, w: 0.9965231}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_Spine2
+      parentName: EngineerRig_Spine1
+      position: {x: -0.1342276, y: 0.000000050447163, z: -0.000000009857407}
+      rotation: {x: 0, y: 0, z: -0.27485424, w: 0.9614859}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_LeftShoulder
+      parentName: EngineerRig_Spine2
+      position: {x: -0.049287185, y: -0.012811048, z: 0.07756592}
+      rotation: {x: 0.61476237, y: -0.5306714, z: -0.45840105, w: -0.36100343}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_LeftArm
+      parentName: EngineerRig_LeftShoulder
+      position: {x: -0.1508552, y: -0.00000007546442, z: -0.000000029319992}
+      rotation: {x: 0.69649535, y: -0.16094099, z: 0.12452492, w: 0.688103}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_LeftForeArm
+      parentName: EngineerRig_LeftArm
+      position: {x: -0.25285995, y: 0.000009031713, z: 0.0000055509618}
+      rotation: {x: -0.000005990058, y: 0.00001094365, z: -0.000018669642, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_LeftHand
+      parentName: EngineerRig_LeftForeArm
+      position: {x: -0.22395004, y: -0.00000039773445, z: 0.000000014694976}
+      rotation: {x: 0, y: 0, z: 0.00000088310185, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_RightShoulder
+      parentName: EngineerRig_Spine2
+      position: {x: -0.04928719, y: -0.012811039, z: -0.07756594}
+      rotation: {x: 0.5306714, y: 0.61476237, z: -0.36100358, w: 0.45840108}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_RightArm
+      parentName: EngineerRig_RightShoulder
+      position: {x: 0.1508552, y: 0.00000015217023, z: 0.000000009776455}
+      rotation: {x: 0.69649535, y: -0.16094135, z: 0.1245252, w: 0.68810284}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_RightForeArm
+      parentName: EngineerRig_RightArm
+      position: {x: 0.25286013, y: -0.000009064779, z: -0.000005539133}
+      rotation: {x: -0.0000060500993, y: 0.000010956182, z: -0.000018736697, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_RightHand
+      parentName: EngineerRig_RightForeArm
+      position: {x: 0.22395004, y: 0.0000003952167, z: 0.000000012302987}
+      rotation: {x: 0, y: 0, z: 0.00000088508193, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_Neck
+      parentName: EngineerRig_Spine2
+      position: {x: -0.1350533, y: -0.000000111523576, z: -0.000000010186836}
+      rotation: {x: 0, y: 0, z: -0.10639496, w: 0.99432397}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EngineerRig_Head
+      parentName: EngineerRig_Neck
+      position: {x: -0.16241121, y: -0.00000007041985, z: -0.0000000092241175}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -122,13 +423,14 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: EngineerRig_Hips
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4624f4b8eb46e5444bbbf90c5caa0e06,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
