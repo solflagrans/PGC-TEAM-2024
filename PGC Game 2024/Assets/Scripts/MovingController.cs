@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class MovingController : MonoBehaviour
 {
-    public InputActionSystem actions;
+   // public InputActionSystem actions;
 
     [Header("Preferences")]
     public float movingSpeed;

@@ -456,6 +456,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1973468060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8347194210523998233, guid: 57adc207e7853054d8b0ca85d8399ceb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1447422509920413427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b8f4fb06629444cbf67857c0ede33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2015564946
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +630,79 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1447422509920413427
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1108.3073
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 563.12714
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089984311399396400, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150499359064792615, guid: 57adc207e7853054d8b0ca85d8399ceb,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelLoader
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 57adc207e7853054d8b0ca85d8399ceb, type: 3}
 --- !u!114 &1581250047293524032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,7 +802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 795864876677742912}
   m_Layer: 5
-  m_Name: PauseUI
+  m_Name: MainUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1009,16 +1094,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 567732938}
-        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
+      - m_Target: {fileID: 1973468060}
+        m_TargetAssemblyTypeName: LevelLoadingController, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: FeatureDevelopment
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &5000927217830959025
