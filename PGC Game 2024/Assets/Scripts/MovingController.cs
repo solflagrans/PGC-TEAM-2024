@@ -31,7 +31,7 @@ public class MovingController : MonoBehaviour
 
     void Update() {
 
-        canJump = Physics.Raycast(transform.position, Vector3.down, 1.2f, Ground);
+        canJump = Physics.Raycast(transform.position, Vector3.down, 1.5f, Ground);
 
        if (Input.GetKeyDown(KeyCode.Space))
        {
