@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Collectible
+  - Trap
   layers:
   - Default
   - TransparentFX
