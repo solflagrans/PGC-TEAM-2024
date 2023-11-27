@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44766426, g: 0.4976375, b: 0.575378, a: 1}
+  m_IndirectSpecularColor: {r: 0.44766486, g: 0.49763805, b: 0.57537884, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1168,6 +1168,7 @@ GameObject:
   - component: {fileID: 539977561}
   - component: {fileID: 539977560}
   - component: {fileID: 539977559}
+  - component: {fileID: 539977563}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Trap
@@ -1259,8 +1260,21 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &539977563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539977558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fda74c97342be409f36c09e440b757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapDamage: 5
 --- !u!1 &628698712
 GameObject:
   m_ObjectHideFlags: 0

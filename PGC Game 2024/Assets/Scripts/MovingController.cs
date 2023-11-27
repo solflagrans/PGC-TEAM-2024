@@ -23,12 +23,15 @@ public class MovingController : MonoBehaviour
 
     }
 
-    void Update()
-    {
+    private void FixedUpdate() {
+
+        Move();
+
+    }
+
+    void Update() {
 
         canJump = Physics.Raycast(transform.position, Vector3.down, 1.2f, Ground);
-        
-        Move();
 
        if (Input.GetKeyDown(KeyCode.Space))
        {
@@ -40,19 +43,22 @@ public class MovingController : MonoBehaviour
     }
 
     //Ñîçäà¸ì äâèæåíèÿ ïåðñîíàæà ïî ãîðèçîíòàëè è âåðòèêàëè
-    private void Move() 
-    {
+    private void Move() {
         
-        movingVector.x = Input.GetAxis("Horizontal");
-        movingVector.z = Input.GetAxis("Vertical");
+        movingVector.x = Input.GetAxisRaw("Horizontal");
+        movingVector.z = Input.GetAxisRaw("Vertical");
 
         mc_rb.MovePosition(mc_rb.position + movingVector * movingSpeed * Time.deltaTime);
+
+        if(Vector3.Normalize(movingVector) != Vector3.zero) {
+                Quaternion lookRotation = Quaternion.LookRotation(movingVector, Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 340 * Time.deltaTime);
+        }
 
     }
 
     //Ïîçâîëÿåì åìó ïðûãàòü
-    private void Jump() 
-    {
+    private void Jump() {
         if (canJump) 
         {
                    mc_rb.velocity = new Vector3(mc_rb.velocity.x, jumpForce, mc_rb.velocity.z);
