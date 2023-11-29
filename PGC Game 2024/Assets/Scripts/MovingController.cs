@@ -11,15 +11,18 @@ public class MovingController : MonoBehaviour
     [Header("Instances")]
     public LayerMask Ground;
     private Rigidbody mc_rb;
+    private Animator animator;
 
     [Header("Techincal Variables")]
     private Vector3 movingVector;
     private bool canDoubleJump = false;
-    private bool canJump ;
+    private bool canJump;
+
 
     void Start() {
 
         mc_rb = gameObject.GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 
     }
 
@@ -31,12 +34,11 @@ public class MovingController : MonoBehaviour
 
     void Update() {
 
-        canJump = Physics.Raycast(transform.position, Vector3.down, 1.5f, Ground);
+        canJump = Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down, 1.5f, Ground);
 
-       if (Input.GetKeyDown(KeyCode.Space))
-       {
+       if (Input.GetKeyDown(KeyCode.Space)) {
 
-        Jump();
+            Jump();
 
        }
 
@@ -50,25 +52,29 @@ public class MovingController : MonoBehaviour
 
         mc_rb.MovePosition(mc_rb.position + movingVector * movingSpeed * Time.deltaTime);
 
+        if(Vector3.Normalize(movingVector) != Vector3.zero && mc_rb.velocity.y == 0) {
+            animator.SetTrigger("Run");
+        } else if (mc_rb.velocity.y == 0) animator.SetTrigger("Idle");
+
         if(Vector3.Normalize(movingVector) != Vector3.zero) {
-                Quaternion lookRotation = Quaternion.LookRotation(movingVector, Vector3.up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 340 * Time.deltaTime);
+            Quaternion lookRotation = Quaternion.LookRotation(movingVector, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 340 * Time.deltaTime);
         }
 
     }
 
     //Ïîçâîëÿåì åìó ïðûãàòü
     private void Jump() {
-        if (canJump) 
-        {
-                   mc_rb.velocity = new Vector3(mc_rb.velocity.x, jumpForce, mc_rb.velocity.z);
-                   canJump = false;
-                   canDoubleJump = true;
+        if (canJump) {
+            mc_rb.AddForce(Vector3.up * jumpForce * mc_rb.mass, ForceMode.Impulse);
+            canJump = false;
+            canDoubleJump = true;
+            animator.SetTrigger("Jump");
         }
-        else if (canDoubleJump)
-        {
-                   mc_rb.velocity = new Vector3(mc_rb.velocity.x, doubleJumpForce, mc_rb.velocity.z);
-                   canDoubleJump = false;
+        else if (canDoubleJump) {
+            mc_rb.AddForce(Vector3.up * doubleJumpForce * mc_rb.mass, ForceMode.Impulse);
+            canDoubleJump = false;
+            animator.SetTrigger("Jump");
         }
     }
 }
