@@ -13,8 +13,7 @@ public class Enemy : MonoBehaviour
      public float waitingTime;
 
      private bool canGo = true;
-
-     private int time = 0;
+     
      void Update()
     {
         EnemyMoving();
