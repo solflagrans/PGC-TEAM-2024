@@ -3461,6 +3461,37 @@ Transform:
   m_Father: {fileID: 1095640018}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1798216130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1798216131}
+  m_Layer: 0
+  m_Name: JumpTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1798216131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798216130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: -0.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3464685070572998641}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1808155723
 GameObject:
   m_ObjectHideFlags: 0
@@ -4359,9 +4390,10 @@ MonoBehaviour:
   movingSpeed: 3
   jumpForce: 4
   doubleJumpForce: 3
-  Ground:
+  ground:
     serializedVersion: 2
     m_Bits: 64
+  jumpTime: {fileID: 1798216131}
   movingVector: {x: 0, y: 0, z: 0}
 --- !u!4 &2333986103497877676
 Transform:
@@ -4821,6 +4853,7 @@ Transform:
   - {fileID: 785812928708441408}
   - {fileID: 5184164914912274650}
   - {fileID: 2051080278}
+  - {fileID: 1798216131}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

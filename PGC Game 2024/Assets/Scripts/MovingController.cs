@@ -9,7 +9,8 @@ public class MovingController : MonoBehaviour
     public float doubleJumpForce;
     
     [Header("Instances")]
-    public LayerMask Ground;
+    public LayerMask ground;
+    public Transform jumpTime;
     private Rigidbody mc_rb;
     private Animator animator;
 
@@ -34,7 +35,7 @@ public class MovingController : MonoBehaviour
 
     void Update() {
 
-        canJump = Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down, 1.2f, Ground);
+        canJump = Physics.Raycast(jumpTime.position, Vector3.down, 0.7f, ground);
 
         if(Input.GetKeyDown(KeyCode.Space)) Jump();
 
@@ -60,10 +61,8 @@ public class MovingController : MonoBehaviour
 
         if (canJump) {
             mc_rb.AddForce(Vector3.up * jumpForce * mc_rb.mass, ForceMode.Impulse);
-            canJump = false;
             canDoubleJump = true;
-        }
-        else if (canDoubleJump) {
+        } else if (canDoubleJump) {
             mc_rb.AddForce(Vector3.up * doubleJumpForce * mc_rb.mass, ForceMode.Impulse);
             canDoubleJump = false;
         }
