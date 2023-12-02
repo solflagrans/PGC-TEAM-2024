@@ -6,6 +6,9 @@ public class MC_InGameInformation : MonoBehaviour
 {
     public int hp;
     public bool isInvulnerable;
+    public int collectedHoney;
+    public int maxHoneyAmount;
+    
     void Start()
     {
         
@@ -14,7 +17,7 @@ public class MC_InGameInformation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(hp);
+       
     }
     
 }
