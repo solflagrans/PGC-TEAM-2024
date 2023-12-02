@@ -52,9 +52,9 @@ public class MovingController : MonoBehaviour
 
         mc_rb.MovePosition(mc_rb.position + movingVector.normalized * movingSpeed * Time.deltaTime);
 
-        if(Vector3.Normalize(movingVector) != Vector3.zero && mc_rb.velocity.y < 0.1f) {
+        if(Vector3.Normalize(movingVector) != Vector3.zero && mc_rb.velocity.y < 0.004f) {
             animator.SetTrigger("Run");
-        } else if (mc_rb.velocity.y < 0.1f) animator.SetTrigger("Idle");
+        } else if (mc_rb.velocity.y < 0.004f) animator.SetTrigger("Idle");
 
         if(Vector3.Normalize(movingVector) != Vector3.zero) {
             Quaternion lookRotation = Quaternion.LookRotation(movingVector, Vector3.up);
