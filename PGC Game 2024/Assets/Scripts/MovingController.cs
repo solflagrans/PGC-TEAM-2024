@@ -34,7 +34,7 @@ public class MovingController : MonoBehaviour
 
     void Update() {
 
-        canJump = Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down, 1.5f, Ground);
+        canJump = Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down, 1.2f, Ground);
 
        if (Input.GetKeyDown(KeyCode.Space)) {
 
@@ -50,15 +50,15 @@ public class MovingController : MonoBehaviour
         movingVector.x = Input.GetAxisRaw("Horizontal");
         movingVector.z = Input.GetAxisRaw("Vertical");
 
-        mc_rb.MovePosition(mc_rb.position + movingVector * movingSpeed * Time.deltaTime);
+        mc_rb.MovePosition(mc_rb.position + movingVector.normalized * movingSpeed * Time.deltaTime);
 
-        if(Vector3.Normalize(movingVector) != Vector3.zero && mc_rb.velocity.y == 0) {
+        if(Vector3.Normalize(movingVector) != Vector3.zero && mc_rb.velocity.y < 0.1f) {
             animator.SetTrigger("Run");
-        } else if (mc_rb.velocity.y == 0) animator.SetTrigger("Idle");
+        } else if (mc_rb.velocity.y < 0.1f) animator.SetTrigger("Idle");
 
         if(Vector3.Normalize(movingVector) != Vector3.zero) {
             Quaternion lookRotation = Quaternion.LookRotation(movingVector, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 340 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 720 * Time.deltaTime);
         }
 
     }
