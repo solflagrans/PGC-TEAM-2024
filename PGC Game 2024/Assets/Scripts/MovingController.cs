@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovingController : MonoBehaviour
@@ -7,15 +9,18 @@ public class MovingController : MonoBehaviour
     public float movingSpeed;
     public float jumpForce;
     public float doubleJumpForce;
+    public float climbSpeed;
     
     [Header("Instances")]
     public LayerMask ground;
     public Transform jumpTime;
     private Rigidbody mc_rb;
-    private Animator animator;
+    private Transform endClimbPoint;
+    private Transform startClimbPoint;
 
     [Header("Techincal Variables")]
-    public Vector3 movingVector;
+    [HideInInspector] public Vector3 movingVector;
+    [HideInInspector] public bool isClimb;
     private bool canDoubleJump = false;
     private bool canJump;
 
@@ -23,13 +28,14 @@ public class MovingController : MonoBehaviour
     void Start() {
 
         mc_rb = gameObject.GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
 
     }
 
     private void FixedUpdate() {
 
-        Move();
+        if(isClimb) Climb();
+
+        if(!isClimb) Move();
 
     }
 
@@ -37,7 +43,7 @@ public class MovingController : MonoBehaviour
 
         canJump = Physics.Raycast(jumpTime.position, Vector3.down, 0.7f, ground);
 
-        if(Input.GetKeyDown(KeyCode.Space)) Jump();
+        if(Input.GetKeyDown(KeyCode.Space) & !isClimb) Jump();
 
     }
 
@@ -66,6 +72,42 @@ public class MovingController : MonoBehaviour
             mc_rb.AddForce(Vector3.up * doubleJumpForce * mc_rb.mass, ForceMode.Impulse);
             canDoubleJump = false;
         }
+
+    }
+
+    void OnTriggerEnter(Collider col) {
+
+        if(col.CompareTag("Ladder")) {
+            isClimb = true;
+            endClimbPoint = col.transform.Find("EndPoint");
+            startClimbPoint = col.transform.Find("StartPoint");
+        }
+
+    }
+
+    private void OnTriggerExit(Collider col) {
+
+        if(col.CompareTag("Ladder")) {
+            isClimb = false;
+            mc_rb.useGravity = true;
+        }
+
+    }
+
+    private void Climb() {
+
+        movingVector.x = Input.GetAxisRaw("Horizontal");
+        movingVector.z = Input.GetAxisRaw("Vertical");
+
+        if(movingVector.z > 0.05f) transform.position = Vector3.MoveTowards(transform.position, endClimbPoint.position, climbSpeed/100f);
+        else if(movingVector.z < -0.05f) transform.position = Vector3.MoveTowards(transform.position, startClimbPoint.position, climbSpeed/100f);
+
+        Quaternion rotateTo = Quaternion.RotateTowards(transform.rotation, startClimbPoint.rotation, 720f);
+        transform.rotation = new Quaternion(transform.rotation.x, rotateTo.y, transform.rotation.z, transform.rotation.w);
+
+        mc_rb.useGravity = false;
+
+        transform.position = new Vector3(movingVector.x * movingSpeed * Time.deltaTime + transform.position.x, transform.position.y, transform.position.z);
 
     }
 }
