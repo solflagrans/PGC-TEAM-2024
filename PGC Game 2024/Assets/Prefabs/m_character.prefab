@@ -1838,7 +1838,7 @@ Transform:
   - {fileID: 5883399202172852142}
   - {fileID: 9131098711110186275}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8644903665146807018
 Rigidbody:
@@ -1885,6 +1885,7 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 64
+  movingVector: {x: 0, y: 0, z: 0}
 --- !u!95 &4550658422363548581
 Animator:
   serializedVersion: 5
@@ -1957,6 +1958,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 3
   isInvulnerable: 0
+  collectedHoney: 0
+  maxHoneyAmount: 0
 --- !u!1 &9065311028470381070
 GameObject:
   m_ObjectHideFlags: 0
