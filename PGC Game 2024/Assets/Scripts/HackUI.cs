@@ -1,0 +1,98 @@
+using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HackUI : MonoBehaviour
+{
+
+    [Header("UI Elements")]
+    public TMP_Dropdown actions;
+    public TMP_Dropdown triggers;
+    public Slider param1;
+    public TMP_Dropdown param2;
+
+    [Header("Instances")]
+    public GameObject menu;
+    [HideInInspector] public scriptable_object scr_obj;
+    public CheckCollider[] cols;
+    
+    [Header("Settings")]
+    private string choosedAction;
+    private string choosedTrigger;
+    private float numParam;
+    private int textParam;
+
+    private void Update() {
+        
+        choosedAction = actions.captionText.text;
+        choosedTrigger = triggers.captionText.text;
+        numParam = param1.value;
+        textParam = param2.value;
+
+        if(choosedTrigger == "Таймер") {
+            param1.gameObject.SetActive(true);
+            param2.gameObject.SetActive(false);
+        }
+        if(choosedTrigger == "Коллидер") {
+            param1.gameObject.SetActive(false);
+            param2.gameObject.SetActive(true); 
+        }
+
+    }
+
+    //Включается выбранная игроком функция с учётом необходимых проверок и параметров
+    public void Use() {
+
+        if(choosedTrigger == "Таймер") {
+            StartCoroutine(Timer(numParam));
+        }
+        if(choosedTrigger == "Коллидер") {
+            StartCoroutine(Collider());
+        }
+
+        menu.SetActive(false);
+
+    }
+
+    IEnumerator Timer(float time) {
+
+        float i = 0;
+
+        while(i < time) {
+            i += 1f;
+            print(i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        Action();
+
+    }
+
+    IEnumerator Collider() {
+
+        while(!cols[textParam].playerIn) {
+            yield return new WaitForSeconds(.1f);
+        }
+
+        Action();
+
+    }
+
+    private void Action() {
+
+        if(choosedAction == "Убить игрока") {
+            scr_obj.KillPlayer("time");
+        }
+
+        if(choosedAction == "Сказать \"что-то\"") {
+            scr_obj.sayThing();
+        }
+
+        if(choosedAction == "Открыть дверь") {
+            scr_obj.OpenDoor();
+        }
+
+    }
+
+}
