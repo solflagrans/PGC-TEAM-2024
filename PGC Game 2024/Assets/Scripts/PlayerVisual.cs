@@ -7,6 +7,8 @@ public class PlayerVisual : MonoBehaviour
     private Animator animator;
     private Rigidbody rigid;
 
+    public GameObject sword;
+
     void Start()
     {
 
@@ -24,5 +26,7 @@ public class PlayerVisual : MonoBehaviour
         else if(controller.isClimb) animator.SetTrigger("ClimbIdle");
         else animator.SetTrigger("Idle");
 
+        if(controller.isClimb) sword.SetActive(false);
+        else sword.SetActive(true);
     }
 }
