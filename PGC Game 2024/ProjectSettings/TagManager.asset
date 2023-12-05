@@ -9,6 +9,7 @@ TagManager:
   - Trap
   - Enemy
   - Honey
+  - Ladder
   layers:
   - Default
   - TransparentFX

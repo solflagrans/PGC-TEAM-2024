@@ -3,12 +3,14 @@ using UnityEngine;
 public class PlayerVisual : MonoBehaviour
 {
 
+    private MovingController controller;
     private Animator animator;
     private Rigidbody rigid;
 
     void Start()
     {
 
+        controller = GetComponent<MovingController>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
 
@@ -16,9 +18,10 @@ public class PlayerVisual : MonoBehaviour
 
     void Update()
     {
-
-        if(rigid.velocity.x > 0 | rigid.velocity.z > 0) animator.SetTrigger("Run");
-        else if(rigid.velocity.y > 0) animator.SetTrigger("Jump");
+        if(controller.isClimb && controller.movingVector.normalized != Vector3.zero) animator.SetTrigger("Climb");
+        else if(rigid.velocity.y > 0.005f || rigid.velocity.y < -0.005f) animator.SetTrigger("Jump");
+        else if(controller.movingVector.normalized != Vector3.zero) animator.SetTrigger("Run");
+        else if(controller.isClimb) animator.SetTrigger("ClimbIdle");
         else animator.SetTrigger("Idle");
 
     }
