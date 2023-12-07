@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 296960758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee506a67a3b837478a11f8a6d9925e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c2a6b28c8ca4d74c8bcc358c2c24076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   honey: {fileID: 8648122573705545384, guid: 5068c350d532ab041838e75d79a0a198, type: 3}
@@ -3807,7 +3807,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 648914858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee506a67a3b837478a11f8a6d9925e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c2a6b28c8ca4d74c8bcc358c2c24076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   honey: {fileID: 8648122573705545384, guid: 5068c350d532ab041838e75d79a0a198, type: 3}
@@ -5032,19 +5032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructibleObject: {fileID: 1341942260050909618, guid: ec7fa7ba07e27504298bc6a939f664b7,
     type: 3}
---- !u!114 &814996380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814996377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee506a67a3b837478a11f8a6d9925e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  honey: {fileID: 8648122573705545384, guid: 5068c350d532ab041838e75d79a0a198, type: 3}
 --- !u!65 &814996381
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5066,6 +5053,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.015, y: 0.02, z: 0.015}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &814996383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814996377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2a6b28c8ca4d74c8bcc358c2c24076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  honey: {fileID: 8648122573705545384, guid: 5068c350d532ab041838e75d79a0a198, type: 3}
 --- !u!1 &816081118
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,7 +5132,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.03, y: 0.09, z: 0.13}
   m_Center: {x: -0.000000018625652, y: -0.00000013786557, z: 0.016473718}
@@ -5500,7 +5500,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 891076563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee506a67a3b837478a11f8a6d9925e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c2a6b28c8ca4d74c8bcc358c2c24076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   honey: {fileID: 8648122573705545384, guid: 5068c350d532ab041838e75d79a0a198, type: 3}
@@ -6156,7 +6156,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1019368185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee506a67a3b837478a11f8a6d9925e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c2a6b28c8ca4d74c8bcc358c2c24076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   honey: {fileID: 8648122573705545384, guid: 5068c350d532ab041838e75d79a0a198, type: 3}
@@ -8238,7 +8238,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 814996380}
+      addedObject: {fileID: 814996383}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       insertIndex: -1
