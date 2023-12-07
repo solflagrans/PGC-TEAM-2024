@@ -9,7 +9,7 @@ public class MC_InGameInformation : MonoBehaviour
     public bool isInvulnerable;
     public int collectedHoney;
     public int maxHoneyAmount;
-    
+    public int swordAura;
     void Start()
     {
         

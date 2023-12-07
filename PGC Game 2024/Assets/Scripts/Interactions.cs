@@ -7,6 +7,7 @@ public class Interactions : MonoBehaviour
 {
       public int trapDamage;
       public int enemyDamage;
+      public GameObject dialogueWindow;
       private void OnCollisionEnter(Collision coll){
           if (coll.collider.CompareTag("Trap"))
           {
@@ -65,4 +66,13 @@ public class Interactions : MonoBehaviour
               Debug.Log("мешочек заполнен!");
            }
         }
+
+        public void ChangeSwordAura(int auraNum)
+        {
+           gameObject.GetComponent<MC_InGameInformation>().swordAura = auraNum;
+        }
+        /*public void StartDialogue(){
+           gameObject.GetComponent<
+           dialogueWindow.SetActive(true);
+        }*/
 }

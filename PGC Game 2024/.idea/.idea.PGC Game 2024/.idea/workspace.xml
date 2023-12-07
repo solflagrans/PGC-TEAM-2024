@@ -42,6 +42,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/testBuild\PGC Game 2024.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="E:\PGC-TEAM-2024\PGC Game 2024\testBuild" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.4f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;E:\PGC-TEAM-2024\PGC Game 2024&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
@@ -95,6 +103,11 @@
       <workItem from="1701430480148" duration="2465000" />
       <workItem from="1701434021206" duration="4421000" />
       <workItem from="1701440933812" duration="1993000" />
+      <workItem from="1701443265872" duration="599000" />
+      <workItem from="1701527093035" duration="2299000" />
+      <workItem from="1701610945706" duration="3936000" />
+      <workItem from="1701853213862" duration="11995000" />
+      <workItem from="1701951592826" duration="5137000" />
     </task>
     <servers />
   </component>
