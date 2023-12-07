@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoBot : MonoBehaviour
@@ -13,7 +14,9 @@ public class RoBot : MonoBehaviour
     public Camera playerCamera;
     public Camera robotCamera;
     public MovingController controller;
-    private Rigidbody rigid;
+    private CharacterController movement;
+    public GameObject robotUI;
+    public Interactions interactions;
 
     [Header("Technical Variables")]
     private float timer;
@@ -24,7 +27,7 @@ public class RoBot : MonoBehaviour
     private void Start() {
 
         animator = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody>();
+        movement = GetComponent<CharacterController>();
 
     }
 
@@ -89,6 +92,8 @@ public class RoBot : MonoBehaviour
     private void ChangeMode() {
         controlMode = !controlMode;
         controller.enabled = !controlMode;
+        movement.enabled = controlMode;
+        robotUI.SetActive(controlMode);
 
         if(controlMode) {
             robotCamera.enabled = true;
@@ -105,22 +110,33 @@ public class RoBot : MonoBehaviour
         movingVector.x = Input.GetAxisRaw("Horizontal");
         movingVector.z = Input.GetAxisRaw("Vertical");
 
-        //Vector3 movingDirection = new Vector3(movingVector.x + cameraRotation.x, movingVector.z + cameraRotation.y, movingVector.z);
-        rigid.MoveRotation(Quaternion.Euler(cameraRotation * Time.deltaTime) * rigid.rotation);
-        print(Quaternion.Euler(cameraRotation * Time.deltaTime));
-        rigid.MovePosition(movingVector * movingSpeed * 3 * Time.deltaTime + rigid.position);
+        Vector3 movingDirection = transform.TransformDirection(Vector3.forward * 1.5f) * movingVector.z + transform.TransformDirection(Vector3.right * 1.5f) * movingVector.x;
+
+        movement.Move(movingDirection * Time.deltaTime * movingSpeed * 2.5f);
 
     }
 
     private void CameraRotate() {
-        cameraRotation.x += Input.GetAxis("Mouse X");
+        cameraRotation.x += Input.GetAxis("Mouse X") * 0.6f;
         cameraRotation.y -= Input.GetAxis("Mouse Y");
 
-        cameraRotation.x = Mathf.Clamp(cameraRotation.x, -30f, 30f);
+        cameraRotation.x = Mathf.Repeat(cameraRotation.x, 360f);
         cameraRotation.y = Mathf.Clamp(cameraRotation.y, -30f, 30f);
 
-        robotCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);
-        //transform.rotation = Quaternion.Euler(cameraRotation.x, cameraRotation.y, 0f);
+        //robotCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, 0f, 0f);
+        transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);
+    }
+
+    private void OnTriggerEnter(Collider col) {
+
+        if(col.CompareTag("Collectible")) {
+            interactions.SaveCollectible(col.gameObject);
+        }
+
+        if(col.CompareTag("Honey")) {
+            interactions.CollectHoney(col.gameObject);
+        }
+
     }
 
 }

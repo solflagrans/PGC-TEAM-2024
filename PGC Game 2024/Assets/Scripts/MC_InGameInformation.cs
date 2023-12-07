@@ -5,6 +5,7 @@ using UnityEngine;
 public class MC_InGameInformation : MonoBehaviour
 {
     public int hp;
+    public int maxHp;
     public bool isInvulnerable;
     public int collectedHoney;
     public int maxHoneyAmount;

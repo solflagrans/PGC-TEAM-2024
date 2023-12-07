@@ -1,10 +1,17 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UI_Controller : MonoBehaviour
 {
     [Header("UI Elements")]
     public GameObject PauseUI;
+    public Slider healthBar;
+    public Slider honeyFiller;
+    public TextMeshProUGUI honeyPercentage;
+    public TextMeshProUGUI honeyNumber;
+    public MC_InGameInformation statistics;
 
     [Header("Technical Variables")]
     private bool menuOpened;
@@ -12,6 +19,12 @@ public class UI_Controller : MonoBehaviour
     private void Update() {
 
         if(Input.GetKeyDown(KeyCode.Escape)) ChangeMenuState();
+
+        healthBar.value = statistics.hp;
+        honeyFiller.maxValue = statistics.maxHoneyAmount;
+        honeyFiller.value = Mathf.Floor((((float)statistics.collectedHoney) / ((float)statistics.maxHoneyAmount)) * 100);
+        honeyPercentage.text = honeyFiller.value.ToString() + "%";
+        honeyNumber.text = statistics.collectedHoney.ToString();
 
     }
 
