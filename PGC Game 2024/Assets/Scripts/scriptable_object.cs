@@ -5,27 +5,39 @@ using UnityEngine;
 public class scriptable_object : MonoBehaviour
 {
 
+    //To make new function:
+    //1) Add it in objectFuncs
+    //2) Describe it using void
+    //3) Indicate it's name in void AddNames()
+    //4) Connect function with name in HackUI class, in void Action
+
     public enum objectFuncs {
         killPlayer,
         openDoor,
-        sayThing
+        sayThing,
+        explodeStones
     }
 
+    [Tooltip("Choose functions, that will be apllied to your object")]
     public objectFuncs[] funcs;
 
     private List<string> funcNames = new List<string>();
 
-    public HackUI menu;
+    private HackUI menu;
 
-    public GameObject div;
+    private GameObject div;
 
-    private CheckCollider canUse;
+    public CheckCollider canUse;
+
+    [Header("Items for functions")]
+    public DestructionObjects destruction;
 
     private void Start() {
 
         addNames();
 
-        canUse = GetComponent<CheckCollider>();
+        menu = transform.Find("/UI").GetComponent<HackUI>();
+        div = menu.transform.Find("HackUI").gameObject;
 
     }
 
@@ -61,9 +73,15 @@ public class scriptable_object : MonoBehaviour
 
     }
 
-    public void sayThing() {
+    public void SayThing() {
 
         print("thing");
+
+    }
+
+    public void ExplodeStones() {
+
+        destruction.Replace();
 
     }
 
@@ -79,6 +97,9 @@ public class scriptable_object : MonoBehaviour
         }
         if(funcs.Contains(objectFuncs.sayThing)) {
             funcNames.Add("Сказать \"что-то\"");
+        }
+        if(funcs.Contains(objectFuncs.explodeStones)) {
+            funcNames.Add("Взорвать камни");
         }
 
     }

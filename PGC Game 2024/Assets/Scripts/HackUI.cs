@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class HackUI : MonoBehaviour
 {
 
+    //To add new trigger:
+    //1) Add it in unity UI
+    //2) Do coroutine for it
+    //3) Add coroutine in void Use
+    //4) *if needed, make new parameter for it
+
     [Header("UI Elements")]
     public TMP_Dropdown actions;
     public TMP_Dropdown triggers;
@@ -86,11 +92,15 @@ public class HackUI : MonoBehaviour
         }
 
         if(choosedAction == "Сказать \"что-то\"") {
-            scr_obj.sayThing();
+            scr_obj.SayThing();
         }
 
         if(choosedAction == "Открыть дверь") {
             scr_obj.OpenDoor();
+        }
+        
+        if(choosedAction == "Взорвать камни") {
+            scr_obj.ExplodeStones();
         }
 
     }

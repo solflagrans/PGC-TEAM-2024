@@ -32,7 +32,7 @@ public class Interactions : MonoBehaviour
            }
         }
      
-        private void SaveCollectible(GameObject collectible)
+        public void SaveCollectible(GameObject collectible)
         {
            PlayerPrefs.SetInt(collectible.name, 1);
            Destroy(collectible);
@@ -53,7 +53,7 @@ public class Interactions : MonoBehaviour
           gameObject.GetComponent<MC_InGameInformation>().isInvulnerable = false;
         }
 
-        void CollectHoney(GameObject honey)
+        public void CollectHoney(GameObject honey)
         {
            if (gameObject.GetComponent<MC_InGameInformation>().collectedHoney <
                gameObject.GetComponent<MC_InGameInformation>().maxHoneyAmount)

@@ -5,15 +5,7 @@ public class DestructionObjects : MonoBehaviour
 
     public GameObject destructibleObject;
 
-    public bool doDestruct;
-
-    void Update() {
-        if(doDestruct) {
-            Replace();
-        }
-    }
-
-    private void Replace() {
+    public void Replace() {
 
         GameObject replaced = Instantiate(destructibleObject, transform.position, transform.rotation);
 
