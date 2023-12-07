@@ -65,4 +65,9 @@ public class Interactions : MonoBehaviour
               Debug.Log("мешочек заполнен!");
            }
         }
+
+        public void ChangeSwordAura(int auraNum)
+        {
+           gameObject.GetComponent<MC_InGameInformation>().swordAura = auraNum;
+        }
 }
