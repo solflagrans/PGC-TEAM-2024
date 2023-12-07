@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MovingController : MonoBehaviour
@@ -15,12 +16,15 @@ public class MovingController : MonoBehaviour
     private Rigidbody mc_rb;
     private Transform endClimbPoint;
     private Transform startClimbPoint;
+    public Collider swordCollider;
 
     [Header("Techincal Variables")]
     [HideInInspector] public Vector3 movingVector;
     [HideInInspector] public bool isClimb;
     private bool canDoubleJump = false;
     private bool canJump;
+    [HideInInspector] public bool isAttack;
+    private bool waitAttack;
 
 
     void Start() {
@@ -38,6 +42,8 @@ public class MovingController : MonoBehaviour
     }
 
     void Update() {
+
+        if(Input.GetKeyDown(KeyCode.Mouse0) && !isAttack) Attack();
 
         canJump = Physics.Raycast(jumpTime.position, Vector3.down, 0.7f, ground);
 
@@ -70,6 +76,28 @@ public class MovingController : MonoBehaviour
             mc_rb.AddForce(Vector3.up * doubleJumpForce * mc_rb.mass, ForceMode.Impulse);
             canDoubleJump = false;
         }
+
+    }
+
+    private void Attack() {
+
+        isAttack = true;
+        swordCollider.enabled = true;
+
+        StartCoroutine(StopAttack());
+
+    }
+
+    IEnumerator StopAttack() {
+
+        if(!waitAttack) {
+            waitAttack = true;
+            yield return new WaitForSeconds(1f);
+        }
+
+        isAttack = false;
+        swordCollider.enabled = false;
+        waitAttack = false;
 
     }
 

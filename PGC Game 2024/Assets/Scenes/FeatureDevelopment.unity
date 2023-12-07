@@ -12143,6 +12143,11 @@ PrefabInstance:
       propertyPath: climbSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1855764618571950942, guid: 1ff7a2d363960314bafbf5b9909b31d8,
+        type: 3}
+      propertyPath: swordCollider
+      value: 
+      objectReference: {fileID: 821733641}
     - target: {fileID: 1879524701486065953, guid: 1ff7a2d363960314bafbf5b9909b31d8,
         type: 3}
       propertyPath: m_Layer
