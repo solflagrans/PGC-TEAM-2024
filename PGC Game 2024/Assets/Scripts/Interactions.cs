@@ -8,6 +8,15 @@ public class Interactions : MonoBehaviour
       public int trapDamage;
       public int enemyDamage;
       public GameObject dialogueWindow;
+      public List<string> testDialogue;
+      void Update()
+      {
+         if (Input.GetKey(KeyCode.E))
+         {
+          StartDialogue(testDialogue);
+         }
+      }
+
       private void OnCollisionEnter(Collision coll){
           if (coll.collider.CompareTag("Trap"))
           {
@@ -71,8 +80,19 @@ public class Interactions : MonoBehaviour
         {
            gameObject.GetComponent<MC_InGameInformation>().swordAura = auraNum;
         }
-        /*public void StartDialogue(){
-           gameObject.GetComponent<
+        public void StartDialogue(List<string> dialogue)
+        {
+           gameObject.GetComponent<MovingController>().enabled = false;
+           gameObject.GetComponent<DialogUI_Controller>().phrases.Clear();
+           for(int i = 0; i < dialogue.Count;i++){           
+              gameObject.GetComponent<DialogUI_Controller>().phrases.Add(dialogue[i]);
+           }
+           gameObject.GetComponent<DialogUI_Controller>().StartWriting();
            dialogueWindow.SetActive(true);
-        }*/
+        }
+        public void EndDialogue()
+        {
+           gameObject.GetComponent<MovingController>().enabled = true;
+           dialogueWindow.SetActive(false);
+        }
 }
