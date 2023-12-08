@@ -851,12 +851,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7716467496281075374}
   - component: {fileID: 3867966120179556528}
+  - component: {fileID: 6841030243515482619}
   - component: {fileID: 1855764618571950942}
   - component: {fileID: 5568889340032156276}
   - component: {fileID: 3720932173087567018}
   - component: {fileID: 4345896647505524661}
   - component: {fileID: 105589481871591533}
-  - component: {fileID: 6841030243515482619}
   m_Layer: 0
   m_Name: m_character
   m_TagString: Player
@@ -883,7 +883,7 @@ Transform:
   - {fileID: 5473130643668103322}
   - {fileID: 6476471072630394621}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3867966120179556528
 Rigidbody:
@@ -912,6 +912,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &6841030243515482619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6466354364326646777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b5f6d62d6d1f246b3393ddf2c8594c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  sword: {fileID: 0}
 --- !u!114 &1855764618571950942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,11 +941,17 @@ MonoBehaviour:
   movingSpeed: 3
   jumpForce: 4
   doubleJumpForce: 3
+  climbSpeed: 0
   ground:
     serializedVersion: 2
     m_Bits: 64
   jumpTime: {fileID: 6476471072630394621}
+  swordCollider: {fileID: 0}
+  cam: {fileID: 0}
+  diePanel: {fileID: 0}
   movingVector: {x: 0, y: 0, z: 0}
+  isClimb: 0
+  isAttack: 0
 --- !u!95 &5568889340032156276
 Animator:
   serializedVersion: 5
@@ -990,6 +1010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapDamage: 1
   enemyDamage: 1
+  dialogueWindow: {fileID: 0}
 --- !u!114 &105589481871591533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,21 +1024,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  maxHp: 0
   isInvulnerable: 0
   collectedHoney: 0
   maxHoneyAmount: 0
---- !u!114 &6841030243515482619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6466354364326646777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b5f6d62d6d1f246b3393ddf2c8594c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  swordAura: 0
 --- !u!1 &6977338618214375668
 GameObject:
   m_ObjectHideFlags: 0

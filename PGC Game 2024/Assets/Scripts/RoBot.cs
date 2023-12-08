@@ -14,6 +14,7 @@ public class RoBot : MonoBehaviour
     public Camera playerCamera;
     public Camera robotCamera;
     public MovingController controller;
+    public PlayerVisual playerVisual;
     private CharacterController movement;
     public GameObject robotUI;
     public Interactions interactions;
@@ -43,6 +44,7 @@ public class RoBot : MonoBehaviour
 
         if(controlMode) {
             CameraRotate();
+            Animations();
         }
 
         if(Input.GetKeyDown(KeyCode.R)) {
@@ -77,8 +79,10 @@ public class RoBot : MonoBehaviour
 
     private void Animations() {
 
-        if(Vector3.Distance(transform.position, nextPosition) > 0.02f && timer > 0.3f) animator.SetTrigger("Move");
-        else animator.SetTrigger("Idle");
+        if(!controlMode) {
+            if(Vector3.Distance(transform.position, nextPosition) > 0.02f && timer > 0.3f) animator.SetTrigger("Move");
+            else animator.SetTrigger("Idle");
+        } else animator.SetTrigger("Idle");
 
     }
 
@@ -90,18 +94,15 @@ public class RoBot : MonoBehaviour
     }
 
     private void ChangeMode() {
+
+        if(controller.isDead) return;
+
         controlMode = !controlMode;
+        robotCamera.enabled = controlMode;
+        playerCamera.enabled = !controlMode;
         controller.enabled = !controlMode;
         movement.enabled = controlMode;
         robotUI.SetActive(controlMode);
-
-        if(controlMode) {
-            robotCamera.enabled = true;
-            playerCamera.enabled = false;
-        } else {
-            robotCamera.enabled = false;
-            playerCamera.enabled = true;
-        }
 
     }
 

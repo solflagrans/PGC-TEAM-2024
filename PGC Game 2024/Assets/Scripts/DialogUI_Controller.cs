@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using TMPro;
+
 public class DialogUI_Controller : MonoBehaviour
 {
     [SerializeField] private TextWriter textWriter_1;
