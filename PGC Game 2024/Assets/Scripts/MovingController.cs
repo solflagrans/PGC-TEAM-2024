@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovingController : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class MovingController : MonoBehaviour
     private Transform endClimbPoint;
     private Transform startClimbPoint;
     public Collider swordCollider;
+    private MC_InGameInformation statistics;
+    public CameraController cam;
+    public Image diePanel;
 
     [Header("Techincal Variables")]
     [HideInInspector] public Vector3 movingVector;
@@ -25,15 +29,19 @@ public class MovingController : MonoBehaviour
     private bool canJump;
     [HideInInspector] public bool isAttack;
     private bool waitAttack;
+    [HideInInspector] public bool isDead;
 
 
     void Start() {
 
         mc_rb = gameObject.GetComponent<Rigidbody>();
+        statistics = gameObject.GetComponent<MC_InGameInformation>();
 
     }
 
     private void FixedUpdate() {
+
+        if(isDead) return;
 
         if(isClimb) Climb();
 
@@ -43,7 +51,14 @@ public class MovingController : MonoBehaviour
 
     void Update() {
 
-        if(Input.GetKeyDown(KeyCode.Mouse0) && !isAttack) Attack();
+        if(statistics.hp <= 0) {
+            isDead = true;
+            Die();
+        }
+
+        if(isDead) return;
+
+        if(Input.GetButtonDown("Fire1") && !isAttack) Attack();
 
         canJump = Physics.Raycast(jumpTime.position, Vector3.down, 0.7f, ground);
 
@@ -134,6 +149,18 @@ public class MovingController : MonoBehaviour
         mc_rb.useGravity = false;
 
         transform.position = new Vector3(movingVector.x * movingSpeed * Time.deltaTime + transform.position.x, transform.position.y, transform.position.z);
+
+    }
+
+    private void Die() {
+
+        transform.position = Vector3.MoveTowards(transform.position, Vector3.down * 5f, 0.08f);
+
+        cam.enabled = false;
+
+        diePanel.fillAmount += 1 * Time.deltaTime;
+
+        print("Вы умерли");
 
     }
 }

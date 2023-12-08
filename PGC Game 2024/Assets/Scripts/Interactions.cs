@@ -38,7 +38,7 @@ public class Interactions : MonoBehaviour
            Destroy(collectible);
         }
 
-        private void GetDamage(int damage)
+        public void GetDamage(int damage)
         {
            if (!gameObject.GetComponent<MC_InGameInformation>().isInvulnerable)
            {
