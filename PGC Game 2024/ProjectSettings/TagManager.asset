@@ -15,6 +15,7 @@ TagManager:
   - TimeDownSphere
   - JumpBoostSphere
   - Sword
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

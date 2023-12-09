@@ -11,13 +11,6 @@ public class Interactions : MonoBehaviour
       public AudioClip damageSound;
       public GameObject dialogueWindow;
       public List<string> testDialogue;
-      void Update()
-      {
-         if (Input.GetKey(KeyCode.E))
-         {
-          StartDialogue(testDialogue);
-         }
-      }
 
       private void OnCollisionEnter(Collision coll){
           if (coll.collider.CompareTag("Trap"))
@@ -41,11 +34,22 @@ public class Interactions : MonoBehaviour
            {
               CollectHoney(coll.gameObject);
            }
+           
+           if (coll.CompareTag("CheckPoint"))
+           {
+              gameObject.GetComponent<MC_InGameInformation>().SaveGame();
+           }
+           
         }
-     
+        
         public void SaveCollectible(GameObject collectible)
         {
-           PlayerPrefs.SetInt(collectible.name, 1);
+           if (!PlayerPrefs.HasKey(collectible.name))
+           {
+              //gameObject.GetComponent<MC_InGameInformation>().collectibles.Add(collectible.name);
+              PlayerPrefs.SetInt(collectible.name, 1);
+           }
+
            Destroy(collectible);
         }
 

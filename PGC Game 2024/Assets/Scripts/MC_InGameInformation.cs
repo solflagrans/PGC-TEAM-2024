@@ -10,15 +10,23 @@ public class MC_InGameInformation : MonoBehaviour
     public int collectedHoney;
     public int maxHoneyAmount;
     public int swordAura;
-    void Start()
+    public int LevelNum;
+    public List<string> collectibles;
+    public List<string> shopList;
+    public void SaveGame()
     {
-        
+        PlayerPrefs.SetFloat("posX",gameObject.transform.position.x);
+        PlayerPrefs.SetFloat("posY",gameObject.transform.position.y);
+        PlayerPrefs.SetFloat("posZ",gameObject.transform.position.z);
+        PlayerPrefs.SetInt("LevelNumber",LevelNum);
+        PlayerPrefs.SetInt("HoneyAmount",collectedHoney);
+        PlayerPrefs.SetInt("MaxHoneyAmount",maxHoneyAmount);
+        PlayerPrefs.SetInt("SworsEffect", swordAura);
+        for (int i = 0; i < shopList.Count; i++)
+        {
+            PlayerPrefs.SetInt(shopList[i],1);
+        }
+        Debug.Log("Game Saved");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-    
 }
