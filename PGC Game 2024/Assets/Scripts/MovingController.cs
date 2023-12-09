@@ -4,7 +4,9 @@ using UnityEngine.UI;
 
 public class MovingController : MonoBehaviour
 {
-
+    [Header("Audio")] 
+    public AudioClip jumpSound;
+    public AudioClip deathSound;
     [Header("Preferences")]
     public float movingSpeed;
     public float jumpForce;
@@ -85,9 +87,12 @@ public class MovingController : MonoBehaviour
     private void Jump() {
 
         if (canJump) {
+            gameObject.GetComponent<Interactions>().PlaySound(jumpSound);
             mc_rb.AddForce(Vector3.up * jumpForce * mc_rb.mass, ForceMode.Impulse);
             canDoubleJump = true;
-        } else if (canDoubleJump) {
+        } 
+        else if (canDoubleJump) {
+            gameObject.GetComponent<Interactions>().PlaySound(jumpSound);
             mc_rb.AddForce(Vector3.up * doubleJumpForce * mc_rb.mass, ForceMode.Impulse);
             canDoubleJump = false;
         }
@@ -160,6 +165,8 @@ public class MovingController : MonoBehaviour
 
         diePanel.fillAmount += 1 * Time.deltaTime;
 
+        gameObject.GetComponent<Interactions>().PlaySound(deathSound);
+        
         print("Вы умерли");
 
     }

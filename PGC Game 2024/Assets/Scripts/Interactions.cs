@@ -7,7 +7,18 @@ public class Interactions : MonoBehaviour
 {
       public int trapDamage;
       public int enemyDamage;
+      public AudioClip collectHoneySound;
+      public AudioClip damageSound;
       public GameObject dialogueWindow;
+      public List<string> testDialogue;
+      void Update()
+      {
+         if (Input.GetKey(KeyCode.E))
+         {
+          StartDialogue(testDialogue);
+         }
+      }
+
       private void OnCollisionEnter(Collision coll){
           if (coll.collider.CompareTag("Trap"))
           {
@@ -42,6 +53,7 @@ public class Interactions : MonoBehaviour
         {
            if (!gameObject.GetComponent<MC_InGameInformation>().isInvulnerable)
            {
+              gameObject.GetComponent<Interactions>().PlaySound(damageSound);
               gameObject.GetComponent<MC_InGameInformation>().hp -= damage;
               gameObject.GetComponent<MC_InGameInformation>().isInvulnerable = true;
               Invoke("RemoveInvulnerable", 3f);
@@ -59,6 +71,7 @@ public class Interactions : MonoBehaviour
                gameObject.GetComponent<MC_InGameInformation>().maxHoneyAmount)
            {
               gameObject.GetComponent<MC_InGameInformation>().collectedHoney++;
+              gameObject.GetComponent<Interactions>().PlaySound(collectHoneySound);
               Destroy(honey);
            }
            else
@@ -71,8 +84,29 @@ public class Interactions : MonoBehaviour
         {
            gameObject.GetComponent<MC_InGameInformation>().swordAura = auraNum;
         }
-        /*public void StartDialogue(){
-           gameObject.GetComponent<
+        public void StartDialogue(List<string> dialogue)
+        {
+           gameObject.GetComponent<MovingController>().enabled = false;
+           gameObject.GetComponent<DialogUI_Controller>().phrases.Clear();
+           for(int i = 0; i < dialogue.Count;i++){           
+              gameObject.GetComponent<DialogUI_Controller>().phrases.Add(dialogue[i]);
+           }
+           gameObject.GetComponent<DialogUI_Controller>().StartWriting();
            dialogueWindow.SetActive(true);
-        }*/
+        }
+        public void EndDialogue()
+        {
+           gameObject.GetComponent<MovingController>().enabled = true;
+           dialogueWindow.SetActive(false);
+        }
+
+        public void PlaySound(AudioClip sound)
+        {
+           AudioSource au = gameObject.GetComponent<AudioSource>();
+           if (au.clip != sound)
+           {
+              au.clip = sound;
+           }
+           au.Play();
+        }
 }
