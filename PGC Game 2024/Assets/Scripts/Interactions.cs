@@ -7,6 +7,8 @@ public class Interactions : MonoBehaviour
 {
       public int trapDamage;
       public int enemyDamage;
+      public AudioClip collectHoneySound;
+      public AudioClip damageSound;
       public GameObject dialogueWindow;
       public List<string> testDialogue;
       void Update()
@@ -51,6 +53,7 @@ public class Interactions : MonoBehaviour
         {
            if (!gameObject.GetComponent<MC_InGameInformation>().isInvulnerable)
            {
+              gameObject.GetComponent<Interactions>().PlaySound(damageSound);
               gameObject.GetComponent<MC_InGameInformation>().hp -= damage;
               gameObject.GetComponent<MC_InGameInformation>().isInvulnerable = true;
               Invoke("RemoveInvulnerable", 3f);
@@ -68,6 +71,7 @@ public class Interactions : MonoBehaviour
                gameObject.GetComponent<MC_InGameInformation>().maxHoneyAmount)
            {
               gameObject.GetComponent<MC_InGameInformation>().collectedHoney++;
+              gameObject.GetComponent<Interactions>().PlaySound(collectHoneySound);
               Destroy(honey);
            }
            else
@@ -94,5 +98,15 @@ public class Interactions : MonoBehaviour
         {
            gameObject.GetComponent<MovingController>().enabled = true;
            dialogueWindow.SetActive(false);
+        }
+
+        public void PlaySound(AudioClip sound)
+        {
+           AudioSource au = gameObject.GetComponent<AudioSource>();
+           if (au.clip != sound)
+           {
+              au.clip = sound;
+           }
+           au.Play();
         }
 }
