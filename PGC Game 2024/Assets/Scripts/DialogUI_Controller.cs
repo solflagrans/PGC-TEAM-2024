@@ -15,7 +15,11 @@ public class DialogUI_Controller : MonoBehaviour
     public GameObject textWindow;
     public List<string> phrases = new List<string>(){
     };
+<<<<<<< Updated upstream
     public void StartWriting(){
+=======
+    void StartWriting(){
+>>>>>>> Stashed changes
         textWriter_1.AddWriter(phrase,phrases[phraseNum],0.1f,true,EndOfPhrase);
         audio.Play();
     }
