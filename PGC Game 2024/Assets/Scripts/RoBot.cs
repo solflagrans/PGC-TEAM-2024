@@ -17,6 +17,7 @@ public class RoBot : MonoBehaviour
     public PlayerVisual playerVisual;
     private CharacterController movement;
     public GameObject robotUI;
+    public GameObject playerUI;
     public Interactions interactions;
 
     [Header("Technical Variables")]
@@ -103,6 +104,7 @@ public class RoBot : MonoBehaviour
         controller.enabled = !controlMode;
         movement.enabled = controlMode;
         robotUI.SetActive(controlMode);
+        playerUI.SetActive(!controlMode);
 
     }
 

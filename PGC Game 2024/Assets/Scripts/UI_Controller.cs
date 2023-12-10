@@ -24,7 +24,7 @@ public class UI_Controller : MonoBehaviour
         honeyFiller.maxValue = statistics.maxHoneyAmount;
         honeyFiller.value = Mathf.Floor((((float)statistics.collectedHoney) / ((float)statistics.maxHoneyAmount)) * 100);
         honeyPercentage.text = honeyFiller.value.ToString() + "%";
-        honeyNumber.text = statistics.collectedHoney.ToString();
+        honeyNumber.text = statistics.collectedHoney.ToString() + " сот";
 
     }
 

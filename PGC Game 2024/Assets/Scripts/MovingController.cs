@@ -26,7 +26,7 @@ public class MovingController : MonoBehaviour
     [HideInInspector] public Vector3 movingVector;
     [HideInInspector] public bool isClimb;
     private bool canDoubleJump = false;
-    private bool canJump;
+    [HideInInspector] public bool canJump;
     [HideInInspector] public bool isAttack;
     private bool waitAttack;
     [HideInInspector] public bool isDead;
