@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,24 +8,32 @@ public class LevelLoadingController : MonoBehaviour
   [SerializeField] private GameObject loadScreen;
   [SerializeField] private GameObject mainUI;
   
-  [Header("Sclider")]
+  [Header("Slider")]
   [SerializeField] private Slider loadBar;
 
-  public void LoadLevel(string levelName)
-  {
-    if (mainUI != null)
-    {
-      mainUI.SetActive(false);
+    [Header("Preferences")]
+    public int ltl;
+
+    private void Start() {
+        if(ltl == 256) ltl = PlayerPrefs.GetInt("ltl", 2);
+        LoadLevel(ltl);
     }
 
-    loadScreen.SetActive(true);
+    public void LoadLevel(int levelNum) {
+        if(mainUI != null) {
+            mainUI.SetActive(false);
+        }
 
-    StartCoroutine(LoadLevelAsync(levelName));
-  }
+        if(loadScreen != null) {
+            loadScreen.SetActive(true);
+        }
 
-  IEnumerator LoadLevelAsync( string levelName)
+        StartCoroutine(LoadLevelAsync(levelNum));
+    }
+
+    IEnumerator LoadLevelAsync(int levelNum)
   {
-    AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelName);
+    AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelNum);
     while (!loadOperation.isDone)
     {
       float progress = Mathf.Clamp01(loadOperation.progress / 0.9f);
