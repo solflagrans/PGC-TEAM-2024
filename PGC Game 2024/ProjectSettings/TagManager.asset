@@ -16,6 +16,7 @@ TagManager:
   - JumpBoostSphere
   - Sword
   - CheckPoint
+  - Robot
   layers:
   - Default
   - TransparentFX

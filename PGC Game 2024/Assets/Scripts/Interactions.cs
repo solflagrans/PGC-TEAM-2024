@@ -14,7 +14,7 @@ public class Interactions : MonoBehaviour
       public GameObject shopUI;
       void Update()
       {
-         if (Input.GetKey(KeyCode.Y))
+         if (Input.GetKeyDown(KeyCode.Y))
          {
             OpenShop();
          }

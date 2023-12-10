@@ -9,7 +9,7 @@ public class CheckCollider : MonoBehaviour
 
     public void OnTriggerEnter(Collider col) {
         
-        if(col.CompareTag("Player")) {
+        if(col.CompareTag("Player") || col.CompareTag("Robot")) {
             playerIn = true;
         }
 
@@ -17,7 +17,7 @@ public class CheckCollider : MonoBehaviour
 
     public void OnTriggerExit(Collider col) {
      
-        if(col.CompareTag("Player")) {
+        if(col.CompareTag("Player") || col.CompareTag("Robot")) {
             playerIn = false;
         }
 

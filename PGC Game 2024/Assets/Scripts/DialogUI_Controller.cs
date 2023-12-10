@@ -13,12 +13,8 @@ public class DialogUI_Controller : MonoBehaviour
     public AudioSource audio;
     private int phraseNum = 0;
     public GameObject textWindow;
-    public List<string> phrases = new List<string>(){
-    };
-<<<<<<< Updated upstream
+    public List<string> phrases = new List<string>(){ };
 
-=======
->>>>>>> Stashed changes
     public void StartWriting(){
         textWriter_1.AddWriter(phrase,phrases[phraseNum],0.1f,true,EndOfPhrase);
         audio.Play();
