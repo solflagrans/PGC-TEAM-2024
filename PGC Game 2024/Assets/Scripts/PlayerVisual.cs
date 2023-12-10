@@ -33,7 +33,7 @@ public class PlayerVisual : MonoBehaviour
                 gameObject.GetComponent<Interactions>().PlaySound(runSound);
                 animator.SetTrigger("Climb");
             }
-            else if (rigid.velocity.y > 0.005f || rigid.velocity.y < -0.005f)
+            else if (rigid.velocity.y > 0.005f || rigid.velocity.y < -0.005f && !controller.canJump)
             {
                 animator.SetTrigger("Jump");
             }
