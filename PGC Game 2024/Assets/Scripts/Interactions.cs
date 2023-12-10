@@ -11,7 +11,15 @@ public class Interactions : MonoBehaviour
       public AudioClip damageSound;
       public GameObject dialogueWindow;
       public List<string> testDialogue;
-
+      public GameObject shopUI;
+      void Update()
+      {
+         if (Input.GetKey(KeyCode.Y))
+         {
+            OpenShop();
+         }
+         
+      }
       private void OnCollisionEnter(Collision coll){
           if (coll.collider.CompareTag("Trap"))
           {
@@ -41,12 +49,16 @@ public class Interactions : MonoBehaviour
            }
            
         }
-        
+
+       private void OpenShop()
+       {
+          shopUI.SetActive(!shopUI.activeSelf);
+       }
         public void SaveCollectible(GameObject collectible)
         {
            if (!PlayerPrefs.HasKey(collectible.name))
            {
-              //gameObject.GetComponent<MC_InGameInformation>().collectibles.Add(collectible.name);
+              gameObject.GetComponent<MC_InGameInformation>().collectibles.Add(collectible.name);
               PlayerPrefs.SetInt(collectible.name, 1);
            }
 
@@ -114,3 +126,4 @@ public class Interactions : MonoBehaviour
            au.Play();
         }
 }
+
