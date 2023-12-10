@@ -13,7 +13,12 @@ public class MC_InGameInformation : MonoBehaviour
     public int swordAura;
     public List<string> collectibles;
     public List<string> shopList;
+<<<<<<< Updated upstream
     void Awake(){
+=======
+
+        void Awake(){
+>>>>>>> Stashed changes
             if (PlayerPrefs.HasKey("posX"))
             {
                 gameObject.transform.position = new Vector3(PlayerPrefs.GetFloat("posX"),PlayerPrefs.GetFloat("posY"),PlayerPrefs.GetFloat("posZ"));
@@ -24,7 +29,12 @@ public class MC_InGameInformation : MonoBehaviour
             }
                                                        
                                                        
+<<<<<<< Updated upstream
     }
+=======
+        }
+
+>>>>>>> Stashed changes
     public void SaveGame()
     {
         PlayerPrefs.SetFloat("posX",gameObject.transform.position.x);
