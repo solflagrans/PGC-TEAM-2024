@@ -10,6 +10,7 @@ public class MainMenuUI : MonoBehaviour
 {
    public GameObject settingsWindow;
    public GameObject mainMenuUI;
+   public GameObject continueButton;
    [Header("VolumeSettings")]
    [SerializeField] private TextMeshProUGUI volumeTextValue = null;
    [SerializeField] private Slider volumeSlider = null;
@@ -49,8 +50,16 @@ public class MainMenuUI : MonoBehaviour
       resolutionDropDown.AddOptions(options);
       resolutionDropDown.value = resolutionIndex;
       resolutionDropDown.RefreshShownValue();
-   }
 
+      if (PlayerPrefs.HasKey("ltl"))
+      {
+         continueButton.SetActive(true);
+      }
+   }
+   public void ContinueGame()
+   {
+      SceneManager.LoadScene(1);
+   }
   public void SetResolution(int index)
    {
       Resolution resolution = resolutions[index];
