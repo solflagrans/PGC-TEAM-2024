@@ -95,7 +95,7 @@ public class Interactions : MonoBehaviour
            for(int i = 0; i < dialogue.Count;i++){           
               gameObject.GetComponent<DialogUI_Controller>().phrases.Add(dialogue[i]);
            }
-           gameObject.GetComponent<DialogUI_Controller>().StartWriting();
+          // gameObject.GetComponent<DialogUI_Controller>().StartWriting();
            dialogueWindow.SetActive(true);
         }
         public void EndDialogue()
