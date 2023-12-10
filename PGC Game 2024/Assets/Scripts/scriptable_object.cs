@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -69,7 +70,23 @@ public class scriptable_object : MonoBehaviour
 
     public void OpenDoor() {
 
-        print("Дверь открыта");
+        gameObject.SetActive(true);
+
+        StartCoroutine(CloseDoor());
+
+    }
+
+    IEnumerator CloseDoor() {
+
+        float i = 0;
+
+        while(i < 7f) {
+            i += 1f;
+            print(i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        gameObject.SetActive(false);
 
     }
 
@@ -93,7 +110,7 @@ public class scriptable_object : MonoBehaviour
             funcNames.Add("Убить игрока");
         }
         if(funcs.Contains(objectFuncs.openDoor)) {
-            funcNames.Add("Открыть дверь");
+            funcNames.Add("Открыть дверь на время");
         }
         if(funcs.Contains(objectFuncs.sayThing)) {
             funcNames.Add("Сказать \"что-то\"");

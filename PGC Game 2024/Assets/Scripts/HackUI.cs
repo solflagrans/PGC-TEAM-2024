@@ -44,6 +44,10 @@ public class HackUI : MonoBehaviour
             param1.gameObject.SetActive(false);
             param2.gameObject.SetActive(true); 
         }
+        if(choosedTrigger == "По нажатию кнопки") {
+            param1.gameObject.SetActive(false);
+            param2.gameObject.SetActive(false);
+        }
 
     }
 
@@ -55,6 +59,9 @@ public class HackUI : MonoBehaviour
         }
         if(choosedTrigger == "Коллидер") {
             StartCoroutine(Collider());
+        }
+        if(choosedTrigger == "По нажатию кнопки") {
+            StartCoroutine(Button());
         }
 
         menu.SetActive(false);
@@ -85,6 +92,13 @@ public class HackUI : MonoBehaviour
 
     }
 
+    IEnumerator Button() {
+
+        yield return new WaitForSeconds(2f);
+
+        Action();
+    }
+
     private void Action() {
 
         if(choosedAction == "Убить игрока") {
@@ -95,7 +109,7 @@ public class HackUI : MonoBehaviour
             scr_obj.SayThing();
         }
 
-        if(choosedAction == "Открыть дверь") {
+        if(choosedAction == "Открыть дверь на время") {
             scr_obj.OpenDoor();
         }
         
