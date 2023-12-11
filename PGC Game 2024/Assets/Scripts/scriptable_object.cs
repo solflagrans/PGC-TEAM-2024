@@ -16,7 +16,8 @@ public class scriptable_object : MonoBehaviour
         killPlayer,
         openDoor,
         sayThing,
-        explodeStones
+        explodeStones,
+        activate
     }
 
     [Tooltip("Choose functions, that will be apllied to your object")]
@@ -30,8 +31,13 @@ public class scriptable_object : MonoBehaviour
 
     public CheckCollider canUse;
 
+    public bool activated;
+
     [Header("Items for functions")]
     public DestructionObjects destruction;
+    public GameObject target;
+    public GameObject door;
+    public scriptable_object second;
 
     private void Start() {
 
@@ -45,6 +51,7 @@ public class scriptable_object : MonoBehaviour
     private void Update() {
 
         if(canUse.playerIn) {
+
             if(Input.GetKeyDown(KeyCode.H)) {
 
                 div.SetActive(true);
@@ -70,7 +77,7 @@ public class scriptable_object : MonoBehaviour
 
     public void OpenDoor() {
 
-        gameObject.SetActive(true);
+        door.SetActive(false);
 
         StartCoroutine(CloseDoor());
 
@@ -82,11 +89,10 @@ public class scriptable_object : MonoBehaviour
 
         while(i < 7f) {
             i += 1f;
-            print(i);
             yield return new WaitForSeconds(1f);
         }
 
-        gameObject.SetActive(false);
+        door.SetActive(true);
 
     }
 
@@ -100,6 +106,10 @@ public class scriptable_object : MonoBehaviour
 
         destruction.Replace();
 
+    }
+
+    public void Activate() {
+        target.SetActive(true);
     }
 
     //Функция добавляет в открывающийся список функции этого конкретного объекта,
@@ -117,6 +127,9 @@ public class scriptable_object : MonoBehaviour
         }
         if(funcs.Contains(objectFuncs.explodeStones)) {
             funcNames.Add("Взорвать камни");
+        }
+        if(funcs.Contains(objectFuncs.activate)) {
+            funcNames.Add("Включить объект");
         }
 
     }

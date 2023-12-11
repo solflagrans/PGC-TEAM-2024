@@ -10,6 +10,8 @@ public class MainMenuUI : MonoBehaviour
 {
    public GameObject settingsWindow;
    public GameObject mainMenuUI;
+    public TMP_Dropdown dropdown;
+    public Toggle fs;
    [Header("VolumeSettings")]
    [SerializeField] private TextMeshProUGUI volumeTextValue = null;
    [SerializeField] private Slider volumeSlider = null;
@@ -88,11 +90,11 @@ public class MainMenuUI : MonoBehaviour
    }
    public void SetQuality(int quality)
    {
-      qualityLevel = quality;
+        qualityLevel = dropdown.value;
    }
    public void SetFullScreen(bool isFS)
    {
-      isFullScreen = isFS;
+      isFullScreen = fs.isOn;
    }
    public void SetVolume(float volume)
    {
@@ -109,5 +111,7 @@ public class MainMenuUI : MonoBehaviour
       PlayerPrefs.SetInt("fullScreen", (isFullScreen ? 1 : 0));
       Screen.fullScreen = isFullScreen;
       QualitySettings.SetQualityLevel(qualityLevel);
+
+        print(qualityLevel);
    }
 }
