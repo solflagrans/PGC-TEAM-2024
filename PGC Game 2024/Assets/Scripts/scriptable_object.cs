@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class scriptable_object : MonoBehaviour
         killPlayer,
         openDoor,
         sayThing,
-        explodeStones
+        explodeStones,
+        activate
     }
 
     [Tooltip("Choose functions, that will be apllied to your object")]
@@ -29,8 +31,13 @@ public class scriptable_object : MonoBehaviour
 
     public CheckCollider canUse;
 
+    public bool activated;
+
     [Header("Items for functions")]
     public DestructionObjects destruction;
+    public GameObject target;
+    public GameObject door;
+    public scriptable_object second;
 
     private void Start() {
 
@@ -44,6 +51,7 @@ public class scriptable_object : MonoBehaviour
     private void Update() {
 
         if(canUse.playerIn) {
+
             if(Input.GetKeyDown(KeyCode.H)) {
 
                 div.SetActive(true);
@@ -69,7 +77,22 @@ public class scriptable_object : MonoBehaviour
 
     public void OpenDoor() {
 
-        print("Дверь открыта");
+        door.SetActive(false);
+
+        StartCoroutine(CloseDoor());
+
+    }
+
+    IEnumerator CloseDoor() {
+
+        float i = 0;
+
+        while(i < 7f) {
+            i += 1f;
+            yield return new WaitForSeconds(1f);
+        }
+
+        door.SetActive(true);
 
     }
 
@@ -85,6 +108,10 @@ public class scriptable_object : MonoBehaviour
 
     }
 
+    public void Activate() {
+        target.SetActive(true);
+    }
+
     //Функция добавляет в открывающийся список функции этого конкретного объекта,
     //что позволяет легко добавлять новые функциии для каждого объекта
     private void addNames() {
@@ -93,13 +120,16 @@ public class scriptable_object : MonoBehaviour
             funcNames.Add("Убить игрока");
         }
         if(funcs.Contains(objectFuncs.openDoor)) {
-            funcNames.Add("Открыть дверь");
+            funcNames.Add("Открыть дверь на время");
         }
         if(funcs.Contains(objectFuncs.sayThing)) {
             funcNames.Add("Сказать \"что-то\"");
         }
         if(funcs.Contains(objectFuncs.explodeStones)) {
             funcNames.Add("Взорвать камни");
+        }
+        if(funcs.Contains(objectFuncs.activate)) {
+            funcNames.Add("Включить объект");
         }
 
     }

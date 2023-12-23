@@ -17,6 +17,7 @@ public class RoBot : MonoBehaviour
     public PlayerVisual playerVisual;
     private CharacterController movement;
     public GameObject robotUI;
+    public GameObject playerUI;
     public Interactions interactions;
 
     [Header("Technical Variables")]
@@ -35,9 +36,6 @@ public class RoBot : MonoBehaviour
     private void Update() {
 
         if(!controlMode) {
-            nextPosition = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
-
-            Timer();
 
             Animations();
         }
@@ -56,6 +54,8 @@ public class RoBot : MonoBehaviour
     private void FixedUpdate() {
 
         if(!controlMode) {
+            nextPosition = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
+            Timer();
             FollowPlayer();
         }
 
@@ -103,6 +103,7 @@ public class RoBot : MonoBehaviour
         controller.enabled = !controlMode;
         movement.enabled = controlMode;
         robotUI.SetActive(controlMode);
+        playerUI.SetActive(!controlMode);
 
     }
 

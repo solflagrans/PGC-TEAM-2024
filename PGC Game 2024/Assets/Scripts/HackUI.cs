@@ -22,6 +22,7 @@ public class HackUI : MonoBehaviour
     public GameObject menu;
     [HideInInspector] public scriptable_object scr_obj;
     public CheckCollider[] cols;
+    public ButtonPress button;
     
     [Header("Settings")]
     private string choosedAction;
@@ -44,6 +45,14 @@ public class HackUI : MonoBehaviour
             param1.gameObject.SetActive(false);
             param2.gameObject.SetActive(true); 
         }
+        if(choosedTrigger == "По нажатию кнопки") {
+            param1.gameObject.SetActive(false);
+            param2.gameObject.SetActive(false);
+        }
+        if(choosedTrigger == "Второй объект") {
+            param1.gameObject.SetActive(false);
+            param2.gameObject.SetActive(false);
+        }
 
     }
 
@@ -56,6 +65,12 @@ public class HackUI : MonoBehaviour
         if(choosedTrigger == "Коллидер") {
             StartCoroutine(Collider());
         }
+        if(choosedTrigger == "По нажатию кнопки") {
+            StartCoroutine(Button());
+        }
+        if(choosedTrigger == "Второй объект") {
+            StartCoroutine(Second());
+        }
 
         menu.SetActive(false);
 
@@ -67,7 +82,6 @@ public class HackUI : MonoBehaviour
 
         while(i < time) {
             i += 1f;
-            print(i);
             yield return new WaitForSeconds(1f);
         }
 
@@ -85,6 +99,27 @@ public class HackUI : MonoBehaviour
 
     }
 
+    IEnumerator Button() {
+
+        while(!button.pressed) {
+            yield return new WaitForSeconds(.1f);
+        }
+
+        Action();
+    }
+
+    IEnumerator Second() {
+
+        scr_obj.activated = true;
+
+        while(!scr_obj.second.activated) {
+            yield return new WaitForSeconds(.1f);
+        }
+
+        Action();
+
+    }
+
     private void Action() {
 
         if(choosedAction == "Убить игрока") {
@@ -95,12 +130,16 @@ public class HackUI : MonoBehaviour
             scr_obj.SayThing();
         }
 
-        if(choosedAction == "Открыть дверь") {
+        if(choosedAction == "Открыть дверь на время") {
             scr_obj.OpenDoor();
         }
         
         if(choosedAction == "Взорвать камни") {
             scr_obj.ExplodeStones();
+        }
+
+        if(choosedAction == "Включить объект") {
+            scr_obj.Activate();
         }
 
     }
