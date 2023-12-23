@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.40120885, g: 0.8221177, b: 0.992894, a: 1}
+  m_IndirectSpecularColor: {r: 0.13223794, g: 0.63009554, b: 0.96417534, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_RootOrder
-      value: 35
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
@@ -196,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_Name
-      value: dish (4)
+      value: Dish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -214,7 +214,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
@@ -274,7 +274,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_Name
-      value: cup
+      value: Cup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -292,7 +292,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
@@ -352,7 +352,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
       propertyPath: m_Name
-      value: book shelf (1)
+      value: BookShelf
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -370,7 +370,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -430,7 +430,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (7)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 446378596}
   - component: {fileID: 446378595}
   m_Layer: 0
-  m_Name: Point Light (2)
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -553,7 +553,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &447126309
 PrefabInstance:
@@ -566,7 +566,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: bed11ae60212202479a9cd755ad2b01e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bed11ae60212202479a9cd755ad2b01e,
         type: 3}
@@ -626,7 +626,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bed11ae60212202479a9cd755ad2b01e,
         type: 3}
       propertyPath: m_Name
-      value: bag
+      value: Bag
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -680,7 +680,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518808470
 GameObject:
@@ -775,7 +775,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 61, y: -27, z: -6}
 --- !u!114 &518808473
 MonoBehaviour:
@@ -811,7 +811,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -871,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (5)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -889,7 +889,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -949,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (1)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -970,7 +970,7 @@ GameObject:
   - component: {fileID: 667873716}
   - component: {fileID: 667873715}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1073,7 +1073,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 44
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &678604163
 PrefabInstance:
@@ -1086,7 +1086,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 66e920621580fe246985ce5e9e513970,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66e920621580fe246985ce5e9e513970,
         type: 3}
@@ -1161,7 +1161,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 66e920621580fe246985ce5e9e513970,
         type: 3}
       propertyPath: m_Name
-      value: table
+      value: Table
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1180,7 +1180,7 @@ GameObject:
   - component: {fileID: 685982921}
   - component: {fileID: 685982920}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1284,7 +1284,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &748247618
 PrefabInstance:
@@ -1357,7 +1357,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bed11ae60212202479a9cd755ad2b01e,
         type: 3}
       propertyPath: m_Name
-      value: bag (1)
+      value: Bag
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1420,7 +1420,7 @@ PrefabInstance:
     - target: {fileID: 3050307404535172519, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}
       propertyPath: m_Name
-      value: m_character
+      value: Artur-e
       objectReference: {fileID: 0}
     - target: {fileID: 3050307404535172519, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}
@@ -1435,7 +1435,7 @@ PrefabInstance:
     - target: {fileID: 5081194351163130716, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5081194351163130716, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}
@@ -1623,7 +1623,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_RootOrder
-      value: 34
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
@@ -1683,7 +1683,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_Name
-      value: dish (3)
+      value: Dish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1701,7 +1701,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -1761,7 +1761,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (4)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1779,7 +1779,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 31
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -1839,7 +1839,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (9)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1857,12 +1857,12 @@ PrefabInstance:
     - target: {fileID: 4679295400388097304, guid: a8e2ff4b49d87ec48a5190b68da56595,
         type: 3}
       propertyPath: m_Name
-      value: engineer (anim only) Variant
+      value: Engineer
       objectReference: {fileID: 0}
     - target: {fileID: 5457204908705984418, guid: a8e2ff4b49d87ec48a5190b68da56595,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5457204908705984418, guid: a8e2ff4b49d87ec48a5190b68da56595,
         type: 3}
@@ -1931,7 +1931,7 @@ GameObject:
   - component: {fileID: 1049580490}
   - component: {fileID: 1049580489}
   m_Layer: 0
-  m_Name: Point Light (1)
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2035,7 +2035,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1097662170
 PrefabInstance:
@@ -2048,7 +2048,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
@@ -2108,7 +2108,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_Name
-      value: dish
+      value: Dish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2126,7 +2126,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 36
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
@@ -2186,7 +2186,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_Name
-      value: cup (2)
+      value: Cup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2296,7 +2296,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &1144172218
 GameObject:
@@ -2309,7 +2309,7 @@ GameObject:
   - component: {fileID: 1144172220}
   - component: {fileID: 1144172219}
   m_Layer: 0
-  m_Name: Haze 150bpm song
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2437,7 +2437,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2a84dc87a280b6543be21410e5945a3c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a84dc87a280b6543be21410e5945a3c,
         type: 3}
@@ -2502,7 +2502,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2a84dc87a280b6543be21410e5945a3c,
         type: 3}
       propertyPath: m_Name
-      value: chair
+      value: Chair
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2520,7 +2520,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
@@ -2580,7 +2580,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
       propertyPath: m_Name
-      value: book shelf (2)
+      value: BookShelf
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2599,7 +2599,7 @@ GameObject:
   - component: {fileID: 1286294070}
   - component: {fileID: 1286294069}
   m_Layer: 0
-  m_Name: Point Light (4)
+  m_Name: TVLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2703,7 +2703,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1296435956
 PrefabInstance:
@@ -2716,7 +2716,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -2776,7 +2776,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (3)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2794,7 +2794,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 38
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
@@ -2854,7 +2854,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_Name
-      value: cup (4)
+      value: Cup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2932,7 +2932,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bed11ae60212202479a9cd755ad2b01e,
         type: 3}
       propertyPath: m_Name
-      value: bag (2)
+      value: Bag
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3045,7 +3045,7 @@ PrefabInstance:
     - target: {fileID: 6889209397978461619, guid: 765e6cef487a0d7438b7bf98dced4f0c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6889209397978461619, guid: 765e6cef487a0d7438b7bf98dced4f0c,
         type: 3}
@@ -3158,7 +3158,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
@@ -3218,7 +3218,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_Name
-      value: dish (1)
+      value: Dish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3236,7 +3236,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -3296,7 +3296,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3314,7 +3314,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -3374,7 +3374,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (8)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3404,7 +3404,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -3464,7 +3464,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (2)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3482,7 +3482,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8508f8a5d657ba7449dca87a8e4e0e6e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8508f8a5d657ba7449dca87a8e4e0e6e,
         type: 3}
@@ -3542,7 +3542,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8508f8a5d657ba7449dca87a8e4e0e6e,
         type: 3}
       propertyPath: m_Name
-      value: hatch
+      value: Hatch
       objectReference: {fileID: 0}
     - target: {fileID: 3238113510336517407, guid: 8508f8a5d657ba7449dca87a8e4e0e6e,
         type: 3}
@@ -3565,7 +3565,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 806747cb9361c424194d617e0a75c193,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 806747cb9361c424194d617e0a75c193,
         type: 3}
@@ -3640,7 +3640,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 806747cb9361c424194d617e0a75c193,
         type: 3}
       propertyPath: m_Name
-      value: carpet
+      value: Carpet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3658,7 +3658,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c5be5b49dd2e6ca4b9c4bcb7b5e7a87e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5be5b49dd2e6ca4b9c4bcb7b5e7a87e,
         type: 3}
@@ -3728,7 +3728,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c5be5b49dd2e6ca4b9c4bcb7b5e7a87e,
         type: 3}
       propertyPath: m_Name
-      value: golograph display
+      value: GolographicTV
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3746,7 +3746,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_RootOrder
-      value: 33
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
@@ -3806,7 +3806,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a67b3155337491e4cb082490a9ef4498,
         type: 3}
       propertyPath: m_Name
-      value: dish (2)
+      value: Dish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3824,7 +3824,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 32
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
@@ -3884,7 +3884,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_Name
-      value: cup (1)
+      value: Cup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3902,7 +3902,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_RootOrder
-      value: 27
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
@@ -3962,7 +3962,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81fee254217531547a518b76bb2c3635,
         type: 3}
       propertyPath: m_Name
-      value: book (6)
+      value: Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3981,7 +3981,7 @@ GameObject:
   - component: {fileID: 1940615153}
   - component: {fileID: 1940615152}
   m_Layer: 0
-  m_Name: Point Light (3)
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4085,7 +4085,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1969562736
 PrefabInstance:
@@ -4098,7 +4098,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 37
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
@@ -4158,7 +4158,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc0a2891e740ea84b8d61a452494a3b4,
         type: 3}
       propertyPath: m_Name
-      value: cup (3)
+      value: Cup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4268,7 +4268,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2016164250
 GameObject:
@@ -4373,7 +4373,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2089518524
 PrefabInstance:
@@ -4386,7 +4386,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
@@ -4446,7 +4446,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9b7c9a3d6e3e5f442b71f6cbd7b3931e,
         type: 3}
       propertyPath: m_Name
-      value: book shelf
+      value: BookShelf
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
