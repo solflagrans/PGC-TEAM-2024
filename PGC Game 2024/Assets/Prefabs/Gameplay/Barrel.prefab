@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       propertyPath: m_Name
-      value: Barrel with Honey Variant
+      value: Barrel
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
@@ -101,12 +101,17 @@ PrefabInstance:
     - target: {fileID: 1736785295923105524, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4305207569476479301, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305207569476479301, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
