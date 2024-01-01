@@ -36,9 +36,6 @@ public class RoBot : MonoBehaviour
     private void Update() {
 
         if(!controlMode) {
-            nextPosition = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
-
-            Timer();
 
             Animations();
         }
@@ -57,6 +54,8 @@ public class RoBot : MonoBehaviour
     private void FixedUpdate() {
 
         if(!controlMode) {
+            nextPosition = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
+            Timer();
             FollowPlayer();
         }
 

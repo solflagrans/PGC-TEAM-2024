@@ -22,7 +22,7 @@ public class TextWriter : MonoBehaviour
         this.End = End;
         letterIndex = 0;
     }
-    private void Update(){
+    private void FixedUpdate(){
         if(UIText != null){
             timer -= Time.fixedDeltaTime;
             if(timer <=0){
@@ -42,6 +42,7 @@ public class TextWriter : MonoBehaviour
         }
     }
     public bool IsActive(){
+        
         return letterIndex < phrase.Length;
     }
     public void WriteAll(){
