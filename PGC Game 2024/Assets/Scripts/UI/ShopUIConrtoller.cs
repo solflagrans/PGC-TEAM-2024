@@ -25,13 +25,13 @@ public class ShopUIConrtoller : MonoBehaviour
     
    public void BuyItem(int itemNum)
     {
-        if (mc.GetComponent<MC_InGameInformation>().collectedHoney >= items[itemNum].itemPrice)
+        if (mc.GetComponent<PlayerInformation>().CollectedHoney >= items[itemNum].itemPrice)
         {
             PlayerPrefs.SetInt(items[itemNum].itemName, 1);
-            mc.GetComponent<MC_InGameInformation>().swordAura = itemNum;
+            mc.GetComponent<PlayerInformation>().SwordAura = itemNum;
             print("aaaaa");
-            mc.GetComponent<ParticleChanger>().changeParticle();
-            mc.GetComponent<MC_InGameInformation>().collectedHoney -= items[itemNum].itemPrice;
+            mc.GetComponent<ParticleChanger>().ChangeParticle();
+            mc.GetComponent<PlayerInformation>().CollectedHoney -= items[itemNum].itemPrice;
             Debug.Log(items[itemNum].itemName + PlayerPrefs.GetInt(items[itemNum].itemName));
         }
     }

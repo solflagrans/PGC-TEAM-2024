@@ -30,16 +30,16 @@ public class PlayerVisual : MonoBehaviour
 
             if (controller.isClimb && controller.movingVector.normalized != Vector3.zero)
             {
-                gameObject.GetComponent<Interactions>().PlaySound(climbSound);
+                gameObject.GetComponent<Interactions>().PlaySound(runSound);
                 animator.SetTrigger("Climb");
             }
-            else if (rigid.velocity.y > 0.005f || rigid.velocity.y < -0.005f && !controller.canJump)
+            else if (rigid.velocity.y > 0.005f || rigid.velocity.y < -0.005f)
             {
                 animator.SetTrigger("Jump");
             }
             else if (controller.movingVector.normalized != Vector3.zero)
             {
-                //gameObject.GetComponent<Interactions>().PlaySound(runSound);
+                gameObject.GetComponent<Interactions>().PlaySound(runSound);
                 animator.SetTrigger("Run");
             }
             else if(controller.isClimb) animator.SetTrigger("ClimbIdle");

@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 public class MC_InGameInformation : MonoBehaviour
 {
     public int hp;
@@ -11,29 +10,20 @@ public class MC_InGameInformation : MonoBehaviour
     public int collectedHoney;
     public int maxHoneyAmount;
     public int swordAura;
+    public int LevelNum;
     public List<string> collectibles;
     public List<string> shopList;
-        void Awake(){
-            if (PlayerPrefs.HasKey("posX"))
-            {
-                gameObject.transform.position = new Vector3(PlayerPrefs.GetFloat("posX"),PlayerPrefs.GetFloat("posY"),PlayerPrefs.GetFloat("posZ"));
-                maxHp = PlayerPrefs.GetInt("HealthPoints");
-                collectedHoney = PlayerPrefs.GetInt("HoneyAmount");
-                maxHoneyAmount = PlayerPrefs.GetInt("MaxHoneyAmount");
-                swordAura = PlayerPrefs.GetInt("SworsEffect");
-            }                                                                                 
-        }
-
+    public int maxLevel;
     public void SaveGame()
     {
         PlayerPrefs.SetFloat("posX",gameObject.transform.position.x);
         PlayerPrefs.SetFloat("posY",gameObject.transform.position.y);
         PlayerPrefs.SetFloat("posZ",gameObject.transform.position.z);
-        PlayerPrefs.SetInt("ltl",SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("LevelNumber",LevelNum);
         PlayerPrefs.SetInt("HoneyAmount",collectedHoney);
         PlayerPrefs.SetInt("MaxHoneyAmount",maxHoneyAmount);
-        PlayerPrefs.SetInt("HealthPoints",maxHp);
         PlayerPrefs.SetInt("SworsEffect", swordAura);
+        PlayerPrefs.SetInt("MaxLevel", maxLevel);
         for (int i = 0; i < shopList.Count; i++)
         {
             PlayerPrefs.SetInt(shopList[i],1);

@@ -17,6 +17,7 @@ TagManager:
   - Sword
   - CheckPoint
   - Robot
+  - Platform
   layers:
   - Default
   - TransparentFX

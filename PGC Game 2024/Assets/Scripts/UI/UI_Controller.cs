@@ -11,7 +11,7 @@ public class UI_Controller : MonoBehaviour
     public Slider honeyFiller;
     public TextMeshProUGUI honeyPercentage;
     public TextMeshProUGUI honeyNumber;
-    public MC_InGameInformation statistics;
+    public PlayerInformation statistics;
 
     [Header("Technical Variables")]
     private bool menuOpened;
@@ -20,11 +20,11 @@ public class UI_Controller : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape)) ChangeMenuState();
 
-        healthBar.value = statistics.hp;
-        honeyFiller.maxValue = statistics.maxHoneyAmount;
-        honeyFiller.value = Mathf.Floor((((float)statistics.collectedHoney) / ((float)statistics.maxHoneyAmount)) * 100);
+        healthBar.value = statistics.Hp;
+        honeyFiller.maxValue = statistics.MaxHoneyAmount;
+        honeyFiller.value = Mathf.Floor((((float)statistics.CollectedHoney) / ((float)statistics.MaxHoneyAmount)) * 100);
         honeyPercentage.text = honeyFiller.value.ToString() + "%";
-        honeyNumber.text = statistics.collectedHoney.ToString() + " сот";
+        honeyNumber.text = statistics.CollectedHoney.ToString() + " сот";
 
     }
 
@@ -34,10 +34,12 @@ public class UI_Controller : MonoBehaviour
             Time.timeScale = 0.3f;
             PauseUI.SetActive(true);
             menuOpened = true;
+            Cursor.visible = true;
         } else {
             Time.timeScale = 1f;
             PauseUI.SetActive(false);
             menuOpened = false;
+            Cursor.visible = false;
         }
 
     }

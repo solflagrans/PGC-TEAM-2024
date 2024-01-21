@@ -10,8 +10,7 @@ public class MainMenuUI : MonoBehaviour
 {
    public GameObject settingsWindow;
    public GameObject mainMenuUI;
-    public TMP_Dropdown dropdown;
-    public Toggle fs;
+   public GameObject continueButton;
    [Header("VolumeSettings")]
    [SerializeField] private TextMeshProUGUI volumeTextValue = null;
    [SerializeField] private Slider volumeSlider = null;
@@ -51,8 +50,16 @@ public class MainMenuUI : MonoBehaviour
       resolutionDropDown.AddOptions(options);
       resolutionDropDown.value = resolutionIndex;
       resolutionDropDown.RefreshShownValue();
-   }
 
+      if (PlayerPrefs.HasKey("ltl"))
+      {
+         continueButton.SetActive(true);
+      }
+   }
+   public void ContinueGame()
+   {
+      SceneManager.LoadScene(1);
+   }
   public void SetResolution(int index)
    {
       Resolution resolution = resolutions[index];
@@ -90,11 +97,11 @@ public class MainMenuUI : MonoBehaviour
    }
    public void SetQuality(int quality)
    {
-        qualityLevel = dropdown.value;
+      qualityLevel = quality;
    }
    public void SetFullScreen(bool isFS)
    {
-      isFullScreen = fs.isOn;
+      isFullScreen = isFS;
    }
    public void SetVolume(float volume)
    {
@@ -105,13 +112,16 @@ public class MainMenuUI : MonoBehaviour
 
    public void Apply()
    {
-      PlayerPrefs.SetFloat("volume",AudioListener.volume);
-      PlayerPrefs.SetFloat("brightness", brightnessLevel);
-      PlayerPrefs.SetInt("quality", qualityLevel);
-      PlayerPrefs.SetInt("fullScreen", (isFullScreen ? 1 : 0));
       Screen.fullScreen = isFullScreen;
       QualitySettings.SetQualityLevel(qualityLevel);
-
-        print(qualityLevel);
    }
+
+    public void SaveSettings() {
+
+        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
+        PlayerPrefs.SetFloat("Brightness", brightnessLevel);
+        PlayerPrefs.SetInt("Quality", qualityLevel);
+        PlayerPrefs.SetInt("FullScreen", (isFullScreen ? 1 : 0));
+
+    }
 }
