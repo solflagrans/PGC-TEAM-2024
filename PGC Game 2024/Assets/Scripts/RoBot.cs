@@ -103,6 +103,7 @@ public class RoBot : MonoBehaviour
         controller.enabled = !controlMode;
         movement.enabled = controlMode;
         robotUI.SetActive(controlMode);
+        Cursor.visible = controlMode;
         playerUI.SetActive(!controlMode);
 
     }

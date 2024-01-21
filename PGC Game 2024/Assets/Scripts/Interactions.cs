@@ -11,7 +11,7 @@ public class Interactions : MonoBehaviour
       public AudioClip damageSound;
       public GameObject dialogueWindow;
       public List<string> testDialogue;
-
+      public GameObject shopWindow;
       private void OnCollisionEnter(Collision coll){
           if (coll.collider.CompareTag("Trap"))
           {
@@ -39,9 +39,24 @@ public class Interactions : MonoBehaviour
            {
               gameObject.GetComponent<MC_InGameInformation>().SaveGame();
            }
-           
         }
-        
+
+       private void OnTriggerStay(Collider coll)
+       {
+          if (coll.gameObject.name == "Engineer")
+          {
+             if (Input.GetKey(KeyCode.E))
+             {
+                OpenShop();
+             }
+          }
+       }
+
+       private void OpenShop()
+       {
+          Cursor.visible = shopWindow.activeSelf;
+          shopWindow.SetActive(!shopWindow.activeSelf);
+       }
         public void SaveCollectible(GameObject collectible)
         {
            if (!PlayerPrefs.HasKey(collectible.name))

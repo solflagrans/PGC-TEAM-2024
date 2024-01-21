@@ -13,6 +13,7 @@ public class MC_InGameInformation : MonoBehaviour
     public int LevelNum;
     public List<string> collectibles;
     public List<string> shopList;
+    public int maxLevel;
     public void SaveGame()
     {
         PlayerPrefs.SetFloat("posX",gameObject.transform.position.x);
@@ -22,6 +23,7 @@ public class MC_InGameInformation : MonoBehaviour
         PlayerPrefs.SetInt("HoneyAmount",collectedHoney);
         PlayerPrefs.SetInt("MaxHoneyAmount",maxHoneyAmount);
         PlayerPrefs.SetInt("SworsEffect", swordAura);
+        PlayerPrefs.SetInt("MaxLevel", maxLevel);
         for (int i = 0; i < shopList.Count; i++)
         {
             PlayerPrefs.SetInt(shopList[i],1);

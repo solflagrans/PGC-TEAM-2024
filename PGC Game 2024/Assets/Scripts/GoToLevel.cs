@@ -3,14 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class GoToLevel : MonoBehaviour
 {
-
     public int ltl;
-
-    private void OnTriggerEnter(Collider col) {
-        if(col.CompareTag("Player")) {
-            GoLoad();
-        }
-        
+    public GameObject mc;
+    void OnTriggerStay(Collider coll){
+        if(Input.GetKey(KeyCode.E) && mc.GetComponent<MC_InGameInformation>().maxLevel >= ltl){
+            if(coll.CompareTag("Player") )
+            {
+               GoLoad();
+            }
+        } 
     }
 
     public void GoLoad() {
