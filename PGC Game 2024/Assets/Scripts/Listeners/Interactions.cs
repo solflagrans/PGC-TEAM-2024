@@ -35,14 +35,9 @@ public class Interactions : MonoBehaviour
 
          /*if(coll.CompareTag("CheckPoint"))
            {
-<<<<<<< Updated upstream:PGC Game 2024/Assets/Scripts/Interactions.cs
-              gameObject.GetComponent<MC_InGameInformation>().SaveGame();
-           }
-=======
               gameObject.GetComponent<PlayerInformation>().SaveGame();
            } */
            
->>>>>>> Stashed changes:PGC Game 2024/Assets/Scripts/Listeners/Interactions.cs
         }
 
        private void OnTriggerStay(Collider coll)

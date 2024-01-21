@@ -19,21 +19,12 @@ public class UI_Controller : MonoBehaviour
     private void Update() {
 
         if(Input.GetKeyDown(KeyCode.Escape)) ChangeMenuState();
-<<<<<<< Updated upstream:PGC Game 2024/Assets/Scripts/UI_Controller.cs
-        
-        healthBar.value = statistics.hp;
-        honeyFiller.maxValue = statistics.maxHoneyAmount;
-        honeyFiller.value = Mathf.Floor((((float)statistics.collectedHoney) / ((float)statistics.maxHoneyAmount)) * 100);
-        honeyPercentage.text = honeyFiller.value.ToString() + "%";
-        honeyNumber.text = statistics.collectedHoney.ToString() + " пїЅпїЅпїЅ";
-=======
 
         healthBar.value = statistics.Hp;
         honeyFiller.maxValue = statistics.MaxHoneyAmount;
         honeyFiller.value = Mathf.Floor((((float)statistics.CollectedHoney) / ((float)statistics.MaxHoneyAmount)) * 100);
         honeyPercentage.text = honeyFiller.value.ToString() + "%";
         honeyNumber.text = statistics.CollectedHoney.ToString() + " сот";
->>>>>>> Stashed changes:PGC Game 2024/Assets/Scripts/UI/UI_Controller.cs
 
     }
 
