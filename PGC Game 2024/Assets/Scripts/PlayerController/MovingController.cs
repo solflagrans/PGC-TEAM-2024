@@ -25,7 +25,6 @@ public class MovingController : MonoBehaviour
     private Transform endClimbPoint;
     private Transform startClimbPoint;
     public Collider swordCollider;
-    private PlayerInformation statistics;
     public CameraController cam;
     public Image diePanel;
 
@@ -42,9 +41,9 @@ public class MovingController : MonoBehaviour
 
 
     void Start() {
+
         Cursor.visible = false;
         mc_rb = gameObject.GetComponent<Rigidbody>();
-        statistics = gameObject.GetComponent<PlayerInformation>();
 
     }
 
@@ -63,7 +62,7 @@ public class MovingController : MonoBehaviour
 
     void Update() {
 
-        if(statistics.Hp <= 0) {
+        if(PlayerInformation.Instance.Hp <= 0) {
             isDead = true;
             Die();
         }
