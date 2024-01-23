@@ -160,16 +160,4 @@ public class RoBot : MonoBehaviour
         transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);
     }
 
-    private void OnTriggerEnter(Collider col) {
-
-        if(col.CompareTag("Collectible")) {
-            interactions.SaveCollectible(col.gameObject);
-        }
-
-        if(col.CompareTag("Honey")) {
-            interactions.CollectHoney(col.gameObject);
-        }
-
-    }
-
 }
