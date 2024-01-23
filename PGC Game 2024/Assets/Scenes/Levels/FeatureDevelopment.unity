@@ -1102,22 +1102,22 @@ PrefabInstance:
     - target: {fileID: 6112117341692466840, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}
       propertyPath: flyingSpeed
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6112117341692466840, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}
       propertyPath: movingSpeed
-      value: 0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6112117341692466840, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}
       propertyPath: flyingDodgeSpeed
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6112117341692466840, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}
       propertyPath: maxDodgeDeviation
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8119963985265508882, guid: e054f2cd4340a8d4e89a7f8c22324a06,
         type: 3}

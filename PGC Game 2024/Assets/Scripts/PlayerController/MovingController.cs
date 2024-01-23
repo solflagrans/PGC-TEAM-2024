@@ -145,8 +145,6 @@ public class MovingController : MonoBehaviour
         if(col.CompareTag("Platform"))
         {
             mc_rb.useGravity = true;
-            mc_rb.constraints = RigidbodyConstraints.None;
-            mc_rb.constraints = RigidbodyConstraints.FreezeRotation;
             movingMode = 0;
         }
 
@@ -185,44 +183,36 @@ public class MovingController : MonoBehaviour
     }
     private void Fly()
     {
-        //mc_rb.useGravity = false;
         mc_rb.constraints = RigidbodyConstraints.FreezePositionY;
-        //  if (!isFlyingHorizontal && (Mathf.Abs(centerTransform.position.z - transform.position.z) < maxDodgeDeviation))
-        movingVector += new Vector3(centerTransform.forward.x, 0, centerTransform.forward.z);
+        movingVector = new Vector3(centerTransform.forward.x*flyingSpeed, 0, centerTransform.forward.z*flyingSpeed);
         if (isFlyingHorizontal)
         {
             
             if (Input.GetKey(KeyCode.W))
             {
-                print("q");
-                movingVector += new Vector3(0, 0, flyingSpeed);
+                movingVector += new Vector3(0, 0, flyingDodgeSpeed);
+
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                movingVector -= new Vector3(0, 0, flyingSpeed);
+                movingVector -= new Vector3(0, 0, flyingDodgeSpeed);
             }
         }
-        else
+        else 
         {
 
             if (Input.GetKey(KeyCode.A))
             {
-                movingVector -= new Vector3(flyingSpeed, 0, 0);
+                movingVector -= new Vector3(flyingDodgeSpeed, 0, 0);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                movingVector += new Vector3(flyingSpeed, 0, 0);
+                movingVector += new Vector3(flyingDodgeSpeed, 0, 0);
             }
         }
-
-        /* }
-         else if(Mathf.Abs(centerTransform.position.x - transform.position.x) < maxDodgeDeviation){*/
-       /*       print("2");
-          }*/
-       // movingVector = Quaternion.Euler(0,23f,0)*movingVector;
-        mc_rb.MovePosition(mc_rb.position + movingVector* (movingSpeed * Time.deltaTime));
+        mc_rb.MovePosition(mc_rb.position + movingVector* Time.deltaTime);
     }
 
     private void Die() {
