@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MovingController : MonoBehaviour
 {
 
-    [Header("Moving Mode")] public int movingMode = 0; //0 обынчный wasd, 1 - карабканье, 2 - полет между платформами, 3-управление роботом
+    [Header("Moving Mode")] public int movingMode = 0; //0 обынчный wasd, 1 - карабканье, 2 - полет между платформами
     [Header("Audio")] 
     public AudioClip jumpSound;
     public AudioClip deathSound;
@@ -39,8 +39,6 @@ public class MovingController : MonoBehaviour
     [HideInInspector] public bool isDead;
     [HideInInspector] private bool isFlyingHorizontal = true;
     [HideInInspector] private Transform centerTransform;
-    [HideInInspector] private float flyingDeviation = 0;
-    public float[] mainRotations;
 
 
     void Start() {
@@ -164,10 +162,6 @@ public class MovingController : MonoBehaviour
             gameObject.transform.position += new Vector3(0, 1, 0);
             centerTransform = gameObject.transform;
             movingMode = 2;
-            flyingDeviation = 0;
-            isFlyingHorizontal = (transform.eulerAngles.y + 10 >= mainRotations[2] &&
-                                  transform.eulerAngles.y - 10 <= mainRotations[2]) ||
-                                 (transform.eulerAngles.y + 10 >= mainRotations[3] && transform.eulerAngles.y - 10 <= mainRotations[3]);
         }
     }
 
@@ -190,61 +184,35 @@ public class MovingController : MonoBehaviour
     private void Fly()
     {
         mc_rb.constraints = RigidbodyConstraints.FreezePositionY;
-<<<<<<< Updated upstream
         movingVector = new Vector3(centerTransform.forward.x*flyingSpeed, 0, centerTransform.forward.z*flyingSpeed);
-=======
-        print(flyingDeviation);
-        movingVector += new Vector3(centerTransform.forward.x*flyingSpeed, 0, centerTransform.forward.z*flyingSpeed);
->>>>>>> Stashed changes
         if (isFlyingHorizontal)
         {
             
-            if (Input.GetKey(KeyCode.W) && flyingDeviation < maxDodgeDeviation)
+            if (Input.GetKey(KeyCode.W))
             {
-<<<<<<< Updated upstream
                 movingVector += new Vector3(0, 0, flyingDodgeSpeed);
 
-=======
-                
-                movingVector += new Vector3(0, 0, flyingDodgeSpeed);
-                flyingDeviation += flyingDodgeSpeed;
->>>>>>> Stashed changes
             }
 
-            if (Input.GetKey(KeyCode.S) && flyingDeviation > -maxDodgeDeviation)
+            if (Input.GetKey(KeyCode.S))
             {
                 movingVector -= new Vector3(0, 0, flyingDodgeSpeed);
-<<<<<<< Updated upstream
-=======
-                flyingDeviation -= flyingDodgeSpeed;
->>>>>>> Stashed changes
             }
         }
         else 
         {
 
-            if (Input.GetKey(KeyCode.A) && flyingDeviation > -maxDodgeDeviation)
+            if (Input.GetKey(KeyCode.A))
             {
                 movingVector -= new Vector3(flyingDodgeSpeed, 0, 0);
-<<<<<<< Updated upstream
-=======
-                flyingDeviation -= flyingDodgeSpeed;
->>>>>>> Stashed changes
             }
 
-            if (Input.GetKey(KeyCode.D) && flyingDeviation < maxDodgeDeviation)
+            if (Input.GetKey(KeyCode.D))
             {
                 movingVector += new Vector3(flyingDodgeSpeed, 0, 0);
-<<<<<<< Updated upstream
             }
         }
         mc_rb.MovePosition(mc_rb.position + movingVector* Time.deltaTime);
-=======
-                flyingDeviation += flyingDodgeSpeed;
-            }
-        }
-        mc_rb.MovePosition(mc_rb.position + movingVector* (movingSpeed * Time.deltaTime));
->>>>>>> Stashed changes
     }
 
     private void Die() {
