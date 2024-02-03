@@ -18,6 +18,7 @@ TagManager:
   - CheckPoint
   - Robot
   - Platform
+  - Cube
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,11 @@ using UnityEngine.UI;
 public class MovingController : MonoBehaviour
 {
 
-    [Header("Moving Mode")] public int movingMode = 0; //0 обынчный wasd, 1 - карабканье, 2 - полет между платформами
+    public static MovingController Instance { get; private set; }
+
+    [Header("Moving Mode")] 
+    public int movingMode = 0; //0 обынчный wasd, 1 - карабканье, 2 - полет между платформами
+
     [Header("Audio")] 
     public AudioClip jumpSound;
     public AudioClip deathSound;
@@ -38,6 +42,12 @@ public class MovingController : MonoBehaviour
     [HideInInspector] public bool isDead;
     [HideInInspector] private bool isFlyingHorizontal = true;
     [HideInInspector] private Transform centerTransform;
+
+    private void Awake() {
+
+        if(!Instance) Instance = this;
+
+    }
 
 
     void Start() {
@@ -85,12 +95,12 @@ public class MovingController : MonoBehaviour
         
         movingVector.x = Input.GetAxisRaw("Horizontal");
         movingVector.z = Input.GetAxisRaw("Vertical");
-        movingVector = Quaternion.Euler(0,23f,0) * movingVector;
+        movingVector = Quaternion.Euler(0f, 45f, 0f) * movingVector;
         mc_rb.MovePosition(mc_rb.position + movingVector.normalized * (movingSpeed * Time.deltaTime));
 
         if(Vector3.Normalize(movingVector) != Vector3.zero) {
             Quaternion lookRotation = Quaternion.LookRotation(movingVector, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 720 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 900 * Time.deltaTime);
         }
 
     }
