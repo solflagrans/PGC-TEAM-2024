@@ -22,7 +22,7 @@ public class HackUI : MonoBehaviour
     public GameObject menu;
     [HideInInspector] public scriptable_object scr_obj;
     public CheckCollider[] cols;
-    public ButtonPress button;
+    //public ButtonPress button;
     
     [Header("Settings")]
     private string choosedAction;
@@ -65,9 +65,9 @@ public class HackUI : MonoBehaviour
         if(choosedTrigger == "Коллидер") {
             StartCoroutine(Collider());
         }
-        if(choosedTrigger == "По нажатию кнопки") {
+        /*if(choosedTrigger == "По нажатию кнопки") {
             StartCoroutine(Button());
-        }
+        }*/
         if(choosedTrigger == "Второй объект") {
             StartCoroutine(Second());
         }
@@ -99,14 +99,14 @@ public class HackUI : MonoBehaviour
 
     }
 
-    IEnumerator Button() {
+    /*IEnumerator Button() {
 
         while(!button.pressed) {
             yield return new WaitForSeconds(.1f);
         }
 
         Action();
-    }
+    }*/
 
     IEnumerator Second() {
 

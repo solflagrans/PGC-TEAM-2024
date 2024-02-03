@@ -5,7 +5,11 @@ using UnityEngine.UI;
 public class MovingController : MonoBehaviour
 {
 
-    [Header("Moving Mode")] public int movingMode = 0; //0 обынчный wasd, 1 - карабканье, 2 - полет между платформами, 3-управление роботом
+    public static MovingController Instance { get; private set; }
+
+    [Header("Moving Mode")] 
+    public int movingMode = 0; //0 обынчный wasd, 1 - карабканье, 2 - полет между платформами
+
     [Header("Audio")] 
     public AudioClip jumpSound;
     public AudioClip deathSound;
@@ -25,7 +29,6 @@ public class MovingController : MonoBehaviour
     private Transform endClimbPoint;
     private Transform startClimbPoint;
     public Collider swordCollider;
-    private PlayerInformation statistics;
     public CameraController cam;
     public Image diePanel;
 
@@ -39,14 +42,18 @@ public class MovingController : MonoBehaviour
     [HideInInspector] public bool isDead;
     [HideInInspector] private bool isFlyingHorizontal = true;
     [HideInInspector] private Transform centerTransform;
-    [HideInInspector] private float flyingDeviation = 0;
-    public float[] mainRotations;
+
+    private void Awake() {
+
+        if(!Instance) Instance = this;
+
+    }
 
 
     void Start() {
+
         Cursor.visible = false;
         mc_rb = gameObject.GetComponent<Rigidbody>();
-        statistics = gameObject.GetComponent<PlayerInformation>();
 
     }
 
@@ -65,7 +72,7 @@ public class MovingController : MonoBehaviour
 
     void Update() {
 
-        if(statistics.Hp <= 0) {
+        if(PlayerInformation.Instance.Hp <= 0) {
             isDead = true;
             Die();
         }
@@ -88,12 +95,12 @@ public class MovingController : MonoBehaviour
         
         movingVector.x = Input.GetAxisRaw("Horizontal");
         movingVector.z = Input.GetAxisRaw("Vertical");
-        movingVector = Quaternion.Euler(0,23f,0) * movingVector;
+        movingVector = Quaternion.Euler(0f, 45f, 0f) * movingVector;
         mc_rb.MovePosition(mc_rb.position + movingVector.normalized * (movingSpeed * Time.deltaTime));
 
         if(Vector3.Normalize(movingVector) != Vector3.zero) {
             Quaternion lookRotation = Quaternion.LookRotation(movingVector, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 720 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 900 * Time.deltaTime);
         }
 
     }
@@ -166,10 +173,6 @@ public class MovingController : MonoBehaviour
             gameObject.transform.position += new Vector3(0, 1, 0);
             centerTransform = gameObject.transform;
             movingMode = 2;
-            flyingDeviation = 0;
-            isFlyingHorizontal = (transform.eulerAngles.y + 10 >= mainRotations[2] &&
-                                  transform.eulerAngles.y - 10 <= mainRotations[2]) ||
-                                 (transform.eulerAngles.y + 10 >= mainRotations[3] && transform.eulerAngles.y - 10 <= mainRotations[3]);
         }
     }
 
@@ -191,50 +194,45 @@ public class MovingController : MonoBehaviour
     }
     private void Fly()
     {
+        //mc_rb.useGravity = false;
         mc_rb.constraints = RigidbodyConstraints.FreezePositionY;
-
-        print(flyingDeviation);
-        movingVector += new Vector3(centerTransform.forward.x*flyingSpeed, 0, centerTransform.forward.z*flyingSpeed);
-
+        //  if (!isFlyingHorizontal && (Mathf.Abs(centerTransform.position.z - transform.position.z) < maxDodgeDeviation))
+        movingVector += new Vector3(centerTransform.forward.x, 0, centerTransform.forward.z);
         if (isFlyingHorizontal)
         {
             
-            if (Input.GetKey(KeyCode.W) && flyingDeviation < maxDodgeDeviation)
+            if (Input.GetKey(KeyCode.W))
             {
-                movingVector += new Vector3(0, 0, flyingDodgeSpeed);
-                flyingDeviation += flyingDodgeSpeed;
-
+                print("q");
+                movingVector += new Vector3(0, 0, flyingSpeed);
             }
 
-            if (Input.GetKey(KeyCode.S) && flyingDeviation > -maxDodgeDeviation)
+            if (Input.GetKey(KeyCode.S))
             {
-                movingVector -= new Vector3(0, 0, flyingDodgeSpeed);
-
-                flyingDeviation -= flyingDodgeSpeed;
-
+                movingVector -= new Vector3(0, 0, flyingSpeed);
             }
         }
-        else 
+        else
         {
 
-            if (Input.GetKey(KeyCode.A) && flyingDeviation > -maxDodgeDeviation)
+            if (Input.GetKey(KeyCode.A))
             {
-                movingVector -= new Vector3(flyingDodgeSpeed, 0, 0);
-
-                flyingDeviation -= flyingDodgeSpeed;
-
+                movingVector -= new Vector3(flyingSpeed, 0, 0);
             }
 
-            if (Input.GetKey(KeyCode.D) && flyingDeviation < maxDodgeDeviation)
+            if (Input.GetKey(KeyCode.D))
             {
-                movingVector += new Vector3(flyingDodgeSpeed, 0, 0);
-                flyingDeviation += flyingDodgeSpeed;
+                movingVector += new Vector3(flyingSpeed, 0, 0);
             }
         }
-        
+
+        /* }
+         else if(Mathf.Abs(centerTransform.position.x - transform.position.x) < maxDodgeDeviation){*/
+       /*       print("2");
+          }*/
+       // movingVector = Quaternion.Euler(0,23f,0)*movingVector;
         mc_rb.MovePosition(mc_rb.position + movingVector* (movingSpeed * Time.deltaTime));
-}
-    
+    }
 
     private void Die() {
 
