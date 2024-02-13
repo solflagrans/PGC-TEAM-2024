@@ -4,25 +4,11 @@ using UnityEngine;
 public class SaveHandler : MonoBehaviour
 {
 
-    public static SaveHandler Instance { get; private set; }
-
-    private PlayerInformation _playerInfo;
-    private GameInformation _gameInfo;
+    [SerializeField] private GameInformation _gameInformation;
+    [SerializeField] private PlayerInformation _playerInformation;
     [SerializeField] private MainMenuUI _settingsInformation;
 
-    private void Awake() {
-
-        if(!Instance) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else Destroy(gameObject);
-
-    }
-
     private void Start() {
-
-        _playerInfo = PlayerInformation.Instance;
-        _gameInfo = GameInformation.Instance;
 
         LoadOnLevelEnter();
 
@@ -31,20 +17,20 @@ public class SaveHandler : MonoBehaviour
 
     public void CheckpointSave() {
 
-        PlayerPrefs.SetFloat("PosX", _playerInfo.transform.position.x);
-        PlayerPrefs.SetFloat("PosY", _playerInfo.transform.position.y);
-        PlayerPrefs.SetFloat("PosZ", _playerInfo.transform.position.z);
-        PlayerPrefs.SetInt("Hp", _playerInfo.Hp);
-        PlayerPrefs.SetInt("Honey", _playerInfo.CollectedHoney);
+        PlayerPrefs.SetFloat("PosX", _playerInformation.transform.position.x);
+        PlayerPrefs.SetFloat("PosY", _playerInformation.transform.position.y);
+        PlayerPrefs.SetFloat("PosZ", _playerInformation.transform.position.z);
+        PlayerPrefs.SetInt("Hp", _playerInformation.Hp);
+        PlayerPrefs.SetInt("Honey", _playerInformation.CollectedHoney);
 
         string solvedPuzzlesHash = "";
-        foreach(int id in _gameInfo.SolvedPuzzles) {
+        foreach(int id in _gameInformation.SolvedPuzzles) {
             solvedPuzzlesHash += id + " ";
         }
         PlayerPrefs.SetString("SolvedPuzzles", solvedPuzzlesHash);
 
         string brokenBarrelsHash = "";
-        foreach(int id in _gameInfo.BrokenBarrels) {
+        foreach(int id in _gameInformation.BrokenBarrels) {
             brokenBarrelsHash += id + " ";
         }
         PlayerPrefs.SetString("Barrel", brokenBarrelsHash);
@@ -54,7 +40,7 @@ public class SaveHandler : MonoBehaviour
     }
     public void EnterLevelSave() {
 
-        PlayerPrefs.SetInt("Level", _gameInfo.LevelNum);
+        PlayerPrefs.SetInt("Level", _gameInformation.LevelNum);
 
         PlayerPrefs.Save();
 
@@ -62,17 +48,17 @@ public class SaveHandler : MonoBehaviour
 
     public void ExitLevelSave() {
 
-        PlayerPrefs.SetInt("Hp", _playerInfo.MaxHp);
-        PlayerPrefs.SetInt("Honey", _playerInfo.CollectedHoney);
+        PlayerPrefs.SetInt("Hp", _playerInformation.MaxHp);
+        PlayerPrefs.SetInt("Honey", _playerInformation.CollectedHoney);
 
         string solvedPuzzlesHash = "";
-        foreach(int id in _gameInfo.SolvedPuzzles) {
+        foreach(int id in _gameInformation.SolvedPuzzles) {
             solvedPuzzlesHash += id + " ";
         }
         PlayerPrefs.SetString("SolvedPuzzles", solvedPuzzlesHash);
 
         string brokenBarrelsHash = "";
-        foreach(int id in _gameInfo.BrokenBarrels) {
+        foreach(int id in _gameInformation.BrokenBarrels) {
             brokenBarrelsHash += id + " ";
         }
         PlayerPrefs.SetString("Barrel", brokenBarrelsHash);
@@ -91,9 +77,9 @@ public class SaveHandler : MonoBehaviour
         //_gameInformation.SaveBoughtItems(); make new function later
         //_gameInformation.SaveCollectibles(); analogy
 
-        PlayerPrefs.SetInt("MaxHp", _playerInfo.MaxHp);
-        PlayerPrefs.SetInt("MaxHoney", _playerInfo.MaxHoneyAmount);
-        PlayerPrefs.SetInt("Honey", _playerInfo.CollectedHoney);
+        PlayerPrefs.SetInt("MaxHp", _playerInformation.MaxHp);
+        PlayerPrefs.SetInt("MaxHoney", _playerInformation.MaxHoneyAmount);
+        PlayerPrefs.SetInt("Honey", _playerInformation.CollectedHoney);
 
         PlayerPrefs.Save();
 
@@ -109,7 +95,7 @@ public class SaveHandler : MonoBehaviour
 
     public void UnlockedLevelSave() {
 
-        PlayerPrefs.SetInt("LastUnlockedLevel", _gameInfo.LastUnlockedLevel);
+        PlayerPrefs.SetInt("LastUnlockedLevel", _gameInformation.LastUnlockedLevel);
 
         PlayerPrefs.Save();
 
@@ -128,23 +114,23 @@ public class SaveHandler : MonoBehaviour
 
     private void LoadOnLevelEnter() {
 
-        _playerInfo.MaxHp = PlayerPrefs.GetInt("MaxHp", _playerInfo.MaxHp);
-        _playerInfo.MaxHoneyAmount = PlayerPrefs.GetInt("MaxHoney", _playerInfo.MaxHoneyAmount);
+        _playerInformation.MaxHp = PlayerPrefs.GetInt("MaxHp", _playerInformation.MaxHp);
+        _playerInformation.MaxHoneyAmount = PlayerPrefs.GetInt("MaxHoney", _playerInformation.MaxHoneyAmount);
 
-        _playerInfo.Hp = PlayerPrefs.GetInt("Hp", _playerInfo.Hp);
-        _playerInfo.CollectedHoney = PlayerPrefs.GetInt("Honey", _playerInfo.CollectedHoney);
+        _playerInformation.Hp = PlayerPrefs.GetInt("Hp", _playerInformation.Hp);
+        _playerInformation.CollectedHoney = PlayerPrefs.GetInt("Honey", _playerInformation.CollectedHoney);
 
         string[] solvedPuzzles = PlayerPrefs.GetString("SolvedPuzzles").Split(" ");
         foreach (string id in solvedPuzzles) {
-            _gameInfo.SolvedPuzzles.Add(Int32.Parse(id));
+            _gameInformation.SolvedPuzzles.Add(Int32.Parse(id));
         }
 
         string[] brokenBarrels = PlayerPrefs.GetString("BrokenBarrels").Split(" ");
         foreach(string id in brokenBarrels) {
-            _gameInfo.BrokenBarrels.Add(Int32.Parse(id));
+            _gameInformation.BrokenBarrels.Add(Int32.Parse(id));
         }
 
-        if(PlayerPrefs.HasKey("PosX")) _playerInfo.transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
+        if(PlayerPrefs.HasKey("PosX")) _playerInformation.transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
 
     }
 
@@ -162,7 +148,7 @@ public class SaveHandler : MonoBehaviour
 
     public void LoadLastLevel() {
 
-        _gameInfo.LastUnlockedLevel = PlayerPrefs.GetInt("LastUnlockedLevel", 2);
+        _gameInformation.LastUnlockedLevel = PlayerPrefs.GetInt("LastUnlockedLevel", 2);
 
     }
 

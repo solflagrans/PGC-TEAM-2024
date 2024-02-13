@@ -11,12 +11,6 @@ public class FadeObject : MonoBehaviour
     [SerializeField] private float _timer;
     [SerializeField] private bool _selfDestruction;
 
-    private void Awake() {
-        
-        _mesh ??= GetComponent<MeshRenderer>();
-
-    }
-
     private void Update() {
 
         if(_time < _timer) _time += Time.deltaTime;
