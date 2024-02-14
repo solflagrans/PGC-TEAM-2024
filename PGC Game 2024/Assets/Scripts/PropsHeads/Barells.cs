@@ -19,12 +19,10 @@ public class Barells : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision col) {
-
         if(col.collider.CompareTag("Sword")) {
             GiveHoney();
             destruction.Replace();
         }
-
     }
 
 }

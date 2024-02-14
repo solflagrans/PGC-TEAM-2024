@@ -1,9 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Modificators : MonoBehaviour
 {
-    //Re-write for singleton movingcontroller and abstart modificator class
 
     public float time;
     private MovingController controller;

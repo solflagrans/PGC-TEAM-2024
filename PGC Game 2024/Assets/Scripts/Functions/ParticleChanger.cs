@@ -3,6 +3,7 @@ using UnityEngine;
 public class ParticleChanger : MonoBehaviour
 {
 
+    [SerializeField] private PlayerInformation _statistics;
     [SerializeField] private GameObject[] _particles;
 
     public void ChangeParticle() {
@@ -10,7 +11,7 @@ public class ParticleChanger : MonoBehaviour
         int i = 0;
 
         foreach(var particle in _particles) {
-            particle.SetActive(PlayerInformation.Instance.SwordAura == i);
+            particle.SetActive(_statistics.SwordAura == i);
             i++;
         }
 

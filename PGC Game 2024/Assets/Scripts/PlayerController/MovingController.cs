@@ -153,10 +153,10 @@ public class MovingController : MonoBehaviour
         }
         if(col.CompareTag("Platform"))
         {
-            mc_rb.useGravity = true;
             mc_rb.constraints = RigidbodyConstraints.None;
             mc_rb.constraints = RigidbodyConstraints.FreezeRotation;
             movingMode = 0;
+            mc_rb.useGravity = true;
         }
 
     }
@@ -230,7 +230,8 @@ public class MovingController : MonoBehaviour
          else if(Mathf.Abs(centerTransform.position.x - transform.position.x) < maxDodgeDeviation){*/
        /*       print("2");
           }*/
-       // movingVector = Quaternion.Euler(0,23f,0)*movingVector;
+       print(movingMode);
+        movingVector = Quaternion.Euler(0,-5f,0)*movingVector;
         mc_rb.MovePosition(mc_rb.position + movingVector* (movingSpeed * Time.deltaTime));
     }
 

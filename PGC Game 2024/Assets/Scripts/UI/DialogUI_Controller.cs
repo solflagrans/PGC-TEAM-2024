@@ -10,17 +10,17 @@ public class DialogUI_Controller : MonoBehaviour
 {
     [SerializeField] private TextWriter textWriter_1;
     public TextMeshProUGUI phrase;
-    public AudioSource _audio;
+    public AudioSource audio;
     private int phraseNum = 0;
     public GameObject textWindow;
     public List<string> phrases = new List<string>(){ };
 
     public void StartWriting(){
         textWriter_1.AddWriter(phrase,phrases[phraseNum],0.1f,true,EndOfPhrase);
-        _audio.Play();
+        audio.Play();
     }
     private void EndOfPhrase(){
-        _audio.Stop();
+        audio.Stop();
     }
 
     private void Update()
@@ -37,7 +37,7 @@ public class DialogUI_Controller : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space) && !textWriter_1.IsActive() && phraseNum < phrases.Count - 1)
         {
             phraseNum++;
-            _audio.Play();
+            audio.Play();
             textWriter_1.AddWriter(phrase, phrases[phraseNum], 0.1f, true, EndOfPhrase);
         }
     }
