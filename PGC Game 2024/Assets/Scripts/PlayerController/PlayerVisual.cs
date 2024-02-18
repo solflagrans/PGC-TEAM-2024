@@ -13,7 +13,7 @@ public class PlayerVisual : MonoBehaviour
 
     void Start()
     {
-
+        
         controller = GetComponent<MovingController>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();

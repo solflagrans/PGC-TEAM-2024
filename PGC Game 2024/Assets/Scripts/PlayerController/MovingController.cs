@@ -31,7 +31,7 @@ public class MovingController : MonoBehaviour
     public Collider swordCollider;
     public CameraController cam;
     public Image diePanel;
-
+    public Image loadPanel;
     [Header("Techincal Variables")]
     [HideInInspector] public Vector3 movingVector;
     [HideInInspector] public bool isClimb;
@@ -42,7 +42,7 @@ public class MovingController : MonoBehaviour
     [HideInInspector] public bool isDead;
     [HideInInspector] private bool isFlyingHorizontal = true;
     [HideInInspector] private Transform centerTransform;
-
+    [HideInInspector] public bool isPanelLoading = true;
     private void Awake() {
 
         if(!Instance) Instance = this;
@@ -67,14 +67,14 @@ public class MovingController : MonoBehaviour
 
         if (movingMode == 2) Fly();
 
-
+ 
     }
 
     void Update() {
 
         if(PlayerInformation.Instance.Hp <= 0) {
-            isDead = true;
             Die();
+            isDead = true;
         }
 
         if(isDead) return;
@@ -88,7 +88,8 @@ public class MovingController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) & !isClimb) Jump();
         }
 
-    }
+        if (isPanelLoading) FadePanel();
+        }
 
     //Ñîçäà¸ì äâèæåíèÿ ïåðñîíàæà ïî ãîðèçîíòàëè è âåðòèêàëè
     private void Move() {
@@ -242,10 +243,16 @@ public class MovingController : MonoBehaviour
         cam.enabled = false;
 
         diePanel.fillAmount += 1 * Time.deltaTime;
-
-        gameObject.GetComponent<Interactions>().PlaySound(deathSound);
+        if(!isDead) gameObject.GetComponent<Interactions>().PlaySound(deathSound);
         
         print("Вы умерли");
+
+    }
+    private void FadePanel() {
+        
+        loadPanel.fillAmount -= 1 * Time.deltaTime;
+        if (loadPanel.fillAmount == 0) isPanelLoading = false;
+        //gameObject.GetComponent<Interactions>().PlaySound()
 
     }
 }
