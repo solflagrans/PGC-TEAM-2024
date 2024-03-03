@@ -26,15 +26,15 @@ public class DialogUI_Controller : MonoBehaviour
     private void Update()
     {
         Debug.Log(phraseNum);
-        if (Input.GetKeyUp(KeyCode.Space) && textWriter_1.IsActive())
+        if (Input.anyKeyDown && textWriter_1.IsActive())
         {
             textWriter_1.WriteAll();
         }
-        else if (Input.GetKeyUp(KeyCode.Space) && !textWriter_1.IsActive() && phraseNum == phrases.Count - 1)
+        else if (Input.anyKeyDown  && !textWriter_1.IsActive() && phraseNum == phrases.Count - 1)
         {
             gameObject.GetComponent<Interactions>().EndDialogue();
         }
-        else if (Input.GetKeyUp(KeyCode.Space) && !textWriter_1.IsActive() && phraseNum < phrases.Count - 1)
+        else if (Input.anyKeyDown  && !textWriter_1.IsActive() && phraseNum < phrases.Count - 1)
         {
             phraseNum++;
             audio.Play();
