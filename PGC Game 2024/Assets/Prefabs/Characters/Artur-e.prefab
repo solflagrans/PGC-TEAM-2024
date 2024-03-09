@@ -1154,8 +1154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddadf5fb5b909d43b44d4a1ad34c22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locOffset: {x: 0, y: 2, z: -3.75}
-  player: {fileID: 8119963985265508882}
+  _locOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8414970214585463196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,7 +1204,6 @@ GameObject:
   - component: {fileID: 2427590419440184474}
   - component: {fileID: 216388231238708758}
   - component: {fileID: 903788722906571329}
-  - component: {fileID: 805985718961584388}
   - component: {fileID: 5599489104349186171}
   - component: {fileID: 5694062480990669243}
   m_Layer: 7
@@ -1291,28 +1289,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd120c36cbfd5a94e8de2a3e7018fbda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingMode: 0
-  jumpSound: {fileID: 8300000, guid: 8294408c0756e6c4693f8580ea1b28e8, type: 3}
-  deathSound: {fileID: 8300000, guid: 9331ef2a8bf371e4f9811221ba638020, type: 3}
-  movingSpeed: 3
-  flyingSpeed: 0
-  flyingDodgeSpeed: 0
-  maxDodgeDeviation: 0
-  jumpForce: 4
-  doubleJumpForce: 3
-  climbSpeed: 3
-  ground:
+  _jumpSound: {fileID: 0}
+  _deathSound: {fileID: 0}
+  _movingSpeed: 0
+  _flyingSpeed: 0
+  _jumpForce: 0
+  _doubleJumpForce: 0
+  _climbSpeed: 0
+  _ground:
     serializedVersion: 2
-    m_Bits: 64
-  jumpTime: {fileID: 6427797292952996862}
-  swordCollider: {fileID: 8443803084750481528}
-  cam: {fileID: 1065118378591564154}
-  diePanel: {fileID: 0}
-  movingVector: {x: 0, y: 0, z: 0}
-  isClimb: 0
-  canJump: 0
-  isAttack: 0
-  isDead: 0
+    m_Bits: 0
+  _jumpTime: {fileID: 0}
+  _swordCollider: {fileID: 0}
+  _cam: {fileID: 0}
+  _diePanel: {fileID: 0}
 --- !u!95 &2018847594098361294
 Animator:
   serializedVersion: 5
@@ -1384,9 +1374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06e349afb10cb348bb6dcd18b3bf73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 7
-  timeUp: 0
-  timeDown: 0
 --- !u!114 &903788722906571329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1399,102 +1386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318582583650b484b8476ba67a97858c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &805985718961584388
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8710667764140372994}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.519
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &5599489104349186171
 MonoBehaviour:
   m_ObjectHideFlags: 0

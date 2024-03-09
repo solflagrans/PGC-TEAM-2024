@@ -7,12 +7,16 @@ public class Button : MonoBehaviour
     private MeshRenderer _meshRenderer;
     private bool _inTrigger;
     private bool _activated = false;
+    private AudioSource _audioSource;
 
     public bool Activated { get => _activated; set => _activated = value; }
 
     private void Start() {
         
         _meshRenderer = GetComponent<MeshRenderer>();
+        _audioSource = GetComponent<AudioSource>();
+
+        AudioHandler.Instance._puzzleSources.Add(_audioSource);
 
     }
 
@@ -27,6 +31,9 @@ public class Button : MonoBehaviour
     private void Activate() {
 
         _activated = !_activated;
+
+        _audioSource.PlayOneShot(AudioHandler.Instance._buttonPress);
+
         StartCoroutine(ColorChanger(_meshRenderer, Color.red, Color.green));
 
     }

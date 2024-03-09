@@ -5,15 +5,24 @@ using UnityEngine.UI;
 
 public class UI_Controller : MonoBehaviour
 {
+    
+    private AudioSource _audioSource;
+
     [Header("UI Elements")]
-    public GameObject PauseUI;
-    public Slider healthBar;
-    public Slider honeyFiller;
-    public TextMeshProUGUI honeyPercentage;
-    public TextMeshProUGUI honeyNumber;
+    [SerializeField] private GameObject PauseUI;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private Slider honeyFiller;
+    [SerializeField] private TextMeshProUGUI honeyPercentage;
+    [SerializeField] private TextMeshProUGUI honeyNumber;
 
     [Header("Technical Variables")]
     private bool menuOpened;
+
+    private void Start() {
+
+        _audioSource = GetComponent<AudioSource>();
+
+    }
 
     private void Update() {
 
@@ -34,11 +43,15 @@ public class UI_Controller : MonoBehaviour
             PauseUI.SetActive(true);
             menuOpened = true;
             Cursor.visible = true;
+            AudioHandler.Instance.MuteForMenu();
+            _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
         } else {
             Time.timeScale = 1f;
             PauseUI.SetActive(false);
             menuOpened = false;
             Cursor.visible = false;
+            AudioHandler.Instance.Unmute();
+            _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
         }
 
     }
@@ -47,13 +60,15 @@ public class UI_Controller : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
+        _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
 
-   }
+    }
    
    public void ToMenu () {
 
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
+        _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
 
-   }
+    }
 }

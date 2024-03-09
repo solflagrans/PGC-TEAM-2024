@@ -5,42 +5,42 @@ public class RoBot : MonoBehaviour
 {
 
     [Header("Preferences")]
-    public float movingSpeed;
-    private bool controlMode;
+    [SerializeField] private float _movingSpeed;
 
     [Header("Instances")]
-    public Transform idlePosition;
-    private Animator animator;
-    public Camera playerCamera;
-    public Camera robotCamera;
-    public MovingController controller;
-    public PlayerVisual playerVisual;
-    private CharacterController movement;
-    public GameObject robotUI;
-    public GameObject playerUI;
-    public Interactions interactions;
+    [SerializeField] private Transform _idlePosition;
+    private Animator _animator;
+    [SerializeField] private Camera _playerCamera;
+    [SerializeField] private Camera _robotCamera;
+    [SerializeField] private MovingController _controller;
+    [SerializeField] private PlayerVisual _playerVisual;
+    private CharacterController _movement;
+    [SerializeField] private GameObject _robotUI;
+    [SerializeField] private GameObject _playerUI;
 
     [Header("Technical Variables")]
-    private float timer;
-    private Vector3 nextPosition;
-    private Vector3 movingVector;
-    private Vector2 cameraRotation;
+    private bool _controlMode;
+    private float _timer;
+    private Vector3 _nextPosition;
+    private Vector3 _movingVector;
+    private Vector2 _cameraRotation;
 
     private void Start() {
 
-        animator = GetComponent<Animator>();
-        movement = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
+        _movement = GetComponent<CharacterController>();
+        _controller = MovingController.Instance;
 
     }
 
     private void Update() {
 
-        if(!controlMode) {
+        if(!_controlMode) {
 
             Animations();
         }
 
-        if(controlMode) {
+        if(_controlMode) {
             CameraRotate();
             Animations();
         }
@@ -53,13 +53,13 @@ public class RoBot : MonoBehaviour
 
     private void FixedUpdate() {
 
-        if(!controlMode) {
-            nextPosition = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
+        if(!_controlMode) {
+            _nextPosition = Vector3.Lerp(transform.position, _idlePosition.position, _movingSpeed / 10f);
             Timer();
             FollowPlayer();
         }
 
-        if(controlMode) {
+        if(_controlMode) {
             Move();
         }
 
@@ -67,67 +67,67 @@ public class RoBot : MonoBehaviour
 
     private void FollowPlayer() {
 
-        if(Vector3.Distance(transform.position, nextPosition) < 0.02f) timer = 0;
+        if(Vector3.Distance(transform.position, _nextPosition) < 0.02f) _timer = 0;
 
-        if (timer > 0.3f) {
-            transform.position = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
+        if (_timer > 0.3f) {
+            transform.position = Vector3.Lerp(transform.position, _idlePosition.position, _movingSpeed / 10f);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, idlePosition.rotation, 720f * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, _idlePosition.rotation, 720f * Time.deltaTime);
         }
 
     }
 
     private void Animations() {
 
-        if(!controlMode) {
-            if(Vector3.Distance(transform.position, nextPosition) > 0.02f && timer > 0.3f) animator.SetTrigger("Move");
-            else animator.SetTrigger("Idle");
-        } else animator.SetTrigger("Idle");
+        if(!_controlMode) {
+            if(Vector3.Distance(transform.position, _nextPosition) > 0.02f && _timer > 0.3f) _animator.SetTrigger("Move");
+            else _animator.SetTrigger("Idle");
+        } else _animator.SetTrigger("Idle");
 
     }
 
     private void Timer() {
 
-        if(timer < 0.3f) timer += 1 * Time.deltaTime; 
-        else if(Vector3.Distance(transform.position, nextPosition) < 0.02f) timer = 0;
+        if(_timer < 0.3f) _timer += 1 * Time.deltaTime; 
+        else if(Vector3.Distance(transform.position, _nextPosition) < 0.02f) _timer = 0;
 
     }
 
     private void ChangeMode() {
 
-        if(controller.isDead) return;
+        if(_controller.IsDead) return;
 
-        controlMode = !controlMode;
-        robotCamera.enabled = controlMode;
-        playerCamera.enabled = !controlMode;
-        controller.enabled = !controlMode;
-        movement.enabled = controlMode;
-        robotUI.SetActive(controlMode);
-        Cursor.visible = controlMode;
-        playerUI.SetActive(!controlMode);
+        _controlMode = !_controlMode;
+        _robotCamera.enabled = _controlMode;
+        _playerCamera.enabled = !_controlMode;
+        _controller.enabled = !_controlMode;
+        _movement.enabled = _controlMode;
+        _robotUI.SetActive(_controlMode);
+        Cursor.visible = _controlMode;
+        _playerUI.SetActive(!_controlMode);
 
     }
 
     private void Move() {
 
-        movingVector.x = Input.GetAxisRaw("Horizontal");
-        movingVector.z = Input.GetAxisRaw("Vertical");
+        _movingVector.x = Input.GetAxisRaw("Horizontal");
+        _movingVector.z = Input.GetAxisRaw("Vertical");
 
-        Vector3 movingDirection = transform.TransformDirection(Vector3.forward * 1.5f) * movingVector.z + transform.TransformDirection(Vector3.right * 1.5f) * movingVector.x;
+        Vector3 movingDirection = transform.TransformDirection(Vector3.forward * 1.5f) * _movingVector.z + transform.TransformDirection(Vector3.right * 1.5f) * _movingVector.x;
 
-        movement.Move(movingDirection * Time.deltaTime * movingSpeed * 2.5f);
+        _movement.Move(movingDirection * Time.deltaTime * _movingSpeed * 2.5f);
 
     }
 
     private void CameraRotate() {
-        cameraRotation.x += Input.GetAxis("Mouse X") * 0.6f;
-        cameraRotation.y -= Input.GetAxis("Mouse Y");
+        _cameraRotation.x += Input.GetAxis("Mouse X") * 0.6f;
+        _cameraRotation.y -= Input.GetAxis("Mouse Y");
 
-        cameraRotation.x = Mathf.Repeat(cameraRotation.x, 360f);
-        cameraRotation.y = Mathf.Clamp(cameraRotation.y, -30f, 30f);
+        _cameraRotation.x = Mathf.Repeat(_cameraRotation.x, 360f);
+        _cameraRotation.y = Mathf.Clamp(_cameraRotation.y, -30f, 30f);
 
         //robotCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, 0f, 0f);
-        transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);
+        transform.rotation = Quaternion.Euler(_cameraRotation.y, _cameraRotation.x, 0f);
     }
 
 }
