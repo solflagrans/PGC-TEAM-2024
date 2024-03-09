@@ -44,14 +44,12 @@ public class UI_Controller : MonoBehaviour
             menuOpened = true;
             Cursor.visible = true;
             AudioHandler.Instance.MuteForMenu();
-            _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
         } else {
             Time.timeScale = 1f;
             PauseUI.SetActive(false);
             menuOpened = false;
             Cursor.visible = false;
             AudioHandler.Instance.Unmute();
-            _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
         }
 
     }
@@ -60,7 +58,6 @@ public class UI_Controller : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
-        _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
 
     }
    
@@ -68,7 +65,12 @@ public class UI_Controller : MonoBehaviour
 
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
-        _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
+
+    }
+
+    public void MakeClick() {
+
+        _audioSource.PlayOneShot(AudioHandler.Instance.menuPress);
 
     }
 }

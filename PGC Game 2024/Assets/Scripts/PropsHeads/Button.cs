@@ -16,7 +16,7 @@ public class Button : MonoBehaviour
         _meshRenderer = GetComponent<MeshRenderer>();
         _audioSource = GetComponent<AudioSource>();
 
-        AudioHandler.Instance._puzzleSources.Add(_audioSource);
+        AudioHandler.Instance.puzzleSources.Add(_audioSource);
 
     }
 
@@ -32,7 +32,7 @@ public class Button : MonoBehaviour
 
         _activated = !_activated;
 
-        _audioSource.PlayOneShot(AudioHandler.Instance._buttonPress);
+        _audioSource.PlayOneShot(AudioHandler.Instance.buttonPress);
 
         StartCoroutine(ColorChanger(_meshRenderer, Color.red, Color.green));
 
