@@ -5,45 +5,34 @@ public class RoBot : MonoBehaviour
 {
 
     [Header("Preferences")]
-    public float movingSpeed;
-    private bool controlMode;
+    [SerializeField] private float _movingSpeed;
+    [SerializeField] private float _upSpeed;
 
     [Header("Instances")]
-    public Transform idlePosition;
-    private Animator animator;
-    public Camera playerCamera;
-    public Camera robotCamera;
-    public MovingController controller;
-    public PlayerVisual playerVisual;
-    private CharacterController movement;
-    public GameObject robotUI;
-    public GameObject playerUI;
-    public Interactions interactions;
-    public Camera cam;
+    [SerializeField] private Transform _idlePosition;
+    private Animator _animator;
+    private MovingController _controller;
+    private CharacterController _movement;
+    [SerializeField] private Camera _cam;
+
     [Header("Technical Variables")]
-    private float timer;
-    private Vector3 nextPosition;
-    private Vector3 movingVector;
-    private Vector2 cameraRotation;
-    public float upSpeed;
+    private float _timer;
+    private bool _controlMode;
+    private Vector3 _nextPosition;
+    private Vector3 _movingVector;
+
     private void Start() {
 
-        animator = GetComponent<Animator>();
-        movement = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
+        _movement = GetComponent<CharacterController>();
+
+        _controller = MovingController.Instance;
 
     }
 
     private void Update() {
 
-        if(!controlMode) {
-
-            Animations();
-        }
-
-        if(controlMode) {
-            CameraRotate();
-            Animations();
-        }
+        Animations();
 
         if(Input.GetKeyDown(KeyCode.R)) {
             ChangeMode();
@@ -53,13 +42,13 @@ public class RoBot : MonoBehaviour
 
     private void FixedUpdate() {
 
-        if(!controlMode) {
-            nextPosition = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
+        if(!_controlMode) {
+            _nextPosition = Vector3.Lerp(transform.position, _idlePosition.position, _movingSpeed / 10f);
             Timer();
             FollowPlayer();
         }
 
-        if(controlMode) {
+        if(_controlMode) {
             Move();
             Check();
         }
@@ -68,107 +57,91 @@ public class RoBot : MonoBehaviour
 
     private void FollowPlayer() {
 
-        if(Vector3.Distance(transform.position, nextPosition) < 0.02f) timer = 0;
+        if(Vector3.Distance(transform.position, _nextPosition) < 0.02f) _timer = 0;
 
-        if (timer > 0.3f) {
-            transform.position = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
+        if (_timer > 0.3f) {
+            transform.position = Vector3.Lerp(transform.position, _idlePosition.position, _movingSpeed / 10f);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, idlePosition.rotation, 720f * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, _idlePosition.rotation, 720f * Time.deltaTime);
         }
 
     }
 
     private void Animations() {
 
-        if(!controlMode) {
-            if(Vector3.Distance(transform.position, nextPosition) > 0.02f && timer > 0.3f) animator.SetTrigger("Move");
-            else animator.SetTrigger("Idle");
-        } else animator.SetTrigger("Idle");
+        if(!_controlMode) {
+            if(Vector3.Distance(transform.position, _nextPosition) > 0.02f && _timer > 0.3f) _animator.SetTrigger("Move");
+            else _animator.SetTrigger("Idle");
+        } else _animator.SetTrigger("Idle");
 
     }
 
     private void Timer() {
 
-        if(timer < 0.3f) timer += 1 * Time.deltaTime; 
-        else if(Vector3.Distance(transform.position, nextPosition) < 0.02f) timer = 0;
+        if(_timer < 0.3f) _timer += 1 * Time.deltaTime; 
+        else if(Vector3.Distance(transform.position, _nextPosition) < 0.02f) _timer = 0;
 
     }
 
     private void ChangeMode() {
 
-        if(controller.isDead) return;
+        if(_controller.IsDead) return;
 
-        controlMode = !controlMode;
-        controller.enabled = !controlMode;
-        movement.enabled = controlMode;
-        robotUI.SetActive(controlMode);
-        Cursor.visible = controlMode;
-        playerUI.SetActive(!controlMode);
+        _controlMode = !_controlMode;
+        _controller.enabled = !_controlMode;
+        _movement.enabled = _controlMode;
+
+        AudioHandler.Instance.robotSource.Stop();
 
     }
 
-    void Check()
-    {
-        Vector3 point = cam.WorldToViewportPoint(transform.position);
+    void Check() {
+
+        Vector3 point = _cam.WorldToViewportPoint(transform.position);
         if (point.y < 0f )
         {
-            transform.position += new Vector3(0, 1, 0);
+            transform.position += new Vector3(0, 0.1f, 0);
         } 
         if ( point.y > 1f)
         {
-            transform.position -= new Vector3(0, 1, 0);
+            transform.position -= new Vector3(0, 0.1f, 0);
         } 
         if ( point.x > 1f)
         {
-            transform.position -= new Vector3(1, 0, 0);
+            transform.position -= new Vector3(0.1f, 0, 0);
         } 
         if ( point.x < 0f)
         {
-            transform.position += new Vector3(1, 0, 0);
-        } 
+            transform.position += new Vector3(0.1f, 0, 0);
+        }
+
     }
+
     private void Move() {
 
-            movingVector.x = Input.GetAxisRaw("Horizontal");
-            movingVector.z = Input.GetAxisRaw("Vertical");
-            movingVector = Quaternion.Euler(0, 23f, 0) * movingVector;
-            Vector3 movingDirection = transform.TransformDirection(Vector3.forward * 1.5f) * movingVector.z +
-                                      transform.TransformDirection(Vector3.right * 1.5f) * movingVector.x;
+        _movingVector.x = Input.GetAxisRaw("Horizontal");
+        _movingVector.z = Input.GetAxisRaw("Vertical");
+        _movingVector = Quaternion.Euler(0, 45f, 0) * _movingVector;
+        Vector3 movingDirection = new Vector3(_movingVector.x, 0f, _movingVector.z);
 
-            if (Input.GetKey(KeyCode.Q))
-            {
-                movingDirection += new Vector3(0, upSpeed, 0);
-            }
-
-            if (Input.GetKey(KeyCode.E))
-            {
-                movingDirection -= new Vector3(0, upSpeed, 0);
-            }
-
-            movement.Move(movingDirection * (Time.deltaTime * movingSpeed * 2.5f));
-        
-    }
-
-    private void CameraRotate() {
-        cameraRotation.x += Input.GetAxis("Mouse X") * 0.6f;
-        cameraRotation.y -= Input.GetAxis("Mouse Y");
-
-        cameraRotation.x = Mathf.Repeat(cameraRotation.x, 360f);
-        cameraRotation.y = Mathf.Clamp(cameraRotation.y, -30f, 30f);
-
-        robotCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, 0f, 0f);
-        transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);
-    }
-
-    private void OnTriggerEnter(Collider col) {
-
-        if(col.CompareTag("Collectible")) {
-            interactions.SaveCollectible(col.gameObject);
+        if (Input.GetKey(KeyCode.Q))
+        {
+            movingDirection += new Vector3(0, _upSpeed, 0);
         }
 
-        if(col.CompareTag("Honey")) {
-            interactions.CollectHoney(col.gameObject);
+        if (Input.GetKey(KeyCode.E))
+        {
+            movingDirection -= new Vector3(0, _upSpeed, 0);
         }
+
+        _movement.Move(movingDirection * (Time.deltaTime * _movingSpeed * 2.5f));
+
+        if(Vector3.Normalize(_movingVector) != Vector3.zero) {
+            Quaternion lookRotation = Quaternion.LookRotation(_movingVector, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 900 * Time.deltaTime);
+        }
+
+        if(!AudioHandler.Instance.robotSource.isPlaying) AudioHandler.Instance.robotSource.PlayOneShot(AudioHandler.Instance.helicopterSound);
 
     }
 

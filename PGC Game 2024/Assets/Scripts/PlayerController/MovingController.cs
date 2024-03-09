@@ -118,24 +118,24 @@ public class MovingController : MonoBehaviour
         if(Vector3.Normalize(_movingVector) != Vector3.zero) {
             Quaternion lookRotation = Quaternion.LookRotation(_movingVector, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 900 * Time.deltaTime);
-            if(!_audioHandler._moveStateSource.isPlaying & _canJump) _audioHandler._moveStateSource.PlayOneShot(_audioHandler._walkSound);
+            if(!_audioHandler.moveStateSource.isPlaying & _canJump) _audioHandler.moveStateSource.PlayOneShot(_audioHandler.walkSound);
         } else {
-            if(_audioHandler._moveStateSource.isPlaying) _audioHandler._moveStateSource.Stop();
+            if(_audioHandler.moveStateSource.isPlaying) _audioHandler.moveStateSource.Stop();
         }
 
-        if(!_canJump) _audioHandler._moveStateSource.Stop();
+        if(!_canJump) _audioHandler.moveStateSource.Stop();
 
     }
 
     private void Jump() {
 
         if(_canJump) {
-            _audioHandler._jumpSource.PlayOneShot(_audioHandler._jumpSound);
+            _audioHandler.jumpSource.PlayOneShot(_audioHandler.jumpSound);
             _rigidbody.AddForce(Vector3.up * (_jumpForce * _rigidbody.mass), ForceMode.Impulse);
             _canDoubleJump = true;
         } 
         else if(_canDoubleJump) {
-            _audioHandler._jumpSource.PlayOneShot(_audioHandler._jumpSound);
+            _audioHandler.jumpSource.PlayOneShot(_audioHandler.jumpSound);
             _rigidbody.AddForce(Vector3.up * (_doubleJumpForce * _rigidbody.mass), ForceMode.Impulse);
             _canDoubleJump = false;
         }
@@ -147,7 +147,7 @@ public class MovingController : MonoBehaviour
         _isAttack = true;
         _swordCollider.enabled = true;
 
-        _audioHandler._swordSource.PlayOneShot(_audioHandler._swingSound);
+        _audioHandler.swordSource.PlayOneShot(_audioHandler.swingSound);
 
         StartCoroutine(StopAttack());
 
@@ -249,8 +249,8 @@ public class MovingController : MonoBehaviour
 
         _diePanel.fillAmount += 1 * Time.deltaTime;
 
-        if(!_audioHandler._gameStateSource.isPlaying && !_deadSoundPlayed) {
-            _audioHandler._gameStateSource.PlayOneShot(_audioHandler._deathSound);
+        if(!_audioHandler.gameStateSource.isPlaying && !_deadSoundPlayed) {
+            _audioHandler.gameStateSource.PlayOneShot(_audioHandler.deathSound);
             _deadSoundPlayed = true;
         }
         

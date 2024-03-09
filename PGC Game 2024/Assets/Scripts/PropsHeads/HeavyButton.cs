@@ -14,7 +14,7 @@ public class HeavyButton : MonoBehaviour
         _meshRenderer = GetComponent<MeshRenderer>();
         _audioSource = GetComponent<AudioSource>();
 
-        AudioHandler.Instance._puzzleSources.Add(_audioSource);
+        AudioHandler.Instance.puzzleSources.Add(_audioSource);
 
     }
 
@@ -23,7 +23,7 @@ public class HeavyButton : MonoBehaviour
         _activated = true;
         _meshRenderer.material.color = Color.green;
 
-        _audioSource.PlayOneShot(AudioHandler.Instance._heavyButtonOn);
+        _audioSource.PlayOneShot(AudioHandler.Instance.heavyButtonOn);
 
     }
 
@@ -32,7 +32,7 @@ public class HeavyButton : MonoBehaviour
         _activated = false;
         _meshRenderer.material.color = Color.red;
 
-        _audioSource.PlayOneShot(AudioHandler.Instance._heavyButtonOff);
+        _audioSource.PlayOneShot(AudioHandler.Instance.heavyButtonOff);
 
     }
 
