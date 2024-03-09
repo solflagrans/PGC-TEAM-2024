@@ -12,7 +12,7 @@ public class GameInformation : MonoBehaviour
     private List<int> _shopList;
     private List<int> _solvedPuzzles;
     private List<int> _brokenBarrels;
-
+    private bool _isTalkedToMechanic = false;
     public int LevelNum { get => _levelNum; set { if(value >= 0) _levelNum = value; } }
     public int LastUnlockedLevel { get => _lastUnlockedLevel; set { if(value >= 0) _lastUnlockedLevel = value; } }
     public List<int> Collectibles { get => _collectibles; set => _collectibles = value; }
@@ -29,4 +29,7 @@ public class GameInformation : MonoBehaviour
 
     }
 
+    //public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
+    public bool IsTalkedToMechanic = false;
+    
 }
