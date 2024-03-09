@@ -19,13 +19,13 @@ public class RoBot : MonoBehaviour
     public GameObject robotUI;
     public GameObject playerUI;
     public Interactions interactions;
-
+    public Camera cam;
     [Header("Technical Variables")]
     private float timer;
     private Vector3 nextPosition;
     private Vector3 movingVector;
     private Vector2 cameraRotation;
-
+    public float upSpeed;
     private void Start() {
 
         animator = GetComponent<Animator>();
@@ -61,6 +61,7 @@ public class RoBot : MonoBehaviour
 
         if(controlMode) {
             Move();
+            Check();
         }
 
     }
@@ -98,8 +99,6 @@ public class RoBot : MonoBehaviour
         if(controller.isDead) return;
 
         controlMode = !controlMode;
-        robotCamera.enabled = controlMode;
-        playerCamera.enabled = !controlMode;
         controller.enabled = !controlMode;
         movement.enabled = controlMode;
         robotUI.SetActive(controlMode);
@@ -108,15 +107,46 @@ public class RoBot : MonoBehaviour
 
     }
 
+    void Check()
+    {
+        Vector3 point = cam.WorldToViewportPoint(transform.position);
+        if (point.y < 0f )
+        {
+            transform.position += new Vector3(0, 1, 0);
+        } 
+        if ( point.y > 1f)
+        {
+            transform.position -= new Vector3(0, 1, 0);
+        } 
+        if ( point.x > 1f)
+        {
+            transform.position -= new Vector3(1, 0, 0);
+        } 
+        if ( point.x < 0f)
+        {
+            transform.position += new Vector3(1, 0, 0);
+        } 
+    }
     private void Move() {
 
-        movingVector.x = Input.GetAxisRaw("Horizontal");
-        movingVector.z = Input.GetAxisRaw("Vertical");
+            movingVector.x = Input.GetAxisRaw("Horizontal");
+            movingVector.z = Input.GetAxisRaw("Vertical");
+            movingVector = Quaternion.Euler(0, 23f, 0) * movingVector;
+            Vector3 movingDirection = transform.TransformDirection(Vector3.forward * 1.5f) * movingVector.z +
+                                      transform.TransformDirection(Vector3.right * 1.5f) * movingVector.x;
 
-        Vector3 movingDirection = transform.TransformDirection(Vector3.forward * 1.5f) * movingVector.z + transform.TransformDirection(Vector3.right * 1.5f) * movingVector.x;
+            if (Input.GetKey(KeyCode.Q))
+            {
+                movingDirection += new Vector3(0, upSpeed, 0);
+            }
 
-        movement.Move(movingDirection * Time.deltaTime * movingSpeed * 2.5f);
+            if (Input.GetKey(KeyCode.E))
+            {
+                movingDirection -= new Vector3(0, upSpeed, 0);
+            }
 
+            movement.Move(movingDirection * (Time.deltaTime * movingSpeed * 2.5f));
+        
     }
 
     private void CameraRotate() {
@@ -126,7 +156,7 @@ public class RoBot : MonoBehaviour
         cameraRotation.x = Mathf.Repeat(cameraRotation.x, 360f);
         cameraRotation.y = Mathf.Clamp(cameraRotation.y, -30f, 30f);
 
-        //robotCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, 0f, 0f);
+        robotCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, 0f, 0f);
         transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);
     }
 

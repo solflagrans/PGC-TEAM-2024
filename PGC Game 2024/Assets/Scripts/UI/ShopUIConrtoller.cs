@@ -28,9 +28,9 @@ public class ShopUIConrtoller : MonoBehaviour
         if (mc.GetComponent<PlayerInformation>().CollectedHoney >= items[itemNum].itemPrice)
         {
             PlayerPrefs.SetInt(items[itemNum].itemName, 1);
-            mc.GetComponent<PlayerInformation>().SwordAura = itemNum;
+            //mc.GetComponent<PlayerInformation>().SwordAura = itemNum;
             print("aaaaa");
-            mc.GetComponent<ParticleChanger>().ChangeParticle();
+           // mc.GetComponent<ParticleChanger>().ChangeParticle();
             mc.GetComponent<PlayerInformation>().CollectedHoney -= items[itemNum].itemPrice;
             Debug.Log(items[itemNum].itemName + PlayerPrefs.GetInt(items[itemNum].itemName));
         }

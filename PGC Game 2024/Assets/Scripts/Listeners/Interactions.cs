@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class Interactions : MonoBehaviour
 {
       public int trapDamage;
@@ -8,8 +9,13 @@ public class Interactions : MonoBehaviour
       public AudioClip collectHoneySound;
       public AudioClip damageSound;
       public GameObject dialogueWindow;
-      public List<string> testDialogue;
+      public List<string> dialogue1; //первый разговор с Механиком
+      public List<string> dialogue2; //разговор до сбора всех чипов
+      public List<string> dialogue3; // разговор после сбора всех чипов
       public GameObject shopWindow;
+      public GameObject worldText;
+      public TMP_Text messege;
+      public GameInformation gameInfo;
       private void OnCollisionEnter(Collision coll){
           if (coll.collider.CompareTag("Trap"))
           {
@@ -33,6 +39,10 @@ public class Interactions : MonoBehaviour
               CollectHoney(coll.gameObject);
            }
 
+           if (coll.CompareTag("Mechanic"))
+           {
+              ShowMessege();
+           }
          /*if(coll.CompareTag("CheckPoint"))
            {
               gameObject.GetComponent<PlayerInformation>().SaveGame();
@@ -42,12 +52,16 @@ public class Interactions : MonoBehaviour
 
        private void OnTriggerStay(Collider coll)
        {
-          if (coll.gameObject.name == "Engineer")
+         /* if (coll.gameObject.name == "Engineer")
           {
              if (Input.GetKey(KeyCode.E))
              {
                 OpenShop();
              }
+          }*/
+          if (coll.CompareTag("Mechanic"))
+          {
+             TalkToMechainic(coll.gameObject);
           }
        }
 
@@ -77,7 +91,41 @@ public class Interactions : MonoBehaviour
               Invoke("RemoveInvulnerable", 3f);
            }
         }
-        
+        private void TalkToMechainic(GameObject mechanic){
+           if (Input.GetKeyDown(KeyCode.E))
+           {
+              worldText.SetActive(false);
+             // dialogueWindow.SetActive(true);
+              if (!gameInfo.IsTalkedToMechanic)
+              {
+                 StartDialogue(dialogue1);
+                 //gameInfo = new GameInformation();
+                 
+              }
+              else if (gameInfo.LastUnlockedLevel < gameInfo.LevelNum)
+              {
+                 StartDialogue(dialogue2);
+              }
+              else
+              {
+                 StartDialogue(dialogue3);
+                 //mechanic.GetComponent<Animator>().SetTrigger("");
+                 if (!mechanic.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName(" "))
+                 {
+                    mechanic.SetActive(false);
+                 }
+              }
+           }
+           else if (Input.GetKey(KeyCode.Q) && !dialogueWindow.active)
+           {
+              OpenShop();
+           }
+        }
+
+        private void ShowMessege()
+        {
+           worldText.SetActive(true);
+        }
         private void RemoveInvulnerable()
         {
           gameObject.GetComponent<PlayerInformation>().IsInvulnerable = false;
@@ -111,11 +159,14 @@ public class Interactions : MonoBehaviour
            }
            gameObject.GetComponent<DialogUI_Controller>().StartWriting();
            dialogueWindow.SetActive(true);
+           print("c");
         }
         public void EndDialogue()
         {
            gameObject.GetComponent<MovingController>().enabled = true;
            dialogueWindow.SetActive(false);
+            gameObject.GetComponent<DialogUI_Controller>().phrases.Clear();
+            gameInfo.IsTalkedToMechanic = true;
         }
 
         public void PlaySound(AudioClip sound)
