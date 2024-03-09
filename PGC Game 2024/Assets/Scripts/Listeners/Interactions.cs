@@ -92,16 +92,15 @@ public class Interactions : MonoBehaviour
            }
         }
         private void TalkToMechainic(GameObject mechanic){
-           print("aaa");
-           if (Input.GetKey(KeyCode.E))
+           if (Input.GetKeyDown(KeyCode.E))
            {
               worldText.SetActive(false);
-              print(gameInfo.IsTalkedToMechanic);
-              dialogueWindow.SetActive(true);
+             // dialogueWindow.SetActive(true);
               if (!gameInfo.IsTalkedToMechanic)
               {
                  StartDialogue(dialogue1);
-                 gameInfo.IsTalkedToMechanic = true;
+                 //gameInfo = new GameInformation();
+                 
               }
               else if (gameInfo.LastUnlockedLevel < gameInfo.LevelNum)
               {
@@ -117,10 +116,10 @@ public class Interactions : MonoBehaviour
                  }
               }
            }
-           /*else if (Input.GetKey(KeyCode.Q) && !dialogueWindow.active)
+           else if (Input.GetKey(KeyCode.Q) && !dialogueWindow.active)
            {
               OpenShop();
-           }*/
+           }
         }
 
         private void ShowMessege()
@@ -153,7 +152,6 @@ public class Interactions : MonoBehaviour
         }
         public void StartDialogue(List<string> dialogue)
         {
-        print("c");
            gameObject.GetComponent<MovingController>().enabled = false;
            gameObject.GetComponent<DialogUI_Controller>().phrases.Clear();
            for(int i = 0; i < dialogue.Count;i++){           
@@ -161,11 +159,14 @@ public class Interactions : MonoBehaviour
            }
            gameObject.GetComponent<DialogUI_Controller>().StartWriting();
            dialogueWindow.SetActive(true);
+           print("c");
         }
         public void EndDialogue()
         {
            gameObject.GetComponent<MovingController>().enabled = true;
            dialogueWindow.SetActive(false);
+            gameObject.GetComponent<DialogUI_Controller>().phrases.Clear();
+            gameInfo.IsTalkedToMechanic = true;
         }
 
         public void PlaySound(AudioClip sound)

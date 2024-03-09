@@ -10,17 +10,18 @@ public class DialogUI_Controller : MonoBehaviour
 {
     [SerializeField] private TextWriter textWriter_1;
     public TextMeshProUGUI phrase;
-    public AudioSource audio;
+    //public AudioSource audio;
     private int phraseNum = 0;
     public GameObject textWindow;
     public List<string> phrases = new List<string>(){ };
 
     public void StartWriting(){
+        phraseNum = 0;
         textWriter_1.AddWriter(phrase,phrases[phraseNum],0.1f,true,EndOfPhrase);
-        audio.Play();
+       // GetComponent<AudioSource>().Play();
     }
     private void EndOfPhrase(){
-        audio.Stop();
+        //GetComponent<AudioSource>().Stop();
     }
 
     private void Update()
@@ -28,6 +29,7 @@ public class DialogUI_Controller : MonoBehaviour
         Debug.Log(phraseNum);
         if (Input.anyKeyDown && textWriter_1.IsActive())
         {
+            print("text is writing");
             textWriter_1.WriteAll();
         }
         else if (Input.anyKeyDown  && !textWriter_1.IsActive() && phraseNum == phrases.Count - 1)
@@ -37,7 +39,7 @@ public class DialogUI_Controller : MonoBehaviour
         else if (Input.anyKeyDown  && !textWriter_1.IsActive() && phraseNum < phrases.Count - 1)
         {
             phraseNum++;
-            audio.Play();
+           // audio.Play();
             textWriter_1.AddWriter(phrase, phrases[phraseNum], 0.1f, true, EndOfPhrase);
         }
     }

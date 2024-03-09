@@ -18,5 +18,7 @@ public class GameInformation : MonoBehaviour
     public List<string> ShopList { get => _boughtItems; set => _boughtItems = value; }
     public List<int> SolvedPuzzles { get => _solvedPuzzles; set => _solvedPuzzles = value; }
     public List<int> BrokenBarrels { get => _brokenBarrels; set => _brokenBarrels = value; }
-    public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
+    //public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
+    public bool IsTalkedToMechanic = false;
+    
 }
