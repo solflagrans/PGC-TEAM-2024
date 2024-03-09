@@ -3,19 +3,13 @@ using UnityEngine;
 public abstract class Trap : MonoBehaviour
 {
 
-    protected int Damage;
-    protected PlayerInformation PlayerInformation;
-
-    public void Initialize(int damage, PlayerInformation playerInformation) {
-
-        Damage = damage;
-        PlayerInformation = playerInformation;
+    public void Initialize() {
 
     }
 
     public virtual void GiveDamage() {
 
-        PlayerInformation.Hp -= Damage;
+        PlayerInformation.Instance.Hp -= 1;
 
     }
 

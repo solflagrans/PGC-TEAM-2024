@@ -8,6 +8,9 @@ using TMPro;
 
 public class MainMenuUI : MonoBehaviour
 {
+
+    private AudioSource _audioSource;
+
    public GameObject settingsWindow;
    public GameObject mainMenuUI;
    public GameObject continueButton;
@@ -17,7 +20,7 @@ public class MainMenuUI : MonoBehaviour
    [SerializeField] private float defaultVolume = 0.5f;
 
    [Header("Graphic Settings")]
-   [SerializeField]private Slider brightnessSlider = null;
+   //[SerializeField]private Slider brightnessSlider = null;
    [SerializeField] private TextMeshProUGUI brightnessTextValue = null;
    [SerializeField] private float defaultBrightness = 1f;
 
@@ -55,7 +58,17 @@ public class MainMenuUI : MonoBehaviour
       {
          continueButton.SetActive(true);
       }
+
+      _audioSource = GetComponent<AudioSource>();
+
    }
+
+    public void MakeClick() {
+
+        _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
+
+    }
+
    public void ContinueGame()
    {
       SceneManager.LoadScene(1);

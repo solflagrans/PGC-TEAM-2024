@@ -11,20 +11,14 @@ public abstract class Enemy : MonoBehaviour
     protected float Speed;
     protected float TimeToWait;
 
-    protected int Damage;
-
-    protected PlayerInformation PlayerInformation;
-
     [Header("Technical")]
     private bool _wait;
     private bool _isMovingForward = true;
 
     private int _waypointNum;
 
-    public void Initialize(int damage, PlayerInformation playerInformation, Vector3[] waypoints, float speed, float timeToWait) {
+    public void Initialize(Vector3[] waypoints, float speed, float timeToWait) {
 
-        Damage = damage;
-        PlayerInformation = playerInformation;
         Waypoints = waypoints;
         Speed = speed;
         TimeToWait = timeToWait;
@@ -33,10 +27,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    public void Initialize(int damage, PlayerInformation playerInformation) {
-
-        Damage = damage;
-        PlayerInformation = playerInformation;
+    public void Initialize() {
 
         Static = true;
 
@@ -79,7 +70,8 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void GiveDamage() {
 
-        PlayerInformation.Hp -= 1;
+        PlayerInformation.Instance.Hp -= 1;
 
     }
+
 }

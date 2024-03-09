@@ -2,24 +2,31 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+
     [Header("Preferences")]
-    public Vector3 locOffset;
+    [SerializeField] private Vector3 _locOffset;
 
     [Header("Instances")]
-    public Transform player;
+    private Transform _player;
 
-    void FixedUpdate() {
+    private void Start() {
+
+        _player = MovingController.Instance.transform;
+
+    }
+
+    private void FixedUpdate() {
 
         FollowPlayer();
 
     }
-    void FollowPlayer() {
 
-        Vector3 desiredPosition = player.position + locOffset;
+    private void FollowPlayer() {
+
+        Vector3 desiredPosition = new Vector3(_player.position.x/2, _player.position.y, _player.position.z/2) + _locOffset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.125f);
         transform.position = smoothedPosition;
 
-        transform.LookAt(new Vector3(player.position.x, player.position.y + 1f, player.position.z));
-
     }
+
 }
