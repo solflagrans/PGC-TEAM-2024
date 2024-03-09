@@ -21,7 +21,7 @@ public class PlayerInformation : MonoBehaviour
             if(IsInvulnerable) return;
             if(value >= 0 && value <= _maxHp) {
                 _hp = value;
-                AudioHandler.Instance._healthSource.PlayOneShot(AudioHandler.Instance._hitSound);
+                AudioHandler.Instance.healthSource.PlayOneShot(AudioHandler.Instance.hitSound);
                 IsInvulnerable = true;
             }
         } 

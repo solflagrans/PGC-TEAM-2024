@@ -65,7 +65,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void MakeClick() {
 
-        _audioSource.PlayOneShot(AudioHandler.Instance._menuPress);
+        _audioSource.PlayOneShot(AudioHandler.Instance.menuPress);
 
     }
 
