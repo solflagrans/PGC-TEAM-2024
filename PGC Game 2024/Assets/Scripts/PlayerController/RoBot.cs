@@ -5,42 +5,42 @@ public class RoBot : MonoBehaviour
 {
 
     [Header("Preferences")]
-    [SerializeField] private float _movingSpeed;
+    public float movingSpeed;
+    private bool controlMode;
 
     [Header("Instances")]
-    [SerializeField] private Transform _idlePosition;
-    private Animator _animator;
-    [SerializeField] private Camera _playerCamera;
-    [SerializeField] private Camera _robotCamera;
-    [SerializeField] private MovingController _controller;
-    [SerializeField] private PlayerVisual _playerVisual;
-    private CharacterController _movement;
-    [SerializeField] private GameObject _robotUI;
-    [SerializeField] private GameObject _playerUI;
-
+    public Transform idlePosition;
+    private Animator animator;
+    public Camera playerCamera;
+    public Camera robotCamera;
+    public MovingController controller;
+    public PlayerVisual playerVisual;
+    private CharacterController movement;
+    public GameObject robotUI;
+    public GameObject playerUI;
+    public Interactions interactions;
+    public Camera cam;
     [Header("Technical Variables")]
-    private bool _controlMode;
-    private float _timer;
-    private Vector3 _nextPosition;
-    private Vector3 _movingVector;
-    private Vector2 _cameraRotation;
-
+    private float timer;
+    private Vector3 nextPosition;
+    private Vector3 movingVector;
+    private Vector2 cameraRotation;
+    public float upSpeed;
     private void Start() {
 
-        _animator = GetComponent<Animator>();
-        _movement = GetComponent<CharacterController>();
-        _controller = MovingController.Instance;
+        animator = GetComponent<Animator>();
+        movement = GetComponent<CharacterController>();
 
     }
 
     private void Update() {
 
-        if(!_controlMode) {
+        if(!controlMode) {
 
             Animations();
         }
 
-        if(_controlMode) {
+        if(controlMode) {
             CameraRotate();
             Animations();
         }
@@ -53,81 +53,123 @@ public class RoBot : MonoBehaviour
 
     private void FixedUpdate() {
 
-        if(!_controlMode) {
-            _nextPosition = Vector3.Lerp(transform.position, _idlePosition.position, _movingSpeed / 10f);
+        if(!controlMode) {
+            nextPosition = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
             Timer();
             FollowPlayer();
         }
 
-        if(_controlMode) {
+        if(controlMode) {
             Move();
+            Check();
         }
 
     }
 
     private void FollowPlayer() {
 
-        if(Vector3.Distance(transform.position, _nextPosition) < 0.02f) _timer = 0;
+        if(Vector3.Distance(transform.position, nextPosition) < 0.02f) timer = 0;
 
-        if (_timer > 0.3f) {
-            transform.position = Vector3.Lerp(transform.position, _idlePosition.position, _movingSpeed / 10f);
+        if (timer > 0.3f) {
+            transform.position = Vector3.Lerp(transform.position, idlePosition.position, movingSpeed / 10f);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, _idlePosition.rotation, 720f * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, idlePosition.rotation, 720f * Time.deltaTime);
         }
 
     }
 
     private void Animations() {
 
-        if(!_controlMode) {
-            if(Vector3.Distance(transform.position, _nextPosition) > 0.02f && _timer > 0.3f) _animator.SetTrigger("Move");
-            else _animator.SetTrigger("Idle");
-        } else _animator.SetTrigger("Idle");
+        if(!controlMode) {
+            if(Vector3.Distance(transform.position, nextPosition) > 0.02f && timer > 0.3f) animator.SetTrigger("Move");
+            else animator.SetTrigger("Idle");
+        } else animator.SetTrigger("Idle");
 
     }
 
     private void Timer() {
 
-        if(_timer < 0.3f) _timer += 1 * Time.deltaTime; 
-        else if(Vector3.Distance(transform.position, _nextPosition) < 0.02f) _timer = 0;
+        if(timer < 0.3f) timer += 1 * Time.deltaTime; 
+        else if(Vector3.Distance(transform.position, nextPosition) < 0.02f) timer = 0;
 
     }
 
     private void ChangeMode() {
 
-        if(_controller.IsDead) return;
+        if(controller.isDead) return;
 
-        _controlMode = !_controlMode;
-        _robotCamera.enabled = _controlMode;
-        _playerCamera.enabled = !_controlMode;
-        _controller.enabled = !_controlMode;
-        _movement.enabled = _controlMode;
-        _robotUI.SetActive(_controlMode);
-        Cursor.visible = _controlMode;
-        _playerUI.SetActive(!_controlMode);
+        controlMode = !controlMode;
+        controller.enabled = !controlMode;
+        movement.enabled = controlMode;
+        robotUI.SetActive(controlMode);
+        Cursor.visible = controlMode;
+        playerUI.SetActive(!controlMode);
 
     }
 
+    void Check()
+    {
+        Vector3 point = cam.WorldToViewportPoint(transform.position);
+        if (point.y < 0f )
+        {
+            transform.position += new Vector3(0, 1, 0);
+        } 
+        if ( point.y > 1f)
+        {
+            transform.position -= new Vector3(0, 1, 0);
+        } 
+        if ( point.x > 1f)
+        {
+            transform.position -= new Vector3(1, 0, 0);
+        } 
+        if ( point.x < 0f)
+        {
+            transform.position += new Vector3(1, 0, 0);
+        } 
+    }
     private void Move() {
 
-        _movingVector.x = Input.GetAxisRaw("Horizontal");
-        _movingVector.z = Input.GetAxisRaw("Vertical");
+            movingVector.x = Input.GetAxisRaw("Horizontal");
+            movingVector.z = Input.GetAxisRaw("Vertical");
+            movingVector = Quaternion.Euler(0, 23f, 0) * movingVector;
+            Vector3 movingDirection = transform.TransformDirection(Vector3.forward * 1.5f) * movingVector.z +
+                                      transform.TransformDirection(Vector3.right * 1.5f) * movingVector.x;
 
-        Vector3 movingDirection = transform.TransformDirection(Vector3.forward * 1.5f) * _movingVector.z + transform.TransformDirection(Vector3.right * 1.5f) * _movingVector.x;
+            if (Input.GetKey(KeyCode.Q))
+            {
+                movingDirection += new Vector3(0, upSpeed, 0);
+            }
 
-        _movement.Move(movingDirection * Time.deltaTime * _movingSpeed * 2.5f);
+            if (Input.GetKey(KeyCode.E))
+            {
+                movingDirection -= new Vector3(0, upSpeed, 0);
+            }
 
+            movement.Move(movingDirection * (Time.deltaTime * movingSpeed * 2.5f));
+        
     }
 
     private void CameraRotate() {
-        _cameraRotation.x += Input.GetAxis("Mouse X") * 0.6f;
-        _cameraRotation.y -= Input.GetAxis("Mouse Y");
+        cameraRotation.x += Input.GetAxis("Mouse X") * 0.6f;
+        cameraRotation.y -= Input.GetAxis("Mouse Y");
 
-        _cameraRotation.x = Mathf.Repeat(_cameraRotation.x, 360f);
-        _cameraRotation.y = Mathf.Clamp(_cameraRotation.y, -30f, 30f);
+        cameraRotation.x = Mathf.Repeat(cameraRotation.x, 360f);
+        cameraRotation.y = Mathf.Clamp(cameraRotation.y, -30f, 30f);
 
-        //robotCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, 0f, 0f);
-        transform.rotation = Quaternion.Euler(_cameraRotation.y, _cameraRotation.x, 0f);
+        robotCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, 0f, 0f);
+        transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);
+    }
+
+    private void OnTriggerEnter(Collider col) {
+
+        if(col.CompareTag("Collectible")) {
+            interactions.SaveCollectible(col.gameObject);
+        }
+
+        if(col.CompareTag("Honey")) {
+            interactions.CollectHoney(col.gameObject);
+        }
+
     }
 
 }
