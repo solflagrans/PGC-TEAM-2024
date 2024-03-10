@@ -67,8 +67,9 @@ public class Interactions : MonoBehaviour
 
        private void OpenShop()
        {
-          Cursor.visible = shopWindow.activeSelf;
           shopWindow.SetActive(!shopWindow.activeSelf);
+          Cursor.visible = shopWindow.activeSelf;
+          
        }
         public void SaveCollectible(GameObject collectible)
         {
@@ -166,8 +167,9 @@ public class Interactions : MonoBehaviour
            gameObject.GetComponent<MovingController>().enabled = true;
            dialogueWindow.SetActive(false);
             gameObject.GetComponent<DialogUI_Controller>().phrases.Clear();
-            gameInfo.IsTalkedToMechanic = true;
+            GameInformation.Instance.IsTalkedToMechanic = true;
         }
+        
 
         public void PlaySound(AudioClip sound)
         {
