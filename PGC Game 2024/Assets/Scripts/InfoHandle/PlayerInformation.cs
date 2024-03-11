@@ -6,7 +6,7 @@ public class PlayerInformation : MonoBehaviour
 
     [Header("Stats")]
     private int _hp = 3;
-    private int _maxHp = 3;
+    private int _maxHp = 4;
     private int _collectedHoney;
     private int _maxHoneyAmount = 60;
 

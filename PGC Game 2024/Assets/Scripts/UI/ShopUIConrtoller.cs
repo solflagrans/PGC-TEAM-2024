@@ -22,8 +22,7 @@ public class ShopUIConrtoller : MonoBehaviour
 
    public GameObject[] buttons;
    public GameObject mc;
-    public shopItem [] items;
-    
+   public shopItem [] items;
    public void BuyItem(int itemNum)
     {
        /* if (mc.GetComponent<PlayerInformation>().CollectedHoney >= items[itemNum].itemPrice)
@@ -36,7 +35,18 @@ public class ShopUIConrtoller : MonoBehaviour
                 buttons[i].transform.position = buttons[i - 1].transform.position;
             }
             buttons[itemNum].SetActive(false);
-        
-       // }
+            if (items[itemNum].itemName == "hp")
+            {
+               mc.GetComponent<PlayerInformation>().Hp += 1;
+               PlayerPrefs.SetInt("Hp",mc.GetComponent<PlayerInformation>().Hp += 1);
+               print(mc.GetComponent<PlayerInformation>().Hp);
+            }
+            else if (items[itemNum].itemName == "aura"){
+               print("aura");
+            }
+            else if (items[itemNum].itemName == "scroll"){
+                           print("scroll");
+             }
+            // }
     }
 }
