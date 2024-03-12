@@ -25,8 +25,8 @@ public class ShopUIConrtoller : MonoBehaviour
    public shopItem [] items;
    public void BuyItem(int itemNum)
     {
-       /* if (mc.GetComponent<PlayerInformation>().CollectedHoney >= items[itemNum].itemPrice)
-        {*/
+       if (mc.GetComponent<PlayerInformation>().CollectedHoney >= items[itemNum].itemPrice)
+        {
             PlayerPrefs.SetInt(items[itemNum].itemName, 1);
             mc.GetComponent<PlayerInformation>().CollectedHoney -= items[itemNum].itemPrice;
             Debug.Log(items[itemNum].itemName + PlayerPrefs.GetInt(items[itemNum].itemName));
@@ -47,6 +47,6 @@ public class ShopUIConrtoller : MonoBehaviour
             else if (items[itemNum].itemName == "scroll"){
                            print("scroll");
              }
-            // }
+          }
     }
 }
