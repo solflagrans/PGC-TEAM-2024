@@ -7,6 +7,7 @@ public class Puzzle : MonoBehaviour
     [SerializeField] private HeavyButton[] _heavyButtons;
     [SerializeField] private Button[] _buttons;
     [SerializeField] private Elevator[] _elevators;
+    [SerializeField] private Tumbler[] _tumblers;
 
     [Header("Results")]
     [SerializeField] private _results _result;
@@ -47,6 +48,13 @@ public class Puzzle : MonoBehaviour
         }
         foreach(Button button in _buttons) {
             if(button.Activated) continue;
+            else {
+                Undo();
+                return;
+            }
+        }
+        foreach(Tumbler tumbler in _tumblers) {
+            if(tumbler.Activated) continue;
             else {
                 Undo();
                 return;
