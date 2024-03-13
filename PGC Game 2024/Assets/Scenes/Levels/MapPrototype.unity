@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1322615, g: 0.63068473, b: 0.9645405, a: 1}
+  m_IndirectSpecularColor: {r: 0.13223794, g: 0.63009554, b: 0.96417534, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -230,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273375973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: 0.97, z: 1.9791403}
+  m_LocalPosition: {x: 0.21, y: 0.97, z: 7.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bad5cc836b57147adc8568a7055393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelToLoad: 6
+  _levelToLoad: 9
 --- !u!4 &322856400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2318101717162060114, guid: 9b78b9fdf323cd2448862b55f517ba07,
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bad5cc836b57147adc8568a7055393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelToLoad: 3
+  _levelToLoad: 2
 --- !u!65 &856847366
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -783,7 +783,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856847364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.28, y: 0.97, z: -0.62}
+  m_LocalPosition: {x: 0.46, y: 0.97, z: 2.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1376,7 +1376,7 @@ Transform:
   m_GameObject: {fileID: 2016164250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 0.2, z: 10}
+  m_LocalScale: {x: 10, y: 0.2, z: 30.929}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1414,7 +1414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bad5cc836b57147adc8568a7055393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelToLoad: 5
+  _levelToLoad: 9
 --- !u!65 &2072754859
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1494,7 +1494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072754857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.46, y: 0.97, z: -0.62}
+  m_LocalPosition: {x: 0.09, y: 0.97, z: 12.210859}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1552,9 +1552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06e349afb10cb348bb6dcd18b3bf73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 7
-  timeUp: 0
-  timeDown: 0
+  _time: 0
 --- !u!4 &271066851210519759
 Transform:
   m_ObjectHideFlags: 0
@@ -2276,9 +2274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b5f6d62d6d1f246b3393ddf2c8594c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSound: {fileID: 0}
-  hitSound: {fileID: 8300000, guid: c747328ea51a0c34ea7558fa8033858d, type: 3}
-  climbSound: {fileID: 8300000, guid: 11eebffe56f6edc4799b3dec0bb8f6eb, type: 3}
   sword: {fileID: 1461163021}
 --- !u!4 &3777991981475634763
 Transform:
@@ -3088,29 +3083,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd120c36cbfd5a94e8de2a3e7018fbda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingMode: 0
-  jumpSound: {fileID: 8300000, guid: 8294408c0756e6c4693f8580ea1b28e8, type: 3}
-  deathSound: {fileID: 8300000, guid: 9331ef2a8bf371e4f9811221ba638020, type: 3}
-  movingSpeed: 3
-  flyingSpeed: 0
-  flyingDodgeSpeed: 0
-  maxDodgeDeviation: 0
-  jumpForce: 4
-  doubleJumpForce: 3
-  climbSpeed: 3
-  ground:
+  _movingSpeed: 3
+  _flyingSpeed: 0
+  _jumpForce: 0
+  _doubleJumpForce: 0
+  _climbSpeed: 0
+  _ground:
     serializedVersion: 2
-    m_Bits: 64
-  jumpTime: {fileID: 6427797292076427890}
-  swordCollider: {fileID: 8443803085073467892}
-  cam: {fileID: 1065118378251784438}
-  diePanel: {fileID: 0}
+    m_Bits: 0
+  _jumpTime: {fileID: 0}
+  _swordCollider: {fileID: 0}
+  _cam: {fileID: 0}
+  _diePanel: {fileID: 0}
   loadPanel: {fileID: 0}
-  movingVector: {x: 0, y: 0, z: 0}
-  isClimb: 0
-  canJump: 0
-  isAttack: 0
-  isDead: 0
   isPanelLoading: 1
 --- !u!1 &6326888923047960726
 GameObject:
@@ -3750,7 +3735,7 @@ Camera:
   far clip plane: 30
   field of view: 72
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.28
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4052,14 +4037,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8252915086870249924}
-  m_LocalRotation: {x: 0.2691013, y: 0.19350582, z: -0.055287614, w: 0.941851}
-  m_LocalPosition: {x: -4.51, y: 7.38, z: -7.2}
+  m_LocalRotation: {x: 0.24656443, y: 0.3688035, z: -0.102130316, w: 0.8903704}
+  m_LocalPosition: {x: -6.36, y: 5.53, z: -5.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5081194351888720592}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 31.891, y: 23.22, z: 0}
+  m_LocalEulerAnglesHint: {x: 30.957, y: 45, z: 0}
 --- !u!4 &9044051974755960751
 Transform:
   m_ObjectHideFlags: 0

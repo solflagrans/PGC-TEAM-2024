@@ -97,7 +97,7 @@ public class MovingController : MonoBehaviour
 
         if(PlayerInformation.Instance.Hp <= 0) {
             Die();
-            isDead = true;
+            _isDead = true;
         }
 
         if(_isDead) return;
