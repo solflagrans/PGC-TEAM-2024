@@ -7,125 +7,153 @@ public class MovingController : MonoBehaviour
 
     public static MovingController Instance { get; private set; }
 
-    [Header("Moving Mode")] 
-    public int movingMode = 0; //0 обынчный wasd, 1 - карабканье, 2 - полет между платформами
+    public float MovingSpeed { get => _movingSpeed; set { if(value > 0 && value < 100) _movingSpeed = value; } }
+    public float JumpForce { get => _jumpForce; set { if(value > 0 && value < 100) _jumpForce = value; } }
+    public float DoubleJumpForce { get => _doubleJumpForce; set { if(value > _jumpForce && value < 100) _doubleJumpForce = value; } }
+    public bool IsDead { get => _isDead; }
+    public string MovingMode { 
+        get => _movingMode; 
+        set {
+            if(value == "Default" || value == "Climbing" || value == "Flying") _movingMode = value;
+            else print("Wrong moving mode");
+        } 
+    }
+    public bool IsAttack { get => _isAttack; set => _isAttack = value; }
+    public Vector3 MovingVector { get => _movingVector; set => _movingVector = value; }
+    public Transform Target { get => _target; set => _target = value; }
+    public Rigidbody Rigidbody { get => _rigidbody; set => _rigidbody = value; }
+    public float SpeedToTarget { get => _speedToTarget; set => _speedToTarget = value; }
 
-    [Header("Audio")] 
-    public AudioClip jumpSound;
-    public AudioClip deathSound;
+    [Header("Moving Mode")] 
+    private string _movingMode = "Default";
+
+    [Header("Audio")]
+    private AudioHandler _audioHandler;
+
     [Header("Preferences")]
-    public float movingSpeed;
-    public float flyingSpeed;
-    public float flyingDodgeSpeed;
-    public float maxDodgeDeviation;
-    public float jumpForce;
-    public float doubleJumpForce;
-    public float climbSpeed;
+    [SerializeField] private float _movingSpeed;
+    [SerializeField] private float _flyingSpeed;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _doubleJumpForce;
+    [SerializeField] private float _climbSpeed;
     
     [Header("Instances")]
-    public LayerMask ground;
-    public Transform jumpTime;
-    private Rigidbody mc_rb;
-    private Transform endClimbPoint;
-    private Transform startClimbPoint;
-    public Collider swordCollider;
-    public CameraController cam;
-    public Image diePanel;
-    public Image loadPanel;
+    [SerializeField] private LayerMask _ground;
+    [SerializeField] private Transform _jumpTime;
+    private Rigidbody _rigidbody;
+    private Transform _endClimbPoint;
+    private Transform _startClimbPoint;
+    [SerializeField] private Collider _swordCollider;
+    [SerializeField] private CameraController _cam;
+    [SerializeField] private Image _diePanel;
+	public Image loadPanel;
+
     [Header("Techincal Variables")]
-    [HideInInspector] public Vector3 movingVector;
-    [HideInInspector] public bool isClimb;
-    private bool canDoubleJump = false;
-    [HideInInspector] public bool canJump;
-    [HideInInspector] public bool isAttack;
-    private bool waitAttack;
-    [HideInInspector] public bool isDead;
-    [HideInInspector] private bool isFlyingHorizontal = true;
-    [HideInInspector] private Transform centerTransform;
-    [HideInInspector] public bool isPanelLoading = true;
+    private Vector3 _movingVector;
+    private bool _canDoubleJump;
+    private bool _canJump;
+    private bool _isAttack;
+    private bool _waitAttack;
+    private bool _isDead;
+    private bool _deadSoundPlayed;
+    private Transform _target;
+    private float _speedToTarget;
+	[HideInInspector] public bool isPanelLoading = true;
+
     private void Awake() {
 
         if(!Instance) Instance = this;
 
     }
 
-
     void Start() {
 
         Cursor.visible = false;
-        mc_rb = gameObject.GetComponent<Rigidbody>();
+
+        _rigidbody = GetComponent<Rigidbody>();
+        _audioHandler = AudioHandler.Instance;
 
     }
 
     private void FixedUpdate() {
 
-        if(isDead) return;
+        if(_isDead) return;
 
-        if(movingMode == 0) Move();
-        
-        if(movingMode == 1) Climb();
+        switch(_movingMode) {
+            case "Default":
+                Move();
+                break;
+            case "Climbing":
+                Climb();
+                break;
+            case "Flying":
+                Fly();
+                break;
+        }
 
-        if (movingMode == 2) Fly();
-
- 
     }
 
     void Update() {
 
         if(PlayerInformation.Instance.Hp <= 0) {
             Die();
-            isDead = true;
+            _isDead = true;
         }
 
-        if(isDead) return;
+        if(_isDead) return;
 
-        if (movingMode != 2)
+        if (_movingMode == "Default")
         {
-            if (Input.GetButtonDown("Fire1") && !isAttack) Attack();
+            if (Input.GetButtonDown("Fire1") && !_isAttack) Attack();
 
-            canJump = Physics.Raycast(jumpTime.position, Vector3.down, 0.7f, ground);
+            _canJump = Physics.Raycast(_jumpTime.position, Vector3.down, 0.7f, _ground);
 
-            if (Input.GetKeyDown(KeyCode.Space) & !isClimb) Jump();
+            if (Input.GetKeyDown(KeyCode.Space)) Jump();
         }
 
         if (isPanelLoading) FadePanel();
         }
 
-    //Ñîçäà¸ì äâèæåíèÿ ïåðñîíàæà ïî ãîðèçîíòàëè è âåðòèêàëè
     private void Move() {
         
-        movingVector.x = Input.GetAxisRaw("Horizontal");
-        movingVector.z = Input.GetAxisRaw("Vertical");
-        movingVector = Quaternion.Euler(0f, 45f, 0f) * movingVector;
-        mc_rb.MovePosition(mc_rb.position + movingVector.normalized * (movingSpeed * Time.deltaTime));
+        _movingVector.x = Input.GetAxisRaw("Horizontal");
+        _movingVector.z = Input.GetAxisRaw("Vertical");
+        _movingVector = Quaternion.Euler(0f, 45f, 0f) * _movingVector;
+        _rigidbody.MovePosition(_rigidbody.position + _movingVector.normalized * (_movingSpeed * Time.deltaTime));
 
-        if(Vector3.Normalize(movingVector) != Vector3.zero) {
-            Quaternion lookRotation = Quaternion.LookRotation(movingVector, Vector3.up);
+        if(Vector3.Normalize(_movingVector) != Vector3.zero) {
+            Quaternion lookRotation = Quaternion.LookRotation(_movingVector, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 900 * Time.deltaTime);
+            if(!_audioHandler.moveStateSource.isPlaying & _canJump) _audioHandler.moveStateSource.PlayOneShot(_audioHandler.walkSound);
+        } else {
+            if(_audioHandler.moveStateSource.isPlaying) _audioHandler.moveStateSource.Stop();
         }
+
+        if(!_canJump) _audioHandler.moveStateSource.Stop();
 
     }
 
-    //Ïîçâîëÿåì åìó ïðûãàòü
     private void Jump() {
 
-        if (canJump) {
-            gameObject.GetComponent<Interactions>().PlaySound(jumpSound);
-            mc_rb.AddForce(Vector3.up * (jumpForce * mc_rb.mass), ForceMode.Impulse);
-            canDoubleJump = true;
+        if(_canJump) {
+            _audioHandler.jumpSource.PlayOneShot(_audioHandler.jumpSound);
+            _rigidbody.AddForce(Vector3.up * (_jumpForce * _rigidbody.mass), ForceMode.Impulse);
+            _canDoubleJump = true;
         } 
-        else if (canDoubleJump) {
-            gameObject.GetComponent<Interactions>().PlaySound(jumpSound);
-            mc_rb.AddForce(Vector3.up * (doubleJumpForce * mc_rb.mass), ForceMode.Impulse);
-            canDoubleJump = false;
+        else if(_canDoubleJump) {
+            _audioHandler.jumpSource.PlayOneShot(_audioHandler.jumpSound);
+            _rigidbody.AddForce(Vector3.up * (_doubleJumpForce * _rigidbody.mass), ForceMode.Impulse);
+            _canDoubleJump = false;
         }
 
     }
 
     private void Attack() {
 
-        isAttack = true;
-        swordCollider.enabled = true;
+        _isAttack = true;
+        _swordCollider.enabled = true;
+
+        _audioHandler.swordSource.PlayOneShot(_audioHandler.swingSound);
 
         StartCoroutine(StopAttack());
 
@@ -133,31 +161,31 @@ public class MovingController : MonoBehaviour
 
     IEnumerator StopAttack() {
 
-        if(!waitAttack) {
-            waitAttack = true;
+        if(!_waitAttack) {
+            _waitAttack = true;
             yield return new WaitForSeconds(1f);
         }
 
-        isAttack = false;
-        swordCollider.enabled = false;
-        waitAttack = false;
+        _isAttack = false;
+        _swordCollider.enabled = false;
+        _waitAttack = false;
 
     }
 
     void OnTriggerEnter(Collider col) {
 
         if(col.CompareTag("Ladder")) {
-            isClimb = true;
-            movingMode = 1;
-            endClimbPoint = col.transform.Find("EndPoint");
-            startClimbPoint = col.transform.Find("StartPoint");
+            _endClimbPoint = col.transform.Find("EndPoint");
+            _startClimbPoint = col.transform.Find("StartPoint");
+            _movingMode = "Climbing";
         }
+
         if(col.CompareTag("Platform"))
         {
-            mc_rb.constraints = RigidbodyConstraints.None;
-            mc_rb.constraints = RigidbodyConstraints.FreezeRotation;
-            movingMode = 0;
-            mc_rb.useGravity = true;
+            _rigidbody.useGravity = true;
+            _rigidbody.constraints = RigidbodyConstraints.None;
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            _movingMode = "Default";
         }
 
     }
@@ -165,88 +193,54 @@ public class MovingController : MonoBehaviour
     private void OnTriggerExit(Collider col) {
 
         if(col.CompareTag("Ladder")) {
-            isClimb = false;
-            movingMode = 0;
-            mc_rb.useGravity = true;
+            _movingMode = "Default";
+            _rigidbody.useGravity = true;
         }
-        if(col.CompareTag("Platform"))
-        {
-            gameObject.transform.position += new Vector3(0, 1, 0);
-            centerTransform = gameObject.transform;
-            movingMode = 2;
-        }
+
     }
 
     private void Climb() {
 
-        movingVector.x = Input.GetAxisRaw("Horizontal");
-        movingVector.z = Input.GetAxisRaw("Vertical");
+        _movingVector.x = Input.GetAxisRaw("Horizontal");
+        _movingVector.z = Input.GetAxisRaw("Vertical");
 
-        if(movingVector.z > 0.05f) transform.position = Vector3.MoveTowards(transform.position, endClimbPoint.position, climbSpeed/100f);
-        else if(movingVector.z < -0.05f) transform.position = Vector3.MoveTowards(transform.position, startClimbPoint.position, climbSpeed/100f);
+        if(_movingVector.z > 0.05f) transform.position = Vector3.MoveTowards(transform.position, _endClimbPoint.position, _climbSpeed/100f);
+        else if(_movingVector.z < -0.05f) transform.position = Vector3.MoveTowards(transform.position, _startClimbPoint.position, _climbSpeed/100f);
 
-        Quaternion rotateTo = Quaternion.RotateTowards(transform.rotation, startClimbPoint.rotation, 720f);
+        Quaternion rotateTo = Quaternion.RotateTowards(transform.rotation, _startClimbPoint.rotation, 720f);
         transform.rotation = new Quaternion(transform.rotation.x, rotateTo.y, transform.rotation.z, transform.rotation.w);
 
-        mc_rb.useGravity = false;
+        _rigidbody.useGravity = false;
 
-        transform.position = new Vector3(movingVector.x * movingSpeed * Time.deltaTime + transform.position.x, transform.position.y, transform.position.z);
+        transform.position = new Vector3(_movingVector.x * _movingSpeed * Time.deltaTime + transform.position.x, transform.position.y, transform.position.z);
 
     }
     private void Fly()
     {
-        //mc_rb.useGravity = false;
-        mc_rb.constraints = RigidbodyConstraints.FreezePositionY;
-        //  if (!isFlyingHorizontal && (Mathf.Abs(centerTransform.position.z - transform.position.z) < maxDodgeDeviation))
-        movingVector += new Vector3(centerTransform.forward.x, 0, centerTransform.forward.z);
-        if (isFlyingHorizontal)
-        {
-            
-            if (Input.GetKey(KeyCode.W))
-            {
-                print("q");
-                movingVector += new Vector3(0, 0, flyingSpeed);
-            }
 
-            if (Input.GetKey(KeyCode.S))
-            {
-                movingVector -= new Vector3(0, 0, flyingSpeed);
-            }
+        transform.position = Vector3.MoveTowards(transform.position, _target.position, _speedToTarget);
+
+        if (Input.GetKey(KeyCode.A)) {
+            transform.position += new Vector3(0, 0, _flyingSpeed);
         }
-        else
-        {
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                movingVector -= new Vector3(flyingSpeed, 0, 0);
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                movingVector += new Vector3(flyingSpeed, 0, 0);
-            }
+        if (Input.GetKey(KeyCode.D)) {
+            transform.position -= new Vector3(0, 0, _flyingSpeed);
         }
 
-        /* }
-         else if(Mathf.Abs(centerTransform.position.x - transform.position.x) < maxDodgeDeviation){*/
-       /*       print("2");
-          }*/
-       print(movingMode);
-        movingVector = Quaternion.Euler(0,-5f,0)*movingVector;
-        mc_rb.MovePosition(mc_rb.position + movingVector* (movingSpeed * Time.deltaTime));
     }
 
     private void Die() {
 
         transform.position = Vector3.MoveTowards(transform.position, Vector3.down * 5f, 0.08f);
 
-        cam.enabled = false;
+        _cam.enabled = false;
+        _diePanel.fillAmount += 1 * Time.deltaTime;
 
-        diePanel.fillAmount += 1 * Time.deltaTime;
-        if(!isDead) gameObject.GetComponent<Interactions>().PlaySound(deathSound);
+        if(!_audioHandler.gameStateSource.isPlaying && !_deadSoundPlayed) {
+            _audioHandler.gameStateSource.PlayOneShot(_audioHandler.deathSound);
+            _deadSoundPlayed = true;
+        }
         
-        print("Вы умерли");
-
     }
     private void FadePanel() {
         

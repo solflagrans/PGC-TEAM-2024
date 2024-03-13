@@ -19,7 +19,7 @@ public class Platform : MonoBehaviour
     public virtual void Update() {
 
         if(Hide) {
-           if(MovingController.Instance.transform.position.y >= transform.position.y) _MeshRenderer.material.color = new Color(_MeshRenderer.material.color.r, _MeshRenderer.material.color.g, _MeshRenderer.material.color.b, 1f);
+            if(MovingController.Instance.transform.position.y >= transform.position.y) _MeshRenderer.material.color = new Color(_MeshRenderer.material.color.r, _MeshRenderer.material.color.g, _MeshRenderer.material.color.b, 1f);
             else _MeshRenderer.material.color = new Color(_MeshRenderer.material.color.r, _MeshRenderer.material.color.g, _MeshRenderer.material.color.b, 0.5f);
         }
 

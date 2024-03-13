@@ -6,7 +6,9 @@ public class Puzzle : MonoBehaviour
     [Header("Elements")]
     [SerializeField] private HeavyButton[] _heavyButtons;
     [SerializeField] private Button[] _buttons;
+    [SerializeField] private Tumbler[] _tumblers;
     [SerializeField] private Elevator[] _elevators;
+    [SerializeField] private Gate[] _gates;
 
     [Header("Results")]
     [SerializeField] private _results _result;
@@ -52,6 +54,13 @@ public class Puzzle : MonoBehaviour
                 return;
             }
         }
+        foreach(Tumbler tumbler in _tumblers) {
+            if(tumbler.Activated) continue;
+            else {
+                Undo();
+                return;
+            }
+        }
 
         Result();
 
@@ -63,6 +72,11 @@ public class Puzzle : MonoBehaviour
             case _results.TurnOnElevator:
                 foreach(Elevator _elevator in _elevators) {
                     _elevator.Enabled = true;
+                }
+                break;
+            case _results.TurnPanel:
+                foreach(Gate _gate in _gates) {
+                    _gate.TurnOn();
                 }
                 break;
         }
@@ -79,6 +93,11 @@ public class Puzzle : MonoBehaviour
                     _elevator.Enabled = false;
                 }
                 break;
+            case _results.TurnPanel:
+            foreach(Gate _gate in _gates) {
+                _gate.TurnOff();
+            }
+            break;
         }
 
     }
