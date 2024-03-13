@@ -23,6 +23,7 @@ public class PlayerInformation : MonoBehaviour
                 _hp = value;
                 AudioHandler.Instance.healthSource.PlayOneShot(AudioHandler.Instance.hitSound);
                 IsInvulnerable = true;
+                if(!UI_Controller.Instance.HPFading) StartCoroutine(UI_Controller.Instance.FadeHP());
             }
         } 
     }
@@ -31,8 +32,9 @@ public class PlayerInformation : MonoBehaviour
     public int CollectedHoney { 
         get => _collectedHoney; 
         set {
-            if(value >= 0 && value <= _maxHoneyAmount) _collectedHoney = value;
-            else if(value > _maxHoneyAmount) _collectedHoney = _maxHoneyAmount;
+            if(value >= 0 ) _collectedHoney = value;
+            //else if(value > _maxHoneyAmount) _collectedHoney = _maxHoneyAmount;
+            if(!UI_Controller.Instance.HoneyFading) StartCoroutine(UI_Controller.Instance.FadeHoney());
         } 
     }
     public int MaxHoneyAmount { get => _maxHoneyAmount; set { if(value >= 0) _maxHoneyAmount = value; } }

@@ -5,7 +5,7 @@ public class Modificators : MonoBehaviour
 {
     //Re-write for singleton movingcontroller and abstart modificator class
 
-    private float _time;
+    [SerializeField] private float _time;
 
     private MovingController _controller;
 

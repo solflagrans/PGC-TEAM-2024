@@ -181,7 +181,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
+  m_text: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C (\u0432\u0440\u0435\u043C\u0435\u043D\u043D\u043E
+    \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d01cee82eebec542b63392f6eea8903, type: 2}
   m_sharedMaterial: {fileID: 8455396492753516443, guid: 3d01cee82eebec542b63392f6eea8903,
@@ -209,7 +210,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 94.94
+  m_fontSize: 47.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -321,8 +322,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.7490196, b: 0.5137255, a: 1}
+    m_PressedColor: {r: 1, g: 0.5882353, b: 0.20392157, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -711,8 +712,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.7490196, b: 0.5137255, a: 1}
+    m_PressedColor: {r: 1, g: 0.5882353, b: 0.20392157, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2900,8 +2901,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.7490196, b: 0.5137255, a: 1}
+    m_PressedColor: {r: 1, g: 0.5882353, b: 0.20392157, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2922,18 +2923,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 567732938}
-        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
-        m_MethodName: OpenSettingsWindow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: FeatureDevelopment
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 567732938}
         m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
         m_MethodName: MakeClick
@@ -4285,23 +4274,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2e34c27ad77794f917e2093a515d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveStateSource: {fileID: 0}
-  _jumpSource: {fileID: 0}
-  _swordSource: {fileID: 0}
-  _healthSource: {fileID: 0}
-  _gameStateSource: {fileID: 0}
-  _puzzleSources: []
-  _menuSources: []
-  _walkSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
-  _swingSound: {fileID: 0}
-  _hitSound: {fileID: 0}
-  _deathSound: {fileID: 0}
-  _winSound: {fileID: 0}
-  _heavyButtonOn: {fileID: 0}
-  _heavyButtonOff: {fileID: 0}
-  _buttonPress: {fileID: 0}
-  _menuPress: {fileID: 8300000, guid: 69964913f76144e43967dcf8331b285b, type: 3}
+  moveStateSource: {fileID: 0}
+  robotSource: {fileID: 0}
+  jumpSource: {fileID: 0}
+  swordSource: {fileID: 0}
+  healthSource: {fileID: 0}
+  gameStateSource: {fileID: 0}
+  puzzleSources: []
+  menuSources: []
+  walkSound: {fileID: 0}
+  helicopterSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  swingSound: {fileID: 0}
+  hitSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  winSound: {fileID: 0}
+  heavyButtonOn: {fileID: 0}
+  heavyButtonOff: {fileID: 0}
+  buttonPress: {fileID: 0}
+  menuPress: {fileID: 0}
 --- !u!4 &1434672130
 Transform:
   m_ObjectHideFlags: 0
@@ -5990,7 +5981,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+  m_text: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 (\u0432\u0440\u0435\u043C\u0435\u043D\u043D\u043E
+    \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d01cee82eebec542b63392f6eea8903, type: 2}
   m_sharedMaterial: {fileID: 8455396492753516443, guid: 3d01cee82eebec542b63392f6eea8903,
@@ -6018,7 +6010,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 94.94
+  m_fontSize: 49.65
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7496,8 +7488,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.7490196, b: 0.5137255, a: 1}
+    m_PressedColor: {r: 1, g: 0.5880706, b: 0.20188677, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -7518,9 +7510,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 567732940}
-        m_TargetAssemblyTypeName: GoToLevel, Assembly-CSharp
-        m_MethodName: GoLoad
+      - m_Target: {fileID: 567732938}
+        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+        m_MethodName: ContinueGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

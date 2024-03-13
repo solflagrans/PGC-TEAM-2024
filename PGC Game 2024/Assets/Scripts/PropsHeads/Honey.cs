@@ -27,7 +27,7 @@ public class Honey : MonoBehaviour
 
         if(col.gameObject.CompareTag("Player")) {
 
-            if(PlayerInformation.Instance.CollectedHoney == PlayerInformation.Instance.MaxHoneyAmount) return;
+            //if(PlayerInformation.Instance.CollectedHoney == PlayerInformation.Instance.MaxHoneyAmount) return;
 
             PlayerInformation.Instance.CollectedHoney++;
             if(_honeySound.clip != null) _honeySound.Play();
