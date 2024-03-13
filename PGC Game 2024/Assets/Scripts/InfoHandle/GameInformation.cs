@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameInformation : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class GameInformation : MonoBehaviour
     private List<int> _solvedPuzzles;
     private List<int> _brokenBarrels;
     private bool _isTalkedToMechanic = false;
+    public Transform tpPoint;
+    public Vector3 tpPosition;
+
     public int LevelNum { get => _levelNum; set { if(value >= 0) _levelNum = value; } }
     public int LastUnlockedLevel { get => _lastUnlockedLevel; set { if(value >= 0) _lastUnlockedLevel = value; } }
     public List<int> Collectibles { get => _collectibles; set => _collectibles = value; }
@@ -29,7 +33,26 @@ public class GameInformation : MonoBehaviour
 
     }
 
-    //public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
-    public bool IsTalkedToMechanic = false;
+    private void Start() {
+        
+        tpPosition = tpPoint.position;
+
+    }
+
+    private void Update() {
+        
+        if(Input.GetKeyDown(KeyCode.J)) {
+            SceneManager.LoadScene(2);
+            PlayerInformation.Instance.Hp = 3;
+        }
+        if(Input.GetKeyDown(KeyCode.K)) {
+            MovingController.Instance.gameObject.transform.position = tpPosition;
+        }
+
+    }
+
+    public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
+    
+   // public bool IsTalkedToMechanic = false;
     
 }

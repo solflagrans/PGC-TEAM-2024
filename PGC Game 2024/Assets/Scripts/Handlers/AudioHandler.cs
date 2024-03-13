@@ -29,10 +29,7 @@ public class AudioHandler : MonoBehaviour
 
     private void Awake() {
 
-        if(!Instance) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else Destroy(gameObject);
+        if(!Instance) Instance = this;
 
     }
 

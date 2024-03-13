@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
     public AudioClip openSound;
     public bool isOpening = false;
     public float needRotation;
-
+    private bool isOpened = false;
     void Update()
     {
         if (isOpening)
@@ -16,11 +16,12 @@ public class Door : MonoBehaviour
             if (transform.rotation.y / needRotation < 1)
             {
                 isOpening = false;
+                isOpened = true;
             }
         }
     }
     void OnTriggerEnter(Collider coll){
-     if(coll.CompareTag("Player")){
+     if(coll.CompareTag("Player") && !isOpened){
            isOpening = true;
            print("qqq");
           //анимация механика animator.SetTrigger("ClimbIdle");

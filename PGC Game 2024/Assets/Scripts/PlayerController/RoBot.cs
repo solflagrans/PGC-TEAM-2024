@@ -89,7 +89,6 @@ public class RoBot : MonoBehaviour
 
         _controlMode = !_controlMode;
         _controller.enabled = !_controlMode;
-        _movement.enabled = _controlMode;
 
         AudioHandler.Instance.robotSource.Stop();
 

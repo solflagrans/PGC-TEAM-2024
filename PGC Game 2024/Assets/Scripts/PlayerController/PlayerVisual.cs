@@ -6,10 +6,7 @@ public class PlayerVisual : MonoBehaviour
     private MovingController _controller;
     private Animator animator;
     private Rigidbody rigid;
-    public AudioClip runSound;
-    public AudioClip hitSound;
-    public AudioClip climbSound;
-    public GameObject sword;
+    [SerializeField] private GameObject sword;
 
     void Start()
     {
@@ -29,13 +26,16 @@ public class PlayerVisual : MonoBehaviour
                 animator.SetTrigger("Attack");
             }
 
-            if (_controller.MovingMode == "Climbing" && _controller.MovingVector.normalized != Vector3.zero)
+            if(_controller.MovingMode == "Climbing" && _controller.MovingVector.normalized != Vector3.zero) 
             {
                 animator.SetTrigger("Climb");
-            } else if (rigid.velocity.y > 0.005f || rigid.velocity.y < -0.005f)
+            } else if(_controller.MovingMode == "Flying")
             {
                 animator.SetTrigger("Jump");
-            } else if (_controller.MovingVector.normalized != Vector3.zero)
+            } else if(rigid.velocity.y > 0.005f || rigid.velocity.y < -0.005f) 
+            {
+                animator.SetTrigger("Jump");
+            } else if(_controller.MovingVector.normalized != Vector3.zero) 
             {
                 animator.SetTrigger("Run");
             } else if(_controller.MovingMode == "Climbing") animator.SetTrigger("ClimbIdle");

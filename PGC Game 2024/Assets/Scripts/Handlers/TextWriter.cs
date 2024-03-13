@@ -39,8 +39,12 @@ public class TextWriter : MonoBehaviour
         }
     }
     public bool IsActive(){
-        
+        try{
         return letterIndex < phrase.Length;
+        }
+        catch (NullReferenceException ex){
+         return false;
+        }
     }
     public void WriteAll(){
         UIText.text = phrase;

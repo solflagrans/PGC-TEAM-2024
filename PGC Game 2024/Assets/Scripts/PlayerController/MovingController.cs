@@ -20,9 +20,12 @@ public class MovingController : MonoBehaviour
     }
     public bool IsAttack { get => _isAttack; set => _isAttack = value; }
     public Vector3 MovingVector { get => _movingVector; set => _movingVector = value; }
+    public Transform Target { get => _target; set => _target = value; }
+    public Rigidbody Rigidbody { get => _rigidbody; set => _rigidbody = value; }
+    public float SpeedToTarget { get => _speedToTarget; set => _speedToTarget = value; }
 
     [Header("Moving Mode")] 
-    private string _movingMode = "Default"; //Default, Climbing, Flying
+    private string _movingMode = "Default";
 
     [Header("Audio")]
     private AudioHandler _audioHandler;
@@ -43,6 +46,7 @@ public class MovingController : MonoBehaviour
     [SerializeField] private Collider _swordCollider;
     [SerializeField] private CameraController _cam;
     [SerializeField] private Image _diePanel;
+	public Image loadPanel;
 
     [Header("Techincal Variables")]
     private Vector3 _movingVector;
@@ -52,8 +56,9 @@ public class MovingController : MonoBehaviour
     private bool _waitAttack;
     private bool _isDead;
     private bool _deadSoundPlayed;
-    private bool isFlyingHorizontal = true;
-    private Transform centerTransform;
+    private Transform _target;
+    private float _speedToTarget;
+	[HideInInspector] public bool isPanelLoading = true;
 
     private void Awake() {
 
@@ -91,8 +96,8 @@ public class MovingController : MonoBehaviour
     void Update() {
 
         if(PlayerInformation.Instance.Hp <= 0) {
-            _isDead = true;
             Die();
+            _isDead = true;
         }
 
         if(_isDead) return;
@@ -106,7 +111,8 @@ public class MovingController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) Jump();
         }
 
-    }
+        if (isPanelLoading) FadePanel();
+        }
 
     private void Move() {
         
@@ -190,12 +196,7 @@ public class MovingController : MonoBehaviour
             _movingMode = "Default";
             _rigidbody.useGravity = true;
         }
-        if(col.CompareTag("Platform"))
-        {
-            gameObject.transform.position += new Vector3(0, 1, 0);
-            centerTransform = gameObject.transform;
-            _movingMode = "Flying";
-        }
+
     }
 
     private void Climb() {
@@ -217,27 +218,14 @@ public class MovingController : MonoBehaviour
     private void Fly()
     {
 
-        _rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+        transform.position = Vector3.MoveTowards(transform.position, _target.position, _speedToTarget);
 
-        _movingVector += new Vector3(centerTransform.forward.x, 0, centerTransform.forward.z);
-
-        if (isFlyingHorizontal) {
-            if (Input.GetKey(KeyCode.W)) {
-                _movingVector += new Vector3(0, 0, _flyingSpeed);
-            }
-            if (Input.GetKey(KeyCode.S)) {
-                _movingVector -= new Vector3(0, 0, _flyingSpeed);
-            }
-        } else {
-            if (Input.GetKey(KeyCode.A)) {
-                _movingVector -= new Vector3(_flyingSpeed, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.D)) {
-                _movingVector += new Vector3(_flyingSpeed, 0, 0);
-            }
+        if (Input.GetKey(KeyCode.A)) {
+            transform.position += new Vector3(0, 0, _flyingSpeed);
         }
-
-        _rigidbody.MovePosition(_rigidbody.position + _movingVector * (_movingSpeed * Time.deltaTime));
+        if (Input.GetKey(KeyCode.D)) {
+            transform.position -= new Vector3(0, 0, _flyingSpeed);
+        }
 
     }
 
@@ -246,7 +234,6 @@ public class MovingController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, Vector3.down * 5f, 0.08f);
 
         _cam.enabled = false;
-
         _diePanel.fillAmount += 1 * Time.deltaTime;
 
         if(!_audioHandler.gameStateSource.isPlaying && !_deadSoundPlayed) {
@@ -254,6 +241,13 @@ public class MovingController : MonoBehaviour
             _deadSoundPlayed = true;
         }
         
+    }
+    private void FadePanel() {
+        
+        loadPanel.fillAmount -= 1 * Time.deltaTime;
+        if (loadPanel.fillAmount == 0) isPanelLoading = false;
+        //gameObject.GetComponent<Interactions>().PlaySound()
+
     }
 }
 
