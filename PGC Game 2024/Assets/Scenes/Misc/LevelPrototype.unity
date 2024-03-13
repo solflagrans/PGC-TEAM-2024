@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 33edc3062f141dc438aacfde035aa953,
+    type: 2}
   m_LightingSettings: {fileID: 995759942}
 --- !u!196 &4
 NavMeshSettings:
@@ -909,7 +910,7 @@ PrefabInstance:
     - target: {fileID: 4238187340264012135, guid: 765e6cef487a0d7438b7bf98dced4f0c,
         type: 3}
       propertyPath: m_FillAmount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4255056293554333408, guid: 765e6cef487a0d7438b7bf98dced4f0c,
         type: 3}
@@ -1346,6 +1347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642580765282221299, guid: 765e6cef487a0d7438b7bf98dced4f0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7720319010667193943, guid: 765e6cef487a0d7438b7bf98dced4f0c,
         type: 3}
@@ -3990,7 +3996,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tpPoint: {fileID: 642985806}
   tpPosition: {x: 0, y: 0, z: 0}
-  IsTalkedToMechanic: 0
 --- !u!4 &923911002
 Transform:
   m_ObjectHideFlags: 0
@@ -4150,12 +4155,12 @@ LightingSettings:
   m_AlbedoBoost: 1
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
-  m_BakeBackend: 1
-  m_LightmapMaxSize: 1024
+  m_BakeBackend: 2
+  m_LightmapMaxSize: 128
   m_BakeResolution: 40
   m_Padding: 2
   m_LightmapCompression: 3
-  m_AO: 0
+  m_AO: 1
   m_AOMaxDistance: 1
   m_CompAOExponent: 1
   m_CompAOExponentDirect: 0
@@ -60892,7 +60897,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 3c8089eaef792bc4f9a72abe4f32fb12, type: 2}
+  sharedProfile: {fileID: 11400000, guid: a9b041c0bca6373469755ef62ec4ded9, type: 2}
 --- !u!4 &1853943025
 Transform:
   m_ObjectHideFlags: 0
@@ -64636,6 +64641,8 @@ MonoBehaviour:
   _swordCollider: {fileID: 8443803086119258100}
   _cam: {fileID: 304213668}
   _diePanel: {fileID: 1344719710}
+  loadPanel: {fileID: 1344719710}
+  isPanelLoading: 1
 --- !u!4 &6200190309864139963
 Transform:
   m_ObjectHideFlags: 0

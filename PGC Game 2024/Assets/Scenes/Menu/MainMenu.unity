@@ -1733,7 +1733,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.563
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3002,7 +3002,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0e1ace61f174e874db441427c291feb9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.516
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4292,7 +4292,7 @@ MonoBehaviour:
   heavyButtonOn: {fileID: 0}
   heavyButtonOff: {fileID: 0}
   buttonPress: {fileID: 0}
-  menuPress: {fileID: 0}
+  menuPress: {fileID: 8300000, guid: 69964913f76144e43967dcf8331b285b, type: 3}
 --- !u!4 &1434672130
 Transform:
   m_ObjectHideFlags: 0
@@ -6781,8 +6781,8 @@ Camera:
   m_GameObject: {fileID: 2015564946}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.0627451, g: 0.0627451, b: 0.0627451, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
