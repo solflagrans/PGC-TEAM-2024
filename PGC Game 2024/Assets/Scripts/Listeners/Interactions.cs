@@ -16,6 +16,8 @@ public class Interactions : MonoBehaviour
       public GameObject worldText;
       public TMP_Text messege;
       public GameInformation gameInfo;
+      public GameObject scrollUI;
+      
       private void OnCollisionEnter(Collision coll){
           if (coll.collider.CompareTag("Trap"))
           {
@@ -26,6 +28,17 @@ public class Interactions : MonoBehaviour
           {
              GetDamage(enemyDamage);
           }
+          
+          if (coll.collider.CompareTag("Scroll"))
+          {
+            CollectScroll(coll.gameObject);
+          }
+      }
+      private void OnCollisionStay(Collision coll){
+          if (coll.collider.CompareTag("Scroll"))
+          {
+               CollectScroll(coll.gameObject);
+           }
       }
        private void OnTriggerEnter(Collider coll)
         {
@@ -64,11 +77,23 @@ public class Interactions : MonoBehaviour
              TalkToMechainic(coll.gameObject);
           }
        }
-
+       
+       private void CollectScroll(GameObject scroll){
+        if(!scrollUI.activeSelf){
+         scrollUI.SetActive(true);
+         scrollUI.GetComponentInChildren<TMP_Text>().text = scroll.GetComponent<Scroll>().scrollText;
+         }
+         else if (Input.GetMouseButtonDown(0)){
+            scrollUI.SetActive(false);
+            Destroy(scroll);
+         }
+        // Destroy(scroll);
+       }
        private void OpenShop()
        {
-          Cursor.visible = shopWindow.activeSelf;
           shopWindow.SetActive(!shopWindow.activeSelf);
+          Cursor.visible = shopWindow.activeSelf;
+          
        }
         public void SaveCollectible(GameObject collectible)
         {
@@ -118,7 +143,8 @@ public class Interactions : MonoBehaviour
            }
            else if (Input.GetKey(KeyCode.Q) && !dialogueWindow.active)
            {
-              OpenShop();
+              ShowMessege();
+              worldText.SetActive(false);
            }
         }
 
@@ -159,15 +185,16 @@ public class Interactions : MonoBehaviour
            }
            gameObject.GetComponent<DialogUI_Controller>().StartWriting();
            dialogueWindow.SetActive(true);
-           print("c");
+           
         }
         public void EndDialogue()
         {
            gameObject.GetComponent<MovingController>().enabled = true;
            dialogueWindow.SetActive(false);
             gameObject.GetComponent<DialogUI_Controller>().phrases.Clear();
-            gameInfo.IsTalkedToMechanic = true;
+            GameInformation.Instance.IsTalkedToMechanic = true;
         }
+        
 
         public void PlaySound(AudioClip sound)
         {

@@ -16,6 +16,21 @@ public class GameInformation : MonoBehaviour
     private bool _isTalkedToMechanic = false;
     public Transform tpPoint;
     public Vector3 tpPosition;
+    
+    private static GameInformation instance;
+
+    public static GameInformation Instance 
+    {
+        get 
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<GameInformation>();
+            }
+
+            return instance;
+        }
+    }
     public int LevelNum { get => _levelNum; set { if(value >= 0) _levelNum = value; } }
     public int LastUnlockedLevel { get => _lastUnlockedLevel; set { if(value >= 0) _lastUnlockedLevel = value; } }
     public List<int> Collectibles { get => _collectibles; set => _collectibles = value; }
@@ -31,9 +46,6 @@ public class GameInformation : MonoBehaviour
         } else Destroy(gameObject);
 
     }
-
-    //public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
-    public bool IsTalkedToMechanic = false;
 
     private void Start() {
         
@@ -53,4 +65,8 @@ public class GameInformation : MonoBehaviour
 
     }
 
+    public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
+    
+   // public bool IsTalkedToMechanic = false;
+    
 }
