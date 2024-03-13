@@ -1,11 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tumbler : MonoBehaviour
 {
 
     private bool _activated;
+
+    private float _angle;
+    private float _shear;
     
     private AudioSource _audioSource;
 
@@ -23,13 +25,11 @@ public class Tumbler : MonoBehaviour
 
         _activated = !_activated;
 
-        if(_activated) {
-            transform.Rotate(60f, 0, 0);
-            transform.localPosition += new Vector3(0, 0, 0.064f);
-        } else {
-            transform.Rotate(-60f, 0, 0);
-            transform.localPosition -= new Vector3(0, 0, 0.064f);
-        }
+        _angle = 0;
+        _shear = 0;
+
+        if(_activated) StartCoroutine(Activate());
+        else StartCoroutine(Deactivate());
 
         _audioSource.PlayOneShot(AudioHandler.Instance.buttonPress);
 
@@ -46,20 +46,28 @@ public class Tumbler : MonoBehaviour
 
     }
 
-    /*IEnumerator Activate() {
+    IEnumerator Activate() {
 
-        Vector3 currentPosition = transform.localPosition;
-
-        for(float shear = 0f; shear < 0.064f; shear += 0.002f) {
-            transform.localPosition = currentPosition + new Vector3(0, 0, shear);
+        for(int loop = 0; loop < 32;  loop++) {
+            _angle += 1.875f;
+            _shear += 0.002f;
+            transform.localRotation = Quaternion.Euler(_angle, 0, 0);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1.509f + _shear);
             yield return null;
         }
 
-        for(float angle = 0f; angle < 60f; angle += 1.875f) {
-            transform.localRotation = Quaternion.Euler(angle, 0, 0);
+    }
+
+    IEnumerator Deactivate() {
+
+        for(int loop = 0; loop < 32; loop++) {
+            _angle -= 1.875f;
+            _shear -= 0.002f;
+            transform.localRotation = Quaternion.Euler(60 + _angle, 0, 0);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1.573f + _shear);
             yield return null;
         }
 
-    } try to write smooth alghoritm later. it's weirdy*/ 
+    }
 
 }
