@@ -14,18 +14,19 @@ public class UI_Controller : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject _pauseUI;
     [SerializeField] private Slider _healthBar;
-    [SerializeField] private Slider _honeyFiller;
-    [SerializeField] private TextMeshProUGUI _honeyPercentage;
+    /*[SerializeField] private Slider _honeyFiller;
+    [SerializeField] private TextMeshProUGUI _honeyPercentage;*/
     [SerializeField] private TextMeshProUGUI _honeyNumber;
+    [SerializeField] private GameObject _scroll;
 
     [SerializeField] private Image _healthFill;
     [SerializeField] private Image _healthBackground;
 
-    private Image _honeyBackground;
+    /*private Image _honeyBackground;
     private Image _honeyAddition;
     private Image _honeyFill;
     private Image _honeyHandle;
-    private TextMeshProUGUI _textHoney;
+    private TextMeshProUGUI _textHoney;*/
 
     [Header("Technical Variables")]
     private bool _menuOpened;
@@ -40,6 +41,7 @@ public class UI_Controller : MonoBehaviour
 
     public bool HPFading { get => _hpFading; }
     public bool HoneyFading { get => _honeyFading; }
+    public GameObject Scroll { get => _scroll; set => _scroll = value; }
 
     private void Start() {
 
