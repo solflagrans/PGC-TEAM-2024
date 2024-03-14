@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:PGC Game 2024/Assets/Prefabs/Gameplay/Disappearing.prefab.meta
 guid: b21b0c3b98bbd9449a3dfa890ef0db88
+========
+guid: 4809bb3809206944eb3584d7e84a9916
+>>>>>>>> main:PGC Game 2024/Assets/Prefabs/Gameplay/Button.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
