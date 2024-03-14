@@ -53,6 +53,4 @@ public class GameInformation : MonoBehaviour
 
     public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
     
-   // public bool IsTalkedToMechanic = false;
-    
 }

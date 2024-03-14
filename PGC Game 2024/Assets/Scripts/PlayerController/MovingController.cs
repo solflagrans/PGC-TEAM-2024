@@ -36,6 +36,7 @@ public class MovingController : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _doubleJumpForce;
     [SerializeField] private float _climbSpeed;
+	[SerializeField] private bool _isPanelLoading = true;
     
     [Header("Instances")]
     [SerializeField] private LayerMask _ground;
@@ -45,8 +46,7 @@ public class MovingController : MonoBehaviour
     private Transform _startClimbPoint;
     [SerializeField] private Collider _swordCollider;
     [SerializeField] private CameraController _cam;
-    [SerializeField] private Image _diePanel;
-	public Image loadPanel;
+    [SerializeField] private Image _fadePanel;
 
     [Header("Techincal Variables")]
     private Vector3 _movingVector;
@@ -58,7 +58,6 @@ public class MovingController : MonoBehaviour
     private bool _deadSoundPlayed;
     private Transform _target;
     private float _speedToTarget;
-	[HideInInspector] public bool isPanelLoading = true;
 
     private void Awake() {
 
@@ -72,6 +71,8 @@ public class MovingController : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody>();
         _audioHandler = AudioHandler.Instance;
+
+        if(_isPanelLoading) _fadePanel.fillAmount = 1;
 
     }
 
@@ -111,8 +112,9 @@ public class MovingController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) Jump();
         }
 
-        if (isPanelLoading) FadePanel();
-        }
+        if (_isPanelLoading) FadePanel();
+
+    }
 
     private void Move() {
         
@@ -234,7 +236,7 @@ public class MovingController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, Vector3.down * 5f, 0.08f);
 
         _cam.enabled = false;
-        _diePanel.fillAmount += 1 * Time.deltaTime;
+        _fadePanel.fillAmount += 1 * Time.deltaTime;
 
         if(!_audioHandler.gameStateSource.isPlaying && !_deadSoundPlayed) {
             _audioHandler.gameStateSource.PlayOneShot(_audioHandler.deathSound);
@@ -244,9 +246,8 @@ public class MovingController : MonoBehaviour
     }
     private void FadePanel() {
         
-        loadPanel.fillAmount -= 1 * Time.deltaTime;
-        if (loadPanel.fillAmount == 0) isPanelLoading = false;
-        //gameObject.GetComponent<Interactions>().PlaySound()
+        _fadePanel.fillAmount -= 1 * Time.deltaTime;
+        if (_fadePanel.fillAmount == 0) _isPanelLoading = false;
 
     }
 }

@@ -1,31 +1,37 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public AudioClip openSound;
-    public bool isOpening = false;
-    public float needRotation;
+
     private bool isOpened = false;
-    void Update()
-    {
-        if (isOpening)
-        {
-            transform.Rotate(0,needRotation,0);
-            if (transform.rotation.y / needRotation < 1)
-            {
-                isOpening = false;
-                isOpened = true;
-            }
-        }
+
+    [SerializeField] private GameObject _door;
+    private AudioSource _sound;
+
+    private void Start() {
+        
+        _sound = GetComponent<AudioSource>();
+
     }
-    void OnTriggerEnter(Collider coll){
-     if(coll.CompareTag("Player") && !isOpened){
-           isOpening = true;
-           print("qqq");
-          //анимация механика animator.SetTrigger("ClimbIdle");
-          //звук открытия gameObject.GetComponent<Interactions>().PlaySound(openSound);
-     }
+
+    void OnTriggerEnter(Collider coll) {
+
+        if(coll.gameObject.CompareTag("Player") && !isOpened){
+            StartCoroutine(OpenDoor());
+            //анимация механика animator.SetTrigger("ClimbIdle");
+            _sound.PlayOneShot(AudioHandler.Instance.doorOpening);
+            isOpened = true;
+        }
+
+    }
+
+    IEnumerator OpenDoor() {
+
+        for(int angle = 0; angle < 100; angle++) {
+            _door.transform.localRotation = Quaternion.Euler(_door.transform.localRotation.x, -angle, _door.transform.localRotation.z);
+            yield return null;
+        }
+
     }
 }
