@@ -7,13 +7,20 @@ public class Door : MonoBehaviour
     private bool isOpened = false;
 
     [SerializeField] private GameObject _door;
+    private AudioSource _sound;
+
+    private void Start() {
+        
+        _sound = GetComponent<AudioSource>();
+
+    }
 
     void OnTriggerEnter(Collider coll) {
 
         if(coll.gameObject.CompareTag("Player") && !isOpened){
             StartCoroutine(OpenDoor());
             //анимация механика animator.SetTrigger("ClimbIdle");
-            //звук открытия 
+            _sound.PlayOneShot(AudioHandler.Instance.doorOpening);
             isOpened = true;
         }
 

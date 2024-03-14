@@ -6,6 +6,7 @@ public class AudioHandler : MonoBehaviour
 
     public static AudioHandler Instance;
 
+    [Header("Audio Sources")]
     public AudioSource moveStateSource;
     public AudioSource robotSource;
     public AudioSource jumpSource;
@@ -15,6 +16,7 @@ public class AudioHandler : MonoBehaviour
     public List<AudioSource> puzzleSources;
     public List<AudioSource> menuSources;
 
+    [Header("Audio Clips")]
     public AudioClip walkSound;
     public AudioClip helicopterSound;
     public AudioClip jumpSound;
@@ -26,6 +28,7 @@ public class AudioHandler : MonoBehaviour
     public AudioClip heavyButtonOff;
     public AudioClip buttonPress;
     public AudioClip menuPress;
+    public AudioClip doorOpening;
 
     private void Awake() {
 
