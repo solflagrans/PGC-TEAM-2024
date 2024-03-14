@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/MapPrototype.unity
     guid: d39ba16dc87f51841aa3a79f80190a30
   - enabled: 1
+    path: Assets/Scenes/Levels/MechanicForestClear.unity
+    guid: 90e09f8342f713e4c85cb1d5bd2d2023
+  - enabled: 1
     path: Assets/Scenes/Misc/LevelPrototype.unity
     guid: a727287697d8d194e9d5810bfa1f107e
   m_configObjects:
