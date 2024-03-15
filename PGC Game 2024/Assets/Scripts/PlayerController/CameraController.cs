@@ -5,6 +5,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Preferences")]
     [SerializeField] private Vector3 _locOffset;
+    [SerializeField, Range(1, 3)] private float _sensitivity;
 
     [Header("Instances")]
     private Transform _player;
@@ -23,7 +24,7 @@ public class CameraController : MonoBehaviour
 
     private void FollowPlayer() {
 
-        Vector3 desiredPosition = new Vector3(_player.position.x/2, _player.position.y, _player.position.z/2) + _locOffset;
+        Vector3 desiredPosition = new Vector3(_player.position.x/_sensitivity, _player.position.y, _player.position.z/_sensitivity) + _locOffset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.125f);
         transform.position = smoothedPosition;
 

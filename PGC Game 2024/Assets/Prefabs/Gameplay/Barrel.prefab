@@ -16,17 +16,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.731768
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.786489
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
         type: 3}
@@ -148,8 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933fec4cd59183b4d9cf6fac4f1c7ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructibleObject: {fileID: 1341942260050909618, guid: ec7fa7ba07e27504298bc6a939f664b7,
+  _destructedObject: {fileID: 1341942260050909618, guid: ec7fa7ba07e27504298bc6a939f664b7,
     type: 3}
+  _explosionStrength: 2
 --- !u!114 &4124672110264186488
 MonoBehaviour:
   m_ObjectHideFlags: 0

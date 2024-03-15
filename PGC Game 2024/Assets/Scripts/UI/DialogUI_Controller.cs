@@ -1,46 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class DialogUI_Controller : MonoBehaviour
 {
-    [SerializeField] private TextWriter textWriter_1;
-    public TextMeshProUGUI phrase;
-    //public AudioSource audio;
-    private int phraseNum = 0;
-    public GameObject textWindow;
-    public List<string> phrases = new List<string>(){ };
+    [SerializeField] private TextWriter _textWriter;
+    [SerializeField] private TextMeshProUGUI _phrase;
+    private int _phraseNum;
+    private List<string> _phrases = new List<string>(){ };
 
-    public void StartWriting(){
-        phraseNum = 0;
-        textWriter_1.AddWriter(phrase,phrases[phraseNum],0.1f,true,EndOfPhrase);
-       // GetComponent<AudioSource>().Play();
+    public List<string> Phrases { get => _phrases; set => _phrases = value; }
+
+    public void StartWriting() {
+        _phraseNum = 0;
+        _textWriter.AddWriter(_phrase, _phrases[_phraseNum], 0.2f, true, EndOfPhrase);
     }
-    private void EndOfPhrase(){
+
+    private void EndOfPhrase() {
         //GetComponent<AudioSource>().Stop();
     }
 
     private void Update()
     {
-        Debug.Log(phraseNum);
-        if (Input.anyKeyDown && textWriter_1.IsActive())
+        if (Input.GetKeyDown(KeyCode.Return) && _textWriter.IsActive())
         {
-            print("text is writing");
-            textWriter_1.WriteAll();
+            _textWriter.WriteAll();
         }
-        else if (Input.anyKeyDown  && !textWriter_1.IsActive() && phraseNum == phrases.Count - 1)
+        else if (Input.GetKeyDown(KeyCode.Return) && !_textWriter.IsActive() && _phraseNum == _phrases.Count - 1)
         {
             gameObject.GetComponent<Interactions>().EndDialogue();
         }
-        else if (Input.anyKeyDown  && !textWriter_1.IsActive() && phraseNum < phrases.Count - 1)
+        else if (Input.GetKeyDown(KeyCode.Return) && !_textWriter.IsActive() && _phraseNum < _phrases.Count - 1)
         {
-            phraseNum++;
-           // audio.Play();
-            textWriter_1.AddWriter(phrase, phrases[phraseNum], 0.1f, true, EndOfPhrase);
+            _phraseNum++;
+            _textWriter.AddWriter(_phrase, _phrases[_phraseNum], 0.2f, true, EndOfPhrase);
         }
     }
 }
