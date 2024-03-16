@@ -25,7 +25,6 @@ public class SaveHandler : MonoBehaviour
 
     }
 
-
     public void CheckpointSave() {
 
         PlayerPrefs.SetFloat("PosX", _playerInfo.transform.position.x);
@@ -89,26 +88,6 @@ public class SaveHandler : MonoBehaviour
     public void LoadCollection() {
 
         //analogy
-
-    }
-
-    public void SettingsSave() {
-
-        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
-        PlayerPrefs.SetInt("Quality", QualitySettings.GetQualityLevel());
-        PlayerPrefs.SetString("Fullscreen", Screen.fullScreen ? "true" : "false");
-        //Resolution
-
-        PlayerPrefs.Save();
-
-    }
-
-
-    public void LoadSettings() {
-
-        AudioListener.volume = PlayerPrefs.GetFloat("Volume", 1);
-        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality", 1));
-        Screen.fullScreen = PlayerPrefs.GetInt("FullScreen", 0) == 1 ? true : false;
 
     }
 
