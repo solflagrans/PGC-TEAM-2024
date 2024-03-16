@@ -68,19 +68,23 @@ public class UI_Controller : MonoBehaviour
             _menuOpened = true;
             Cursor.visible = true;
             AudioHandler.Instance.MuteForMenu();
+            MovingController.Instance.enabled = false;
         } else {
             Time.timeScale = 1f;
             _pauseUI.SetActive(false);
             _menuOpened = false;
             Cursor.visible = false;
             AudioHandler.Instance.Unmute();
+            MovingController.Instance.enabled = true;
         }
 
     }
 
-   public void Restart() {
+   public void ToMap() {
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(GameInformation.Instance.LastUnlockedLevel < 1) return;
+
+        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
 
     }

@@ -6,6 +6,7 @@ public class Gate : MonoBehaviour
 
     [SerializeField] private bool _flip;
     [SerializeField] private bool _reverse;
+    [SerializeField] private int isometicAngle;
 
     private bool _opened;
     private bool _inUse;
@@ -33,10 +34,10 @@ public class Gate : MonoBehaviour
 
         if(_opened) {
             for(float angle = 0; angle < 90f; angle += 0.5f) {
-                if(!_reverse && !_flip) transform.rotation = Quaternion.Euler(0, angle, 0);
-                if(_reverse && !_flip) transform.rotation = Quaternion.Euler(0, -angle, 0);
-                if(!_reverse && _flip) transform.rotation = Quaternion.Euler(90 + angle, -90, -90);
-                if(_reverse && _flip) transform.rotation = Quaternion.Euler(-90 - angle, -90, -90);
+                if(!_reverse && !_flip) transform.rotation = Quaternion.Euler(0, angle + isometicAngle, 0);
+                if(_reverse && !_flip) transform.rotation = Quaternion.Euler(0, -angle + isometicAngle, 0);
+                if(!_reverse && _flip) transform.rotation = Quaternion.Euler(90 + angle, -90 + isometicAngle, -90);
+                if(_reverse && _flip) transform.rotation = Quaternion.Euler(-90 - angle, -90 + isometicAngle, -90);
                 yield return null;
             }
         }
@@ -51,10 +52,10 @@ public class Gate : MonoBehaviour
         _inUse = true;
 
             for(float angle = 0; angle > -90f; angle -= 0.5f) {
-                if(!_reverse && !_flip) transform.rotation = Quaternion.Euler(0, 90 + angle, 0);
-            if(_reverse && !_flip) transform.rotation = Quaternion.Euler(0, -90 - angle, 0);
-            if(!_reverse && _flip) transform.rotation = Quaternion.Euler(180 + angle, -90, -90);
-            if(_reverse && _flip) transform.rotation = Quaternion.Euler(-180 - angle, -90, -90);
+                if(!_reverse && !_flip) transform.rotation = Quaternion.Euler(0, 90 + angle + isometicAngle, 0);
+            if(_reverse && !_flip) transform.rotation = Quaternion.Euler(0, -90 - angle + isometicAngle, 0);
+            if(!_reverse && _flip) transform.rotation = Quaternion.Euler(180 + angle, -90 + isometicAngle, -90);
+            if(_reverse && _flip) transform.rotation = Quaternion.Euler(-180 - angle, -90 + isometicAngle, -90);
             yield return null;
             }
 

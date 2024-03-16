@@ -5,6 +5,8 @@ public class LoadLevel : MonoBehaviour
 {
 
     [SerializeField] private int _levelToLoad;
+    [SerializeField] private int _neededLevel;
+    [SerializeField] private bool _needKey;
 
     private bool inTrigger;
 
@@ -12,7 +14,8 @@ public class LoadLevel : MonoBehaviour
 
         if(!inTrigger) return;
 
-        if(Input.GetKeyDown(KeyCode.E) && GameInformation.Instance.LastUnlockedLevel >= _levelToLoad) GoLevel();
+        if(_needKey) if(Input.GetKeyDown(KeyCode.E) && GameInformation.Instance.LastUnlockedLevel >= _neededLevel) GoLevel();
+        if(!_needKey) if(GameInformation.Instance.LastUnlockedLevel >= _neededLevel) GoLevel();
 
     }
 
@@ -22,6 +25,14 @@ public class LoadLevel : MonoBehaviour
             inTrigger = true;
         }
         
+    }
+
+    private void OnTriggerExit(Collider col) {
+        
+        if(col.CompareTag("Player")) {
+            inTrigger = false;
+        }
+
     }
 
     private void GoLevel() {

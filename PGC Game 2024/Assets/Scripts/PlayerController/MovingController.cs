@@ -23,6 +23,8 @@ public class MovingController : MonoBehaviour
     public Transform Target { get => _target; set => _target = value; }
     public Rigidbody Rigidbody { get => _rigidbody; set => _rigidbody = value; }
     public float SpeedToTarget { get => _speedToTarget; set => _speedToTarget = value; }
+    public bool CanJump { get => _canJump; set => _canJump = value; }
+    public bool CanDoubleJump { get => _canDoubleJump; set => _canDoubleJump = value; }
 
     [Header("Moving Mode")] 
     private string _movingMode = "Default";

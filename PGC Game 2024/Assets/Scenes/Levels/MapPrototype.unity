@@ -273,6 +273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelToLoad: 5
+  _neededLevel: 3
+  _needKey: 1
 --- !u!65 &917911902
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -560,6 +562,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelToLoad: 4
+  _neededLevel: 2
+  _needKey: 1
 --- !u!1 &1670127128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1293605270326194, guid: c72f3f8a9daab2442b7dd148c087d333,
@@ -600,6 +604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelToLoad: 2
+  _neededLevel: 0
+  _needKey: 1
 --- !u!1 &1865006796 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1826059589380599827, guid: 07a0367c119e4ca408ec23af0e377799,
@@ -858,6 +864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelToLoad: 3
+  _neededLevel: 1
+  _needKey: 1
 --- !u!1 &2103464138 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5818205763518135594, guid: 395d5ec7f996d364f94e11cfb40736d3,
@@ -5505,7 +5513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2532994354214182014
 GameObject:
   m_ObjectHideFlags: 0
@@ -5821,6 +5829,7 @@ MonoBehaviour:
   heavyButtonOff: {fileID: 8300000, guid: e21072f249bc77f41b670bddba47e41c, type: 3}
   buttonPress: {fileID: 8300000, guid: b4e73f157685b2d4093c156d4b4a7093, type: 3}
   menuPress: {fileID: 8300000, guid: 69964913f76144e43967dcf8331b285b, type: 3}
+  doorOpening: {fileID: 0}
 --- !u!1 &2630506151572573740
 GameObject:
   m_ObjectHideFlags: 0
@@ -8433,7 +8442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041A \u0447\u0435\u043A\u043F\u043E\u0438\u043D\u0442\u0443"
+  m_text: "\u041D\u0430 \u043A\u0430\u0440\u0442\u0443"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d01cee82eebec542b63392f6eea8903, type: 2}
   m_sharedMaterial: {fileID: 8455396492753516443, guid: 3d01cee82eebec542b63392f6eea8903,
@@ -8461,12 +8470,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.1
+  m_fontSize: 64
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
-  m_fontSizeMax: 94.94
+  m_fontSizeMax: 64
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -11087,7 +11096,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2540100972088771470}
         m_TargetAssemblyTypeName: UI_Controller, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: ToMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

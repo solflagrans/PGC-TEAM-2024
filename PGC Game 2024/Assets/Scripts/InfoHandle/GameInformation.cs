@@ -14,6 +14,7 @@ public class GameInformation : MonoBehaviour
     private List<int> _solvedPuzzles;
     private List<int> _brokenBarrels;
     private bool _isTalkedToMechanic = false;
+    private Checkpoint _lastCheckpoint;
     public Transform tpPoint;
     public Vector3 tpPosition;
 
@@ -23,6 +24,8 @@ public class GameInformation : MonoBehaviour
     public List<int> ShopList { get => _shopList; set => _shopList = value; }
     public List<int> SolvedPuzzles { get => _solvedPuzzles; set => _solvedPuzzles = value; }
     public List<int> BrokenBarrels { get => _brokenBarrels; set => _brokenBarrels = value; }
+    public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
+    public Checkpoint LastCheckpoint { get => _lastCheckpoint; set => _lastCheckpoint = value; }
 
     private void Awake() {
 
@@ -41,16 +44,13 @@ public class GameInformation : MonoBehaviour
 
     private void Update() {
         
-        if(Input.GetKeyDown(KeyCode.J)) {
-            SceneManager.LoadScene(2);
-            PlayerInformation.Instance.Hp = 3;
-        }
         if(Input.GetKeyDown(KeyCode.K)) {
             MovingController.Instance.gameObject.transform.position = tpPosition;
         }
+        if(Input.GetKeyDown(KeyCode.H)) {
+            PlayerInformation.Instance.Hp = 3;
+        }
 
     }
-
-    public bool IsTalkedToMechanic {get => _isTalkedToMechanic; set => _isTalkedToMechanic = value;}
     
 }

@@ -8,6 +8,9 @@ public class Tumbler : MonoBehaviour
 
     private float _angle;
     private float _shear;
+
+    private float _timer = 1.5f;
+    private bool _cooldowned;
     
     private AudioSource _audioSource;
 
@@ -18,6 +21,23 @@ public class Tumbler : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         AudioHandler.Instance.puzzleSources.Add(_audioSource);
+
+    }
+
+    private void Update() {
+
+        Cooldown();
+
+    }
+
+    private void Cooldown() {
+
+        if(_timer < 1f) {
+            _timer += 1f * Time.deltaTime;
+            _cooldowned = true;
+        } else {
+            _cooldowned = false;
+        }
 
     }
 
@@ -33,9 +53,13 @@ public class Tumbler : MonoBehaviour
 
         _audioSource.PlayOneShot(AudioHandler.Instance.buttonPress);
 
+        _timer = 0f;
+
     }
 
     private void OnTriggerEnter(Collider col) {
+
+        if(_cooldowned) return;
 
         if(col.gameObject.CompareTag("Robot")) {
             Turn();
