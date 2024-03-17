@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MovingController : MonoBehaviour
@@ -58,6 +59,7 @@ public class MovingController : MonoBehaviour
     private bool _waitAttack;
     private bool _isDead;
     private bool _deadSoundPlayed;
+    private bool _sceneLoading;
     private Transform _target;
     private float _speedToTarget;
 
@@ -104,6 +106,7 @@ public class MovingController : MonoBehaviour
         }
 
         if(_isDead) return;
+
 
         if (_movingMode == "Default")
         {
@@ -244,8 +247,24 @@ public class MovingController : MonoBehaviour
             _audioHandler.gameStateSource.PlayOneShot(_audioHandler.deathSound);
             _deadSoundPlayed = true;
         }
+
+        StartCoroutine(Restart());
         
     }
+
+    IEnumerator Restart() {
+
+        yield return new WaitForSeconds(3f);
+
+        PlayerInformation.Instance.Hp = PlayerInformation.Instance.MaxHp;
+
+        if(!_sceneLoading) {
+            SceneManager.LoadSceneAsync(1);
+            _sceneLoading = true;
+        }
+
+    }
+
     private void FadePanel() {
         
         _fadePanel.fillAmount -= 1 * Time.deltaTime;
