@@ -3,25 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GetWinChip : MonoBehaviour
-{
-    private bool isFlying;
-    public Transform tpTransform;
+{ 
     public float speed;
     void OnCollisionEnter(Collision coll)
     {
+        PRINT("1");
         if (coll.collider.CompareTag("WinChip"))
         {
+            PRINT("2");
             gameObject.GetComponent<Animator>().SetTrigger("Jump");
-            isFlying = true;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isFlying)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, tpTransform.position, speed);
+            gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up *speed, ForceMode.Impulse);
         }
     }
 }
