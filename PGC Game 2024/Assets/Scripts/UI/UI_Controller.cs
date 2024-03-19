@@ -54,6 +54,7 @@ public class UI_Controller : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)) ChangeMenuState();
 
         _healthBar.value = PlayerInformation.Instance.Hp;
+        _healthBar.maxValue = PlayerInformation.Instance.MaxHp;
         //_honeyFiller.value = Mathf.Floor((((float)PlayerInformation.Instance.CollectedHoney) / ((float)PlayerInformation.Instance.MaxHoneyAmount)) * 100);
         //_honeyPercentage.text = _honeyFiller.value.ToString() + "%";
         _honeyNumber.text = PlayerInformation.Instance.CollectedHoney.ToString() + " сот";

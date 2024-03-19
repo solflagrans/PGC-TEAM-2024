@@ -6,8 +6,8 @@ public class PlayerInformation : MonoBehaviour
     public static PlayerInformation Instance { get; private set; }
 
     [Header("Stats")]
-    private int _hp = 3;
-    private int _maxHp = 3;
+    private int _hp = 6;
+    private int _maxHp = 6;
     private int _collectedHoney;
     private int _maxHoneyAmount = 60;
 

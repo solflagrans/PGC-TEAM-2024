@@ -57836,6 +57836,7 @@ MonoBehaviour:
   _elevators: []
   _gates:
   - {fileID: 1412243793}
+  _objects: []
   _result: 0
   _canUndo: 1
   _trapHeavyButtons: []
@@ -58379,6 +58380,7 @@ MonoBehaviour:
   _elevators:
   - {fileID: 642985802}
   _gates: []
+  _objects: []
   _result: 1
   _canUndo: 1
   _trapHeavyButtons: []

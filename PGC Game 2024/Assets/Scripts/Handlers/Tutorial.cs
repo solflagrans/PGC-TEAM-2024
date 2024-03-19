@@ -46,10 +46,10 @@ public class Tutorial : MonoBehaviour
 
         switch(_step) {
             case 0:
-                if(Input.GetKeyDown(KeyCode.W)) _wPressed = true;
-                if(Input.GetKeyDown(KeyCode.A)) _aPressed = true;
-                if(Input.GetKeyDown(KeyCode.S)) _sPressed = true;
-                if(Input.GetKeyDown(KeyCode.D)) _dPressed = true;
+                if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) _wPressed = true;
+                if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) _aPressed = true;
+                if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) _sPressed = true;
+                if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) _dPressed = true;
                 if(_wPressed && _aPressed && _sPressed && _dPressed) {
                     _texts[0].SetActive(false);
                     _step = 1;

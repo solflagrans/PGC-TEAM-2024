@@ -16,6 +16,8 @@ public class Interactions : MonoBehaviour
     private MovingController _movingController;
     private DialogUI_Controller _dialogController;
     private bool inTrigger;
+    private int order;
+    private int dialogueType;
 
     private void Start() {
         
@@ -29,7 +31,10 @@ public class Interactions : MonoBehaviour
 
     private void Update() {
 
-        if(inTrigger) TalkToMechanic(_mechanic);
+        if(inTrigger) {
+            if(dialogueType == 0) TalkToMechanic(_mechanic);
+            if(dialogueType == 1) FinalDialogue(_mechanic);
+        }
 
     }
 
@@ -82,6 +87,25 @@ public class Interactions : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.Q) && !_dialogueWindow.activeSelf) {
             OpenShop();
         }
+
+    }
+
+    private void FinalDialogue(GameObject mechanic) {
+
+            _worldText.SetActive(false);
+            if(order == 0) {
+                StartDialogue(_dialogue1);
+                order++;
+                this.enabled = false;
+            } else if(order == 1) {
+                StartDialogue(_dialogue2);
+                order++;
+                this.enabled = false;
+            } else if(order == 2) {
+                StartDialogue(_dialogue3);
+                order++;
+                this.enabled = false;
+            }
 
     }
 
