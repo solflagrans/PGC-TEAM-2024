@@ -15,7 +15,7 @@ public class Honey : MonoBehaviour
 
     private void Start() {
 
-        _cost = Random.Range(1, 3);
+        _cost = Random.Range(1, 2);
 
         MeshRenderer _mesh = GetComponent<MeshRenderer>();
         Color _color = new Color(1f, 1f - _cost / 10, 1f);

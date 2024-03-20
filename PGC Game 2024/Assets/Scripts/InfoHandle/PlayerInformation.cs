@@ -6,8 +6,8 @@ public class PlayerInformation : MonoBehaviour
     public static PlayerInformation Instance { get; private set; }
 
     [Header("Stats")]
-    private int _hp = 3;
-    private int _maxHp = 3;
+    private int _hp = 6;
+    private int _maxHp = 6;
     private int _collectedHoney;
     private int _maxHoneyAmount = 60;
 
@@ -21,9 +21,11 @@ public class PlayerInformation : MonoBehaviour
             if(IsInvulnerable) return;
             if(value >= 0 && value <= _maxHp) {
                 _hp = value;
-                AudioHandler.Instance.healthSource.PlayOneShot(AudioHandler.Instance.hitSound);
-                IsInvulnerable = true;
-                if(!UI_Controller.Instance.HPFading) StartCoroutine(UI_Controller.Instance.FadeHP());
+                if(value != MaxHp) {
+                    AudioHandler.Instance.healthSource.PlayOneShot(AudioHandler.Instance.hitSound);
+                    if(value != 0) IsInvulnerable = true;
+                    if(!UI_Controller.Instance.HPFading) StartCoroutine(UI_Controller.Instance.FadeHP());
+                }
             }
         } 
     }
