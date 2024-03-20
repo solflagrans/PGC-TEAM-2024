@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GiveClue : MonoBehaviour
 {
+    public static GiveClue Instance;
     public Transform [] clueLocations;
     private int puzzleNum;
     [SerializeField] private float clueTime;

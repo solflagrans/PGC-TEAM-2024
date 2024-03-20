@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3721922158931549762}
   - component: {fileID: 4949576240930875808}
   - component: {fileID: 8729109965146370347}
-  - component: {fileID: 8269304119126701913}
   - component: {fileID: 8754894333148496495}
+  - component: {fileID: 2994612000509425434}
   m_Layer: 0
   m_Name: HealJar 1
   m_TagString: HealJar
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a4988e827416afd47a1a6c930410d521, type: 2}
+  - {fileID: 2100000, guid: 539e82fa56cd46e4fb9aa0f1fe483d5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,18 +109,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &8269304119126701913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6688534221271611549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3935a84edf476a342818ad64a062b794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &8754894333148496495
 AudioSource:
   m_ObjectHideFlags: 0
@@ -217,3 +205,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2994612000509425434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6688534221271611549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb429df3fed66b4c9e5ae888cf357d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
