@@ -17,6 +17,7 @@ public class UI_Controller : MonoBehaviour
     /*[SerializeField] private Slider _honeyFiller;
     [SerializeField] private TextMeshProUGUI _honeyPercentage;*/
     [SerializeField] private TextMeshProUGUI _honeyNumber;
+    [SerializeField] private TextMeshProUGUI _healNumber;
     [SerializeField] private GameObject _scroll;
 
     [SerializeField] private Image _healthFill;
@@ -32,7 +33,7 @@ public class UI_Controller : MonoBehaviour
     private bool _menuOpened;
     private bool _hpFading;
     private bool _honeyFading;
-
+    private bool _healFading;
     private void Awake() {
 
         if(!Instance) Instance = this;
@@ -41,6 +42,7 @@ public class UI_Controller : MonoBehaviour
 
     public bool HPFading { get => _hpFading; }
     public bool HoneyFading { get => _honeyFading; }
+    public bool HealFading { get => _healFading; }
     public GameObject Scroll { get => _scroll; set => _scroll = value; }
 
     private void Start() {
@@ -56,7 +58,9 @@ public class UI_Controller : MonoBehaviour
         _healthBar.value = PlayerInformation.Instance.Hp;
         //_honeyFiller.value = Mathf.Floor((((float)PlayerInformation.Instance.CollectedHoney) / ((float)PlayerInformation.Instance.MaxHoneyAmount)) * 100);
         //_honeyPercentage.text = _honeyFiller.value.ToString() + "%";
+        _healNumber.text = PlayerInformation.Instance.CollectedHealJars.ToString() + " банок мёда";
         _honeyNumber.text = PlayerInformation.Instance.CollectedHoney.ToString() + " сот";
+        
 
     }
 
@@ -151,5 +155,26 @@ public class UI_Controller : MonoBehaviour
         _honeyFading = false;
 
     }
+    public IEnumerator FadeHeal()
+    {
 
+        _healFading = true;
+
+        for (float alpha = 0; alpha < 1.5f; alpha += 0.04f)
+        {
+            _healNumber.color = new Color(_healNumber.color.r, _healNumber.color.g, _healNumber.color.b, alpha);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(7);
+
+        for (float alpha = 1; alpha > -0.5f; alpha -= 0.005f)
+        {
+            _healNumber.color = new Color(_healNumber.color.r, _healNumber.color.g, _healNumber.color.b, alpha);
+            yield return null;
+        }
+
+        _healFading = true;
+
+    }
 }
