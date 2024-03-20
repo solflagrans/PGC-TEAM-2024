@@ -91,7 +91,7 @@ public class HackUI : MonoBehaviour
 
     IEnumerator Collider() {
 
-        while(!cols[textParam].playerIn) {
+        while(!cols[textParam].PlayerIn) {
             yield return new WaitForSeconds(.1f);
         }
 

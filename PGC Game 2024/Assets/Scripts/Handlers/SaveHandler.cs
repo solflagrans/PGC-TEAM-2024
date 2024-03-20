@@ -12,10 +12,7 @@ public class SaveHandler : MonoBehaviour
 
     private void Awake() {
 
-        if(!Instance) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else Destroy(gameObject);
+        if(!Instance) Instance = this;
 
     }
 
@@ -24,67 +21,35 @@ public class SaveHandler : MonoBehaviour
         _playerInfo = PlayerInformation.Instance;
         _gameInfo = GameInformation.Instance;
 
-        LoadOnLevelEnter();
+        OnLevelEnter();
 
     }
-
 
     public void CheckpointSave() {
 
         PlayerPrefs.SetFloat("PosX", _playerInfo.transform.position.x);
         PlayerPrefs.SetFloat("PosY", _playerInfo.transform.position.y);
         PlayerPrefs.SetFloat("PosZ", _playerInfo.transform.position.z);
-        PlayerPrefs.SetInt("Hp", _playerInfo.Hp);
         PlayerPrefs.SetInt("Honey", _playerInfo.CollectedHoney);
 
-        string solvedPuzzlesHash = "";
-        foreach(int id in _gameInfo.SolvedPuzzles) {
-            solvedPuzzlesHash += id + " ";
-        }
-        PlayerPrefs.SetString("SolvedPuzzles", solvedPuzzlesHash);
-
-        string brokenBarrelsHash = "";
-        foreach(int id in _gameInfo.BrokenBarrels) {
-            brokenBarrelsHash += id + " ";
-        }
-        PlayerPrefs.SetString("Barrel", brokenBarrelsHash);
-
-        PlayerPrefs.Save();
-
-    }
-    public void EnterLevelSave() {
-
-        PlayerPrefs.SetInt("Level", _gameInfo.LevelNum);
-
         PlayerPrefs.Save();
 
     }
 
-    public void ExitLevelSave() {
+    public void CheckpointLoad() {
 
-        PlayerPrefs.SetInt("Hp", _playerInfo.MaxHp);
-        PlayerPrefs.SetInt("Honey", _playerInfo.CollectedHoney);
-
-        string solvedPuzzlesHash = "";
-        foreach(int id in _gameInfo.SolvedPuzzles) {
-            solvedPuzzlesHash += id + " ";
-        }
-        PlayerPrefs.SetString("SolvedPuzzles", solvedPuzzlesHash);
-
-        string brokenBarrelsHash = "";
-        foreach(int id in _gameInfo.BrokenBarrels) {
-            brokenBarrelsHash += id + " ";
-        }
-        PlayerPrefs.SetString("Barrel", brokenBarrelsHash);
-
-        PlayerPrefs.DeleteKey("PosX");
-        PlayerPrefs.DeleteKey("PosY");
-        PlayerPrefs.DeleteKey("PosZ");
-
-        PlayerPrefs.Save();
+        if(PlayerPrefs.HasKey("PosX")) _playerInfo.transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
+        PlayerInformation.Instance.CollectedHoney = PlayerPrefs.GetInt("Honey", 0);
 
     }
 
+    public void OnLevelEnter() {
+
+        GameInformation.Instance.IsTalkedToMechanic = PlayerPrefs.GetInt("MechanicTalked", 0) == 1 ? true : false ;
+        GameInformation.Instance.LastUnlockedLevel = PlayerPrefs.GetInt("LastLevel", 0);
+        PlayerInformation.Instance.CollectedHoney = PlayerPrefs.GetInt("Honey", 0);
+
+    }
 
     public void ShopSave() {
 
@@ -107,44 +72,10 @@ public class SaveHandler : MonoBehaviour
 
     }
 
-    public void UnlockedLevelSave() {
+    public void LastLevel() {
 
-        PlayerPrefs.SetInt("LastUnlockedLevel", _gameInfo.LastUnlockedLevel);
-
+        PlayerPrefs.SetInt("LastLevel", _gameInfo.LastUnlockedLevel);
         PlayerPrefs.Save();
-
-    }
-
-    public void SettingsSave() {
-
-        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
-        PlayerPrefs.SetInt("Quality", QualitySettings.GetQualityLevel());
-        PlayerPrefs.SetString("Fullscreen", Screen.fullScreen ? "true" : "false");
-        //Resolution
-
-        PlayerPrefs.Save();
-
-    }
-
-    private void LoadOnLevelEnter() {
-
-        _playerInfo.MaxHp = PlayerPrefs.GetInt("MaxHp", _playerInfo.MaxHp);
-        _playerInfo.MaxHoneyAmount = PlayerPrefs.GetInt("MaxHoney", _playerInfo.MaxHoneyAmount);
-
-        _playerInfo.Hp = PlayerPrefs.GetInt("Hp", _playerInfo.Hp);
-        _playerInfo.CollectedHoney = PlayerPrefs.GetInt("Honey", _playerInfo.CollectedHoney);
-
-        string[] solvedPuzzles = PlayerPrefs.GetString("SolvedPuzzles").Split(" ");
-        foreach (string id in solvedPuzzles) {
-            _gameInfo.SolvedPuzzles.Add(Int32.Parse(id));
-        }
-
-        string[] brokenBarrels = PlayerPrefs.GetString("BrokenBarrels").Split(" ");
-        foreach(string id in brokenBarrels) {
-            _gameInfo.BrokenBarrels.Add(Int32.Parse(id));
-        }
-
-        if(PlayerPrefs.HasKey("PosX")) _playerInfo.transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
 
     }
 
@@ -157,20 +88,6 @@ public class SaveHandler : MonoBehaviour
     public void LoadCollection() {
 
         //analogy
-
-    }
-
-    public void LoadLastLevel() {
-
-        _gameInfo.LastUnlockedLevel = PlayerPrefs.GetInt("LastUnlockedLevel", 2);
-
-    }
-
-    public void LoadSettings() {
-
-        AudioListener.volume = PlayerPrefs.GetFloat("Volume", 1);
-        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality", 1));
-        Screen.fullScreen = PlayerPrefs.GetInt("FullScreen", 0) == 1 ? true : false;
 
     }
 

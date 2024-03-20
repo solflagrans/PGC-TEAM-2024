@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
     [Header("Instances")]
     private Transform _player;
 
+    public float Sensitivity { get => _sensitivity; set => _sensitivity = value; }
+
     private void Start() {
 
         _player = MovingController.Instance.transform;
