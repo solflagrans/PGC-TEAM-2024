@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 070c984c4755a09478d0b5c5f19d8af4
+<<<<<<<< HEAD:PGC Game 2024/Assets/Scenes/Levels/Engineer's_room.unity.meta
+guid: 793f4f3a37fcb69468292f116fb8fb12
+========
+guid: 76f89ef5e9db8924fb8dbd13c749ee5f
+>>>>>>>> Nikita:PGC Game 2024/Assets/Visual/Models/Models/SimpleNaturePack/SimpleNaturePack_2020.3_URP_v1.24.unitypackage.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

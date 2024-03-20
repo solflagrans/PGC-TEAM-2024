@@ -44,12 +44,11 @@ public class LoadLevel : MonoBehaviour
                 if(_closed != null) _closed.SetActive(false);
             }
         }
-
     }
 
     private void GoLevel() {
 
-        PlayerPrefs.SetInt("LoadLevel", _levelToLoad);
+        //PlayerPrefs.SetInt("LoadLevel", _levelToLoad);
         SceneManager.LoadScene(_levelToLoad);
 
     }
