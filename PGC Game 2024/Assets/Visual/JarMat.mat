@@ -7,20 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:PGC Game 2024/Assets/Visual/JarMat.mat
   m_Name: JarMat
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-========
-  m_Name: Elevator
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _SPECULAR_SETUP
->>>>>>>> Nikita:PGC Game 2024/Assets/Visual/Models/Materials/Elevator.mat
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -113,17 +104,12 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-<<<<<<<< HEAD:PGC Game 2024/Assets/Visual/JarMat.mat
     - _Smoothness: 0.5
-========
-    - _Smoothness: 0.19
->>>>>>>> Nikita:PGC Game 2024/Assets/Visual/Models/Materials/Elevator.mat
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-<<<<<<<< HEAD:PGC Game 2024/Assets/Visual/JarMat.mat
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -133,17 +119,6 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4410664243567893188
-========
-    - _WorkflowMode: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _BaseColor: {r: 1, g: 0.6804127, b: 0, a: 1}
-    - _Color: {r: 1, g: 0.6804127, b: 0, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-  m_BuildTextureStacks: []
---- !u!114 &4196846967596304642
->>>>>>>> Nikita:PGC Game 2024/Assets/Visual/Models/Materials/Elevator.mat
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

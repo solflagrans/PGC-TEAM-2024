@@ -3044,7 +3044,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8538779611280863186}
         m_TargetAssemblyTypeName: UI_Controller, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: ToMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7169,8 +7169,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278230783
-  m_fontColor: {r: 1, g: 0.61960787, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7193,7 +7193,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 150
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -7639,7 +7639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2761444063143670280
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8102,7 +8102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041A \u0447\u0435\u043A\u043F\u043E\u0438\u043D\u0442\u0443"
+  m_text: "\u041A \u043A\u0430\u0440\u0442\u0435"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d01cee82eebec542b63392f6eea8903, type: 2}
   m_sharedMaterial: {fileID: 8455396492753516443, guid: 3d01cee82eebec542b63392f6eea8903,
@@ -8130,12 +8130,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.1
-  m_fontSizeBase: 24
+  m_fontSize: 62
+  m_fontSizeBase: 62
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 0
-  m_fontSizeMax: 94.94
+  m_fontSizeMax: 64.6
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -8806,7 +8806,7 @@ Canvas:
   m_GameObject: {fileID: 6018207147921778275}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -13356,7 +13356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4327870935783389137
 Transform:
   m_ObjectHideFlags: 0

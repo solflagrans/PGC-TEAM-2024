@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:PGC Game 2024/Assets/Prefabs/Misc/HealJar.prefab.meta
+guid: 1864059e7e8bc164ab69747d49650b0f
+PrefabImporter:
+========
 guid: c51303269a9be044e86f918d3dfafe1b
 DefaultImporter:
+>>>>>>>> New_Nikolas:PGC Game 2024/Assets/Scenes/Levels/Farm_new.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
