@@ -8,6 +8,7 @@ public class PlayerInformation : MonoBehaviour
     [Header("Stats")]
     private int _hp = 6;
     private int _maxHp = 6;
+    private int _healJars;
     private int _collectedHoney;
     private int _maxHoneyAmount = 60;
 
@@ -39,6 +40,16 @@ public class PlayerInformation : MonoBehaviour
             if(!UI_Controller.Instance.HoneyFading) StartCoroutine(UI_Controller.Instance.FadeHoney());
         } 
     }
+
+    public int CollectedHealJars {
+        get => _healJars;
+        set {
+            if(value >= 0) _healJars = value;
+            //else if(value > _maxHoneyAmount) _collectedHoney = _maxHoneyAmount;
+            if(!UI_Controller.Instance.HealFading) StartCoroutine(UI_Controller.Instance.FadeHeal());
+        }
+    }
+
     public int MaxHoneyAmount { get => _maxHoneyAmount; set { if(value >= 0) _maxHoneyAmount = value; } }
     public int SwordAura { get => _swordAura; set { if(value >= -1) _swordAura = value; } }
 

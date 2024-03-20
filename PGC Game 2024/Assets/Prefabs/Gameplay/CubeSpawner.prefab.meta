@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:PGC Game 2024/Assets/Prefabs/Gameplay/CubeSpawner.prefab.meta
 guid: be72e524f79695440afd78fb8c5290cf
+========
+guid: e6c4f06f5e1fc684d9eb78ac99e8a33f
+>>>>>>>> Veronica:PGC Game 2024/Assets/Prefabs/Gameplay/Elevator.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

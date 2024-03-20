@@ -21,6 +21,7 @@ TagManager:
   - Cube
   - Mechanic
   - Scroll
+  - WinChip
   layers:
   - Default
   - TransparentFX
