@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GiveClue : MonoBehaviour
@@ -17,10 +18,22 @@ public class GiveClue : MonoBehaviour
     {
         if (isMoving)
         {
-            transform.position -= Vector3.MoveTowards(transform.position,new Vector3(clueLocations[puzzleNum].position.x,transform.position.y, clueLocations[puzzleNum].position.z), 0.5f)*speed*Time.deltaTime;
+            transform.position += transform.forward*speed*Time.deltaTime;
         }
-        if(Vector3.Distance(transform.position, clueLocations[puzzleNum].position) < 0.2f){
+       if(Vector3.Distance(transform.position, clueLocations[puzzleNum].position) < 1f){
             isMoving = false;
+        }
+    }
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.CompareTag("Player") && !isMoving)
+        {
+            GetComponent<CharacterController>().enabled = true;
+            GetComponent<RoBot>().canFollow = true;
+            if (puzzleNum < clueLocations.Length-1)
+            {
+                puzzleNum ++;
+            }
         }
     }
     public IEnumerator Clue()
