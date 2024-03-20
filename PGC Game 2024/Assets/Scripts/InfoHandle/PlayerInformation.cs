@@ -10,7 +10,7 @@ public class PlayerInformation : MonoBehaviour
     private int _maxHp = 3;
     private int _collectedHoney;
     private int _maxHoneyAmount = 60;
-    private int _healJars;
+
     [Header("Technical")]
     private bool _isInvulnerable;
     private int _swordAura = -1;
@@ -22,8 +22,8 @@ public class PlayerInformation : MonoBehaviour
             if(value >= 0 && value <= _maxHp) {
                 _hp = value;
                 AudioHandler.Instance.healthSource.PlayOneShot(AudioHandler.Instance.hitSound);
-                if (!UI_Controller.Instance.HPFading) StartCoroutine(UI_Controller.Instance.FadeHP());
-                IsInvulnerable = true;             
+                IsInvulnerable = true;
+                if(!UI_Controller.Instance.HPFading) StartCoroutine(UI_Controller.Instance.FadeHP());
             }
         } 
     }
@@ -36,16 +36,6 @@ public class PlayerInformation : MonoBehaviour
             //else if(value > _maxHoneyAmount) _collectedHoney = _maxHoneyAmount;
             if(!UI_Controller.Instance.HoneyFading) StartCoroutine(UI_Controller.Instance.FadeHoney());
         } 
-    }
-    public int CollectedHealJars
-    {
-        get => _healJars;
-        set
-        {
-            if (value >= 0) _healJars = value;
-            //else if(value > _maxHoneyAmount) _collectedHoney = _maxHoneyAmount;
-            if (!UI_Controller.Instance.HealFading) StartCoroutine(UI_Controller.Instance.FadeHeal());
-        }
     }
     public int MaxHoneyAmount { get => _maxHoneyAmount; set { if(value >= 0) _maxHoneyAmount = value; } }
     public int SwordAura { get => _swordAura; set { if(value >= -1) _swordAura = value; } }
