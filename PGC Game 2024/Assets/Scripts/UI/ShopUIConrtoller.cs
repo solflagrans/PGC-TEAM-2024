@@ -19,16 +19,16 @@ public class ShopUIConrtoller : MonoBehaviour
             itemPrice = price;
         }
     }
-    public shopItem[] items;
-    public GameObject[] buttons;
+
+   public GameObject[] buttons;
    public GameObject mc;
-   
+   public shopItem [] items;
    public void BuyItem(int itemNum)
     {
-       if (PlayerInformation.Instance.CollectedHoney >= items[itemNum].itemPrice)
+       if (mc.GetComponent<PlayerInformation>().CollectedHoney >= items[itemNum].itemPrice)
         {
             PlayerPrefs.SetInt(items[itemNum].itemName, 1);
-            PlayerInformation.Instance.CollectedHoney -= items[itemNum].itemPrice;
+            mc.GetComponent<PlayerInformation>().CollectedHoney -= items[itemNum].itemPrice;
             Debug.Log(items[itemNum].itemName + PlayerPrefs.GetInt(items[itemNum].itemName));
             for (int i = buttons.Length - 1; i > itemNum; i--)
             {
@@ -37,10 +37,9 @@ public class ShopUIConrtoller : MonoBehaviour
             buttons[itemNum].SetActive(false);
             if (items[itemNum].itemName == "hp")
             {
-                PlayerInformation.Instance.MaxHp += 1;
-                PlayerInformation.Instance.Hp += 1;
-               PlayerPrefs.SetInt("Hp", PlayerInformation.Instance.Hp += 1);
-               print(PlayerInformation.Instance.Hp);
+               mc.GetComponent<PlayerInformation>().Hp += 1;
+               PlayerPrefs.SetInt("Hp",mc.GetComponent<PlayerInformation>().Hp += 1);
+               print(mc.GetComponent<PlayerInformation>().Hp);
             }
             else if (items[itemNum].itemName == "aura"){
                print("aura");
