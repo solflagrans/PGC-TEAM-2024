@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 
 public class MovingController : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class MovingController : MonoBehaviour
     public string MovingMode { 
         get => _movingMode; 
         set {
-            if(value == "Default" || value == "Climbing" || value == "Flying" ) _movingMode = value;
+            if(value == "Default" || value == "Climbing" || value == "Flying") _movingMode = value;
             else print("Wrong moving mode");
         } 
     }
@@ -25,6 +24,8 @@ public class MovingController : MonoBehaviour
     public Transform Target { get => _target; set => _target = value; }
     public Rigidbody Rigidbody { get => _rigidbody; set => _rigidbody = value; }
     public float SpeedToTarget { get => _speedToTarget; set => _speedToTarget = value; }
+    public bool CanJump { get => _canJump; set => _canJump = value; }
+    public bool CanDoubleJump { get => _canDoubleJump; set => _canDoubleJump = value; }
 
     [Header("Moving Mode")] 
     private string _movingMode = "Default";
@@ -48,7 +49,7 @@ public class MovingController : MonoBehaviour
     private Transform _startClimbPoint;
     [SerializeField] private Collider _swordCollider;
     [SerializeField] private CameraController _cam;
-    [SerializeField] private UnityEngine.UI.Image _fadePanel;
+    [SerializeField] private Image _fadePanel;
 
     [Header("Techincal Variables")]
     private Vector3 _movingVector;
@@ -58,11 +59,10 @@ public class MovingController : MonoBehaviour
     private bool _waitAttack;
     private bool _isDead;
     private bool _deadSoundPlayed;
+    private bool _sceneLoading;
     private Transform _target;
     private float _speedToTarget;
-    public delegate void DieAction();
-    public event DieAction OnDying;
-    public UnityEvent dieEvent = new UnityEvent();
+
     private void Awake() {
 
         if(!Instance) Instance = this;
@@ -99,11 +99,14 @@ public class MovingController : MonoBehaviour
     }
 
     void Update() {
-        if(PlayerInformation.Instance.Hp <= 0 ) {
-            dieEvent.AddListener(GetComponent<Healing>().TryHeal);
-            dieEvent.Invoke();
+
+        if(PlayerInformation.Instance.Hp <= 0) {
+            Die();
+            _isDead = true;
         }
-        if (_isDead) return;
+
+        if(_isDead) return;
+
 
         if (_movingMode == "Default")
         {
@@ -233,21 +236,33 @@ public class MovingController : MonoBehaviour
 
     }
 
-    
-    public void Die()
-    {
-        _isDead = true;
+    private void Die() {
 
         transform.position = Vector3.MoveTowards(transform.position, Vector3.down * 5f, 0.08f);
 
         _cam.enabled = false;
         _fadePanel.fillAmount += 1 * Time.deltaTime;
 
-        if (!_audioHandler.gameStateSource.isPlaying && !_deadSoundPlayed)
-        {
+        if(!_audioHandler.gameStateSource.isPlaying && !_deadSoundPlayed) {
             _audioHandler.gameStateSource.PlayOneShot(_audioHandler.deathSound);
             _deadSoundPlayed = true;
         }
+
+        StartCoroutine(Restart());
+        
+    }
+
+    IEnumerator Restart() {
+
+        yield return new WaitForSeconds(3f);
+
+        PlayerInformation.Instance.Hp = PlayerInformation.Instance.MaxHp;
+
+        if(!_sceneLoading) {
+            SceneManager.LoadSceneAsync(1);
+            _sceneLoading = true;
+        }
+
     }
 
     private void FadePanel() {

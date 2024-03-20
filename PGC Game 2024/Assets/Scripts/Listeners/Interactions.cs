@@ -11,10 +11,13 @@ public class Interactions : MonoBehaviour
     [SerializeField] private GameObject _shopWindow;
     [SerializeField] private GameObject _worldText;
     [SerializeField] private GameObject _mechanic;
+    [SerializeField] private GameObject _robot;
     private GameInformation _gameInfo;
     private MovingController _movingController;
     private DialogUI_Controller _dialogController;
     private bool inTrigger;
+    private int order;
+    private int dialogueType;
 
     private void Start() {
         
@@ -22,11 +25,16 @@ public class Interactions : MonoBehaviour
         _movingController = MovingController.Instance;
         _dialogController = GetComponent<DialogUI_Controller>();
 
+        if(!GameInformation.Instance.IsTalkedToMechanic) _robot.SetActive(false);
+
     }
 
     private void Update() {
 
-        if(inTrigger) TalkToMechanic(_mechanic);
+        if(inTrigger) {
+            if(dialogueType == 0) TalkToMechanic(_mechanic);
+            if(dialogueType == 1) FinalDialogue(_mechanic);
+        }
 
     }
 
@@ -56,7 +64,6 @@ public class Interactions : MonoBehaviour
     private void OpenShop() {
 
         _shopWindow.SetActive(!_shopWindow.activeSelf);
-        GetComponent<MovingController>().enabled = !_shopWindow.activeSelf;
         Cursor.visible = _shopWindow.activeSelf;
           
     }
@@ -65,6 +72,7 @@ public class Interactions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E)) {
             _worldText.SetActive(false);
+            // dialogueWindow.SetActive(true);
             if (!_gameInfo.IsTalkedToMechanic) {
                 StartDialogue(_dialogue1);
             } else if(_gameInfo.LastUnlockedLevel < 4) {
@@ -79,6 +87,25 @@ public class Interactions : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.Q) && !_dialogueWindow.activeSelf) {
             OpenShop();
         }
+
+    }
+
+    private void FinalDialogue(GameObject mechanic) {
+
+            _worldText.SetActive(false);
+            if(order == 0) {
+                StartDialogue(_dialogue1);
+                order++;
+                this.enabled = false;
+            } else if(order == 1) {
+                StartDialogue(_dialogue2);
+                order++;
+                this.enabled = false;
+            } else if(order == 2) {
+                StartDialogue(_dialogue3);
+                order++;
+                this.enabled = false;
+            }
 
     }
 
@@ -111,8 +138,14 @@ public class Interactions : MonoBehaviour
         _movingController.enabled = true;
         _dialogueWindow.SetActive(false);
         _dialogController.Phrases.Clear();
+        if(!GameInformation.Instance.IsTalkedToMechanic) _robot.SetActive(true);
         GameInformation.Instance.IsTalkedToMechanic = true;
-        if (inTrigger) _worldText.SetActive(true);
+        PlayerPrefs.SetInt("MechanicTalked", 1);
+        if(GameInformation.Instance.LastUnlockedLevel < 1) GameInformation.Instance.LastUnlockedLevel = 1;
+        PlayerPrefs.SetInt("LastLevel", 1);
+        PlayerPrefs.Save();
+
+        if(inTrigger) _worldText.SetActive(true);
 
     }
         
