@@ -48,7 +48,7 @@ public class GameInformation : MonoBehaviour
             MovingController.Instance.gameObject.transform.position = tpPosition;
         }
         if(Input.GetKeyDown(KeyCode.H)) {
-            PlayerInformation.Instance.Hp = PlayerInformation.Instance.MaxHp;
+            PlayerInformation.Instance.Hp = 0;
         }
 
     }
