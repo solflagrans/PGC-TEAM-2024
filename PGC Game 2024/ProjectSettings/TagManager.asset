@@ -22,7 +22,6 @@ TagManager:
   - Mechanic
   - Scroll
   - WinChip
-  - HealJar
   layers:
   - Default
   - TransparentFX
