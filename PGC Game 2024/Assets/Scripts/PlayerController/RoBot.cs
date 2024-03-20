@@ -20,7 +20,7 @@ public class RoBot : MonoBehaviour
     private bool _controlMode;
     private Vector3 _nextPosition;
     private Vector3 _movingVector;
-
+    public bool canFollow;
     private void Start() {
 
         _animator = GetComponent<Animator>();
@@ -56,13 +56,16 @@ public class RoBot : MonoBehaviour
     }
 
     private void FollowPlayer() {
+        if (canFollow)
+        {
+            if (Vector3.Distance(transform.position, _nextPosition) < 0.02f) _timer = 0;
 
-        if(Vector3.Distance(transform.position, _nextPosition) < 0.02f) _timer = 0;
+            if (_timer > 0.3f)
+            {
+                transform.position = Vector3.Lerp(transform.position, _idlePosition.position, _movingSpeed / 10f);
 
-        if (_timer > 0.3f) {
-            transform.position = Vector3.Lerp(transform.position, _idlePosition.position, _movingSpeed / 10f);
-
-            transform.rotation = Quaternion.Lerp(transform.rotation, _idlePosition.rotation, 720f * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, _idlePosition.rotation, 720f * Time.deltaTime);
+            }
         }
 
     }
