@@ -56,6 +56,7 @@ public class UI_Controller : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)) ChangeMenuState();
 
         _healthBar.value = PlayerInformation.Instance.Hp;
+        _healthBar.maxValue = PlayerInformation.Instance.MaxHp;
         //_honeyFiller.value = Mathf.Floor((((float)PlayerInformation.Instance.CollectedHoney) / ((float)PlayerInformation.Instance.MaxHoneyAmount)) * 100);
         //_honeyPercentage.text = _honeyFiller.value.ToString() + "%";
         _healNumber.text = PlayerInformation.Instance.CollectedHealJars.ToString() + " банок мёда";
@@ -72,19 +73,23 @@ public class UI_Controller : MonoBehaviour
             _menuOpened = true;
             Cursor.visible = true;
             AudioHandler.Instance.MuteForMenu();
+            MovingController.Instance.enabled = false;
         } else {
             Time.timeScale = 1f;
             _pauseUI.SetActive(false);
             _menuOpened = false;
             Cursor.visible = false;
             AudioHandler.Instance.Unmute();
+            MovingController.Instance.enabled = true;
         }
 
     }
 
-   public void Restart() {
+   public void ToMap() {
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(GameInformation.Instance.LastUnlockedLevel < 1) return;
+
+        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
 
     }
