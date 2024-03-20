@@ -50,7 +50,7 @@ public class scriptable_object : MonoBehaviour
 
     private void Update() {
 
-        if(canUse.PlayerIn) {
+        if(canUse.playerIn) {
 
             if(Input.GetKeyDown(KeyCode.H)) {
 

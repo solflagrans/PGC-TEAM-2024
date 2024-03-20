@@ -38,7 +38,7 @@ public class HeavyButton : MonoBehaviour
         if(_cubeOn || _playerOn || _robotOn) return;
 
         _activated = false;
-        _meshRenderer.material.color = Color.white;
+        _meshRenderer.material.color = Color.red;
 
         _audioSource.PlayOneShot(AudioHandler.Instance.heavyButtonOff);
 

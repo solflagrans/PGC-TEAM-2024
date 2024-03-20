@@ -9,7 +9,6 @@ public class Puzzle : MonoBehaviour
     [SerializeField] private Tumbler[] _tumblers;
     [SerializeField] private Elevator[] _elevators;
     [SerializeField] private Gate[] _gates;
-    [SerializeField] private GameObject[] _objects;
 
     [Header("Results")]
     [SerializeField] private _results _result;
@@ -17,9 +16,7 @@ public class Puzzle : MonoBehaviour
     private enum _results {
         TurnPanel,
         TurnOnElevator,
-        TurnOnFloatingPanel,
-        MakeActive,
-        MakeNotActive
+        TurnOnFloatingPanel
     }
 
     [Header("TrapElements")]
@@ -82,16 +79,6 @@ public class Puzzle : MonoBehaviour
                     _gate.TurnOn();
                 }
                 break;
-            case _results.MakeActive:
-                foreach(GameObject _gameObject in _objects) {
-                    _gameObject.SetActive(true);
-                }
-                break;
-            case _results.MakeNotActive:
-                foreach(GameObject _gameObject in _objects) {
-                    _gameObject.SetActive(false);
-                }
-                break;
         }
 
     }
@@ -107,38 +94,28 @@ public class Puzzle : MonoBehaviour
                 }
                 break;
             case _results.TurnPanel:
-                foreach(Gate _gate in _gates) {
-                    _gate.TurnOff();
-                }
-                break;
-            case _results.MakeActive:
-                foreach(GameObject _gameObject in _objects) {
-                    _gameObject.SetActive(false);
-                }
-                break;
-            case _results.MakeNotActive:
-                foreach(GameObject _gameObject in _objects) {
-                    _gameObject.SetActive(true);
-                }
-                break;
+            foreach(Gate _gate in _gates) {
+                _gate.TurnOff();
+            }
+            break;
         }
 
     }
 
     private void TrapTasking() {
         
-        foreach(HeavyButton button in _trapHeavyButtons) {
-            if(button.Activated) continue;
-            else return;
-        }
+        /*foreach(HeavyButton button in _trapHeavyButtons) {
+            if(button.Activated) {
+                TrapResults();
+                button.Activated = false;
+            } else continue;
+        } There are some logical problems with that. We should think about it */
         foreach(Button button in _trapButtons) {
             if(button.Activated) {
                 TrapResults();
                 button.Activated = false;
             } else continue;
         }
-
-        TrapResults();
 
     }
 

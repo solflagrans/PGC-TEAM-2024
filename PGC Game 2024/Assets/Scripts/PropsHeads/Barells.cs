@@ -14,7 +14,7 @@ public class Barells : MonoBehaviour
 
     private void GiveHoney() {
 
-        for(int i = 0; i < Random.Range(2, 4); i++) Instantiate(honey, transform.position + Vector3.up * 2f, transform.rotation);
+        for(int i = 0; i < Random.Range(2, 6); i++) Instantiate(honey, transform.position + Vector3.up * 2f, transform.rotation);
 
     }
 

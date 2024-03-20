@@ -1,13 +1,19 @@
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+public abstract class Trap : MonoBehaviour
 {
 
-    public void GiveDamage() {
+    public void Initialize() {
+
+    }
+
+    public virtual void GiveDamage() {
 
         PlayerInformation.Instance.Hp -= 1;
 
     }
+
+    public abstract void Active();
 
     private void OnCollisionEnter(Collision col) {
 

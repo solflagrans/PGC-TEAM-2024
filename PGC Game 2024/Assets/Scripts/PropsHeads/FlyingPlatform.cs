@@ -6,9 +6,8 @@ public class FlyingPlatform : Platform
     [Header("Preferences [FlyingPlatform]")]
     [SerializeField] private Transform _target;
     [SerializeField] private float _speed;
-    [SerializeField] private GameObject jumpText;
 
-    private bool inTrigger;
+    private bool isUsed;
     
     private MovingController _controller;
 
@@ -20,32 +19,15 @@ public class FlyingPlatform : Platform
 
     }
 
-    public override void Update() {
-        
-        if(Vector3.Distance(_controller.transform.position, _target.transform.position) < 0.05f) {
-            _controller.MovingMode = "Default";
-            _controller.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        }
+    private void OnTriggerEnter(Collider col) {
 
-        if(inTrigger) {
-            if(Input.GetKeyDown(KeyCode.Space)) {
+        if(col.gameObject.CompareTag("Player")) {
+            if(!isUsed) {
                 _controller.MovingMode = "Flying";
                 _controller.Target = _target;
                 _controller.Rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
                 _controller.SpeedToTarget = _speed;
-                jumpText.SetActive(false);
             }
-        }
-
-        base.Update();
-
-    }
-
-    private void OnTriggerEnter(Collider col) {
-
-        if(col.gameObject.CompareTag("Player")) {
-            jumpText.SetActive(true);
-            inTrigger = true;
         }
 
     }
@@ -53,8 +35,9 @@ public class FlyingPlatform : Platform
     private void OnTriggerExit(Collider col) {
 
         if(col.gameObject.CompareTag("Player")) {
-            jumpText.SetActive(false);
-            inTrigger = false;
+            _controller.MovingMode = "Default";
+            _controller.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            isUsed = true;
         }
 
     }

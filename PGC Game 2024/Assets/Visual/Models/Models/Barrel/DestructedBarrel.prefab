@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mesh: {fileID: 7757613921898715487}
-  _timer: 5
-  _selfDestruction: 1
+  _timer: 0
+  _selfDestruction: 0
 --- !u!1 &2729686912063344038 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4305207569476479301, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mesh: {fileID: 7828085985711142762}
-  _timer: 5
-  _selfDestruction: 1
+  _timer: 0
+  _selfDestruction: 0
 --- !u!23 &7757613921898715487 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -723262651198358084, guid: ff29dae9c46e77344b8c8af2e6aa0f40,
