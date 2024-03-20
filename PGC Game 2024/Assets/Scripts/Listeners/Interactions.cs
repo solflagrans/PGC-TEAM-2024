@@ -56,6 +56,7 @@ public class Interactions : MonoBehaviour
     private void OpenShop() {
 
         _shopWindow.SetActive(!_shopWindow.activeSelf);
+        GetComponent<MovingController>().enabled = !_shopWindow.activeSelf;
         Cursor.visible = _shopWindow.activeSelf;
           
     }
@@ -64,7 +65,6 @@ public class Interactions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E)) {
             _worldText.SetActive(false);
-            // dialogueWindow.SetActive(true);
             if (!_gameInfo.IsTalkedToMechanic) {
                 StartDialogue(_dialogue1);
             } else if(_gameInfo.LastUnlockedLevel < 4) {
@@ -112,8 +112,7 @@ public class Interactions : MonoBehaviour
         _dialogueWindow.SetActive(false);
         _dialogController.Phrases.Clear();
         GameInformation.Instance.IsTalkedToMechanic = true;
-
-        if(inTrigger) _worldText.SetActive(true);
+        if (inTrigger) _worldText.SetActive(true);
 
     }
         
