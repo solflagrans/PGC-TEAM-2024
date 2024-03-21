@@ -12,10 +12,6 @@ public class HealingJar : MonoBehaviour
         _jarSound ??= GetComponent<AudioSource>();
 
     }
-    private void Update()
-    {
-        transform.Rotate(0, 1, 0);
-    }
     private void OnTriggerEnter(Collider col)
     {
 

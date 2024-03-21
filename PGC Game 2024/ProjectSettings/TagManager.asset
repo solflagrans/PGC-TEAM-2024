@@ -21,6 +21,8 @@ TagManager:
   - Cube
   - Mechanic
   - Scroll
+  - HealJar
+  - WinChip
   layers:
   - Default
   - TransparentFX

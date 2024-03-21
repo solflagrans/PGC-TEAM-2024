@@ -11,6 +11,7 @@ public class GetWinChip : MonoBehaviour
 
             gameObject.GetComponent<Animator>().SetTrigger("Jump");
             gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * speed, ForceMode.Impulse);
+            Destroy(coll.gameObject);
         }
     }
     private void OnTriggerEnter(Collider coll) {
