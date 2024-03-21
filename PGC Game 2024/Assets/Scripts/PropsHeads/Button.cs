@@ -9,6 +9,8 @@ public class Button : MonoBehaviour
     private bool _activated = false;
     private AudioSource _audioSource;
 
+    [SerializeField] private GameObject _help;
+
     public bool Activated { get => _activated; set => _activated = value; }
 
     private void Start() {
@@ -34,7 +36,7 @@ public class Button : MonoBehaviour
 
         _audioSource.PlayOneShot(AudioHandler.Instance.buttonPress);
 
-        StartCoroutine(ColorChanger(_meshRenderer, Color.red, Color.green));
+        StartCoroutine(ColorChanger(_meshRenderer, Color.white, Color.green));
 
     }
 
@@ -52,6 +54,7 @@ public class Button : MonoBehaviour
         
         if(col.CompareTag("Player")) {
             _inTrigger = true;
+            _help.SetActive(true);
         }
 
     }
@@ -60,6 +63,7 @@ public class Button : MonoBehaviour
         
         if(col.CompareTag("Player")) {
             _inTrigger = false;
+            _help.SetActive(false);
         }
 
     }

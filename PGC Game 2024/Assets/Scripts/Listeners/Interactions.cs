@@ -25,7 +25,7 @@ public class Interactions : MonoBehaviour
         _movingController = MovingController.Instance;
         _dialogController = GetComponent<DialogUI_Controller>();
 
-        if(!GameInformation.Instance.IsTalkedToMechanic) _robot.SetActive(false);
+        if(!GameInformation.Instance.IsTalkedToMechanic && dialogueType == 0) _robot.SetActive(false);
 
     }
 
@@ -46,7 +46,7 @@ public class Interactions : MonoBehaviour
 
         if(coll.CompareTag("Mechanic")) {
             inTrigger = true;
-            ShowMessage();
+            if(dialogueType == 0) ShowMessage();
         }
            
     }
@@ -96,7 +96,6 @@ public class Interactions : MonoBehaviour
     private void FinalDialogue(GameObject mechanic) {
         print("Delta");
 
-            _worldText.SetActive(false);
             if(order == 0) {
                 StartDialogue(_dialogue1);
                 order++;
@@ -149,7 +148,7 @@ public class Interactions : MonoBehaviour
         PlayerPrefs.SetInt("LastLevel", 1);
         PlayerPrefs.Save();
 
-        if(inTrigger) _worldText.SetActive(true);
+        if(inTrigger && dialogueType == 0) _worldText.SetActive(true);
 
     }
         
