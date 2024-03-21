@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -62,6 +63,9 @@ public class MovingController : MonoBehaviour
     private bool _sceneLoading;
     private Transform _target;
     private float _speedToTarget;
+    public delegate void DieAction();
+    public event DieAction OnDying;
+    public UnityEvent dieEvent = new UnityEvent();
 
     private void Awake() {
 
@@ -101,8 +105,10 @@ public class MovingController : MonoBehaviour
     void Update() {
 
         if(PlayerInformation.Instance.Hp <= 0) {
-            Die();
-            _isDead = true;
+            if(PlayerInformation.Instance.Hp <= 0) {
+                dieEvent.AddListener(GetComponent<Healing>().TryHeal);
+                dieEvent.Invoke();
+            }
         }
 
         if(_isDead) return;
@@ -236,7 +242,7 @@ public class MovingController : MonoBehaviour
 
     }
 
-    private void Die() {
+    public void Die() {
 
         transform.position = Vector3.MoveTowards(transform.position, Vector3.down * 5f, 0.08f);
 
