@@ -17,7 +17,7 @@ public class Interactions : MonoBehaviour
     private DialogUI_Controller _dialogController;
     private bool inTrigger;
     private int order;
-    private int dialogueType;
+    [SerializeField] private int dialogueType;
 
     private void Start() {
         
@@ -25,7 +25,7 @@ public class Interactions : MonoBehaviour
         _movingController = MovingController.Instance;
         _dialogController = GetComponent<DialogUI_Controller>();
 
-        if(!GameInformation.Instance.IsTalkedToMechanic) _robot.SetActive(false);
+        if(!GameInformation.Instance.IsTalkedToMechanic && dialogueType == 0) _robot.SetActive(false);
 
     }
 
@@ -41,10 +41,9 @@ public class Interactions : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll) {
 
-            inTrigger = true;
         if(coll.CompareTag("Mechanic")) {
-            print("hey");
-            ShowMessage();
+            inTrigger = true;
+            if(dialogueType == 0) ShowMessage();
         }
            
     }
@@ -93,7 +92,6 @@ public class Interactions : MonoBehaviour
 
     private void FinalDialogue(GameObject mechanic) {
 
-            _worldText.SetActive(false);
             if(order == 0) {
                 StartDialogue(_dialogue1);
                 order++;
@@ -146,7 +144,7 @@ public class Interactions : MonoBehaviour
         PlayerPrefs.SetInt("LastLevel", 1);
         PlayerPrefs.Save();
 
-        if(inTrigger) _worldText.SetActive(true);
+        if(inTrigger && dialogueType == 0) _worldText.SetActive(true);
 
     }
         
