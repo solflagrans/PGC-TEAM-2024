@@ -33,7 +33,10 @@ public class Interactions : MonoBehaviour
 
         if(inTrigger) {
             if(dialogueType == 0) TalkToMechanic(_mechanic);
-            if(dialogueType == 1) FinalDialogue(_mechanic);
+            if(dialogueType == 1) {
+                print("h");
+                FinalDialogue(_mechanic);
+            }
         }
 
     }
@@ -91,6 +94,7 @@ public class Interactions : MonoBehaviour
     }
 
     private void FinalDialogue(GameObject mechanic) {
+        print("Delta");
 
             if(order == 0) {
                 StartDialogue(_dialogue1);

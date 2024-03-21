@@ -34312,6 +34312,7 @@ MonoBehaviour:
   _upSpeed: 2
   _idlePosition: {fileID: 9050103525911855784}
   _cam: {fileID: 9177651539893041223}
+  canFollow: 0
 --- !u!224 &5894133899266525327
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38920,6 +38921,9 @@ MonoBehaviour:
   _swordCollider: {fileID: 6048499633982875654}
   _cam: {fileID: 1018561635587717029}
   _fadePanel: {fileID: 5449330202620727979}
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8326468846433790428
 GameObject:
   m_ObjectHideFlags: 0
@@ -39135,6 +39139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseUI: {fileID: 5080140817574319997}
   _healthBar: {fileID: 2044771314364737014}
+  _healNumber: {fileID: 0}
   _honeyNumber: {fileID: 4798684987696693935}
   _scroll: {fileID: 313711870458883407}
   _healthFill: {fileID: 5572302855742731719}
