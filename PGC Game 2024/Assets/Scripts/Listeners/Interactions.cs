@@ -58,14 +58,14 @@ public class Interactions : MonoBehaviour
             HideMessage();
             if(_shopWindow.activeSelf) {
                 _shopWindow.SetActive(!_shopWindow.activeSelf);
-                Cursor.visible = _shopWindow.activeSelf;
+                Cursor.visible = _shopWindow.activeSelf;   
             }
         }
 
     }
         
     private void OpenShop() {
-
+        GetComponent<MovingController>().enabled = _shopWindow.activeSelf;
         _shopWindow.SetActive(!_shopWindow.activeSelf);
         Cursor.visible = _shopWindow.activeSelf;
           
