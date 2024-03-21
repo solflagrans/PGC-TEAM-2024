@@ -61,8 +61,8 @@ public class UI_Controller : MonoBehaviour
         //_honeyFiller.value = Mathf.Floor((((float)PlayerInformation.Instance.CollectedHoney) / ((float)PlayerInformation.Instance.MaxHoneyAmount)) * 100);
         //_honeyPercentage.text = _honeyFiller.value.ToString() + "%";
         //_healNumber.text = "Банок мёда: " + PlayerInformation.Instance.CollectedHealJars.ToString();
-        _honeyNumber.text = PlayerInformation.Instance.CollectedHoney.ToString() + " сот";
-
+        _honeyNumber.text = "Соты: " + PlayerInformation.Instance.CollectedHoney.ToString() ;
+        _healNumber.text = "Банки мёда: " + PlayerInformation.Instance.CollectedHealJars.ToString();
     }
 
     public void ChangeMenuState() {

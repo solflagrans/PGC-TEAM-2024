@@ -92,7 +92,12 @@ public class RoBot : MonoBehaviour
 
         _controlMode = !_controlMode;
         _controller.enabled = !_controlMode;
-
+        if(_controlMode )
+        {
+            GetComponent<GiveClue>().isMoving = false;
+            canFollow = true;
+            GetComponent<CharacterController>().enabled = true;
+        }  
         AudioHandler.Instance.robotSource.Stop();
 
     }

@@ -7,9 +7,9 @@ public class GiveClue : MonoBehaviour
 {
     public static GiveClue Instance;
     public Transform [] clueLocations;
-    private int puzzleNum = 0;
+    public int puzzleNum = 0;
     [SerializeField] private float clueTime;
-    private bool isMoving = false;
+    public bool isMoving = false;
     public float speed;
     public GameObject mc;
     private void Awake()
@@ -25,7 +25,7 @@ public class GiveClue : MonoBehaviour
         {
             transform.position += transform.forward*speed*Time.deltaTime;
         }
-       if(Vector3.Distance(transform.position, clueLocations[puzzleNum].position) < 0.5f){
+       if(Vector3.Distance(transform.position, clueLocations[puzzleNum].position) < 1f){
             isMoving = false;
         }
       if (Vector3.Distance(transform.position, mc.transform.position) >= 2.5f)
