@@ -41,8 +41,9 @@ public class Interactions : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll) {
 
-        if(coll.CompareTag("Mechanic")) {
             inTrigger = true;
+        if(coll.CompareTag("Mechanic")) {
+            print("hey");
             ShowMessage();
         }
            
