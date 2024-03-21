@@ -34312,7 +34312,7 @@ MonoBehaviour:
   _upSpeed: 2
   _idlePosition: {fileID: 9050103525911855784}
   _cam: {fileID: 9177651539893041223}
-  canFollow: 0
+  canFollow: 1
 --- !u!224 &5894133899266525327
 RectTransform:
   m_ObjectHideFlags: 0
