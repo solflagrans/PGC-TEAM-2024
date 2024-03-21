@@ -8,7 +8,6 @@ public class EnableClueClounter : MonoBehaviour
     {
         if (coll.CompareTag("Player"))
         {
-            print("s");
             StartCoroutine(GiveClue.Instance.Clue(gameObject));
          
         }

@@ -23,6 +23,7 @@ TagManager:
   - Scroll
   - HealJar
   - WinChip
+  - Destroyer
   layers:
   - Default
   - TransparentFX

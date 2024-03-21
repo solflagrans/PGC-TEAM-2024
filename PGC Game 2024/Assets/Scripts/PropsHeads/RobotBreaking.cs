@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RobotBreaking : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class RobotBreaking : MonoBehaviour
 
         _playerCamera.SetActive(true);
         _bearCamera.SetActive(false);
+        SceneManager.LoadScene(1);
 
     }
 

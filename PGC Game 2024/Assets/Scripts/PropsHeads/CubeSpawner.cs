@@ -15,7 +15,7 @@ public class CubeSpawner : MonoBehaviour
 
     }
 
-    private void SpawnCube() {
+    public void SpawnCube() {
 
         Destroy(_generated);
         _generated = Instantiate(_cube, transform.position, transform.rotation, transform);

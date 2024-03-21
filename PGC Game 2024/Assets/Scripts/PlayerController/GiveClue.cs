@@ -20,7 +20,6 @@ public class GiveClue : MonoBehaviour
     }
     private void Update()
     {
-        print(puzzleNum);
         if (isMoving)
         {
             transform.position += transform.forward*speed*Time.deltaTime;
@@ -50,7 +49,6 @@ public class GiveClue : MonoBehaviour
     {
 
         yield return new WaitForSeconds(clueTime);
-        print(puzzleNum);
         GetComponent<RoBot>().canFollow = false;
         transform.LookAt(clueLocations[puzzleNum].position);
         isMoving = true;

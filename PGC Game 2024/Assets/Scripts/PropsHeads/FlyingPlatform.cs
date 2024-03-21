@@ -31,7 +31,8 @@ public class FlyingPlatform : Platform
             if(Input.GetKeyDown(KeyCode.Space)) {
                 _controller.MovingMode = "Flying";
                 _controller.Target = _target;
-                _controller.Rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+                _controller.Rigidbody.useGravity = false;
+                _controller.Rigidbody.constraints = RigidbodyConstraints.None;
                 _controller.SpeedToTarget = _speed;
                 jumpText.SetActive(false);
             }
