@@ -17,7 +17,7 @@ public class Interactions : MonoBehaviour
     private DialogUI_Controller _dialogController;
     private bool inTrigger;
     private int order;
-    private int dialogueType;
+    [SerializeField] private int dialogueType;
 
     private void Start() {
         
@@ -33,7 +33,10 @@ public class Interactions : MonoBehaviour
 
         if(inTrigger) {
             if(dialogueType == 0) TalkToMechanic(_mechanic);
-            if(dialogueType == 1) FinalDialogue(_mechanic);
+            if(dialogueType == 1) {
+                print("h");
+                FinalDialogue(_mechanic);
+            }
         }
 
     }
@@ -91,6 +94,7 @@ public class Interactions : MonoBehaviour
     }
 
     private void FinalDialogue(GameObject mechanic) {
+        print("Delta");
 
             _worldText.SetActive(false);
             if(order == 0) {

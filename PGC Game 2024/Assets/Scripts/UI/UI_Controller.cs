@@ -60,7 +60,7 @@ public class UI_Controller : MonoBehaviour
         _healthBar.maxValue = PlayerInformation.Instance.MaxHp;
         //_honeyFiller.value = Mathf.Floor((((float)PlayerInformation.Instance.CollectedHoney) / ((float)PlayerInformation.Instance.MaxHoneyAmount)) * 100);
         //_honeyPercentage.text = _honeyFiller.value.ToString() + "%";
-        _healNumber.text = "Банок мёда: " + PlayerInformation.Instance.CollectedHealJars.ToString();
+        //_healNumber.text = "Банок мёда: " + PlayerInformation.Instance.CollectedHealJars.ToString();
         _honeyNumber.text = PlayerInformation.Instance.CollectedHoney.ToString() + " сот";
 
     }
