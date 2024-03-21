@@ -9,6 +9,7 @@ public class RobotBreaking : MonoBehaviour
     private int _damaged;
     [SerializeField] private GameObject _bearCamera;
     [SerializeField] private GameObject _playerCamera;
+    [SerializeField] private GameObject _continue;
 
     private void GiveDamage() {
 
@@ -16,6 +17,8 @@ public class RobotBreaking : MonoBehaviour
         Invoke(nameof(OffSmoke), 5f);
 
         Instantiate(_cube, _cubePosition);
+
+        if(_continue != null) _continue.SetActive(true);
 
     }
 
